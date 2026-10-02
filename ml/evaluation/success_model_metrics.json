@@ -1,0 +1,38 @@
+{
+ "model": "success_model",
+ "data_version": "synthetic-v1-7343f03eb6",
+ "synthetic_data": true,
+ "n_train": 3840,
+ "n_test": 960,
+ "precision": 0.782,
+ "recall": 0.786,
+ "f1": 0.784,
+ "roc_auc": 0.821,
+ "brier": 0.17,
+ "accuracy": 0.745,
+ "majority_baseline_accuracy": 0.589,
+ "confusion": {
+  "labels": [
+   "fail",
+   "success"
+  ],
+  "matrix": [
+   [
+    271,
+    124
+   ],
+   [
+    121,
+    444
+   ]
+  ]
+ },
+ "coefficients": {
+  "ready": 0.83,
+  "difficulty": -0.698,
+  "recent_success_rate": 0.528,
+  "avg_dimension_score": 0.062,
+  "n_sessions": 0.144
+ },
+ "caveat": "labels come from a SIMULATED generative process (assumptions in ml/datasets/generate.py), not observed learners; this is a calibrated prior for difficulty matching and should be refit on real local logs"
+}

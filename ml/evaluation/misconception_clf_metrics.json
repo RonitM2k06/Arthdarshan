@@ -1,0 +1,1147 @@
+{
+ "model": "misconception_clf",
+ "data_version": "synthetic-v1-7f510bfd83",
+ "synthetic_data": true,
+ "threshold": 0.2,
+ "n_train": 1208,
+ "n_test_synthetic": 302,
+ "train_seconds": 0.41,
+ "synthetic_split": {
+  "per_label": {
+   "M001": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 14
+   },
+   "M002": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 22
+   },
+   "M003": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 26
+   },
+   "M004": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 23
+   },
+   "M005": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 23
+   },
+   "M006": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 19
+   },
+   "M007": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 17
+   },
+   "M008": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 28
+   },
+   "M009": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 14
+   },
+   "M010": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 31
+   },
+   "M011": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 25
+   },
+   "M012": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 15
+   },
+   "M013": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 20
+   }
+  },
+  "micro": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0
+  },
+  "macro": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0
+  },
+  "exact_match": 1.0,
+  "confusion": {
+   "labels": [
+    "M001",
+    "M002",
+    "M003",
+    "M004",
+    "M005",
+    "M006",
+    "M007",
+    "M008",
+    "M009",
+    "M010",
+    "M011",
+    "M012",
+    "M013",
+    "none"
+   ],
+   "matrix": [
+    [
+     13,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     21,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     24,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     22,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     20,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     19,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     16,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     22,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     13,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     25,
+     1,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     23,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     12,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     15,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     49
+    ]
+   ],
+   "note": "rows = true (first label or none), columns = predicted (argmax if >= threshold else none)"
+  },
+  "caveat": "random split of template-generated data: optimistic, same phrasing as training"
+ },
+ "heldout_handwritten": {
+  "per_label": {
+   "M001": {
+    "precision": 0.5,
+    "recall": 0.8,
+    "f1": 0.615,
+    "support": 5
+   },
+   "M002": {
+    "precision": 0.5,
+    "recall": 0.8,
+    "f1": 0.615,
+    "support": 5
+   },
+   "M003": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 5
+   },
+   "M004": {
+    "precision": 0.625,
+    "recall": 1.0,
+    "f1": 0.769,
+    "support": 5
+   },
+   "M005": {
+    "precision": 0.8,
+    "recall": 0.8,
+    "f1": 0.8,
+    "support": 5
+   },
+   "M006": {
+    "precision": 0.667,
+    "recall": 0.8,
+    "f1": 0.727,
+    "support": 5
+   },
+   "M007": {
+    "precision": 0.571,
+    "recall": 0.8,
+    "f1": 0.667,
+    "support": 5
+   },
+   "M008": {
+    "precision": 0.714,
+    "recall": 1.0,
+    "f1": 0.833,
+    "support": 5
+   },
+   "M009": {
+    "precision": 0.714,
+    "recall": 1.0,
+    "f1": 0.833,
+    "support": 5
+   },
+   "M010": {
+    "precision": 0.8,
+    "recall": 0.8,
+    "f1": 0.8,
+    "support": 5
+   },
+   "M011": {
+    "precision": 0.714,
+    "recall": 1.0,
+    "f1": 0.833,
+    "support": 5
+   },
+   "M012": {
+    "precision": 0.833,
+    "recall": 1.0,
+    "f1": 0.909,
+    "support": 5
+   },
+   "M013": {
+    "precision": 0.714,
+    "recall": 1.0,
+    "f1": 0.833,
+    "support": 5
+   }
+  },
+  "micro": {
+   "precision": 0.679,
+   "recall": 0.877,
+   "f1": 0.765
+  },
+  "macro": {
+   "precision": 0.704,
+   "recall": 0.877,
+   "f1": 0.768
+  },
+  "exact_match": 0.625,
+  "n": 80,
+  "confusion": {
+   "labels": [
+    "M001",
+    "M002",
+    "M003",
+    "M004",
+    "M005",
+    "M006",
+    "M007",
+    "M008",
+    "M009",
+    "M010",
+    "M011",
+    "M012",
+    "M013",
+    "none"
+   ],
+   "matrix": [
+    [
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     3,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     0,
+     5,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     0,
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     1,
+     3,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     5,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     4,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     5,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     4,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     5,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     1,
+     0,
+     2,
+     1,
+     1,
+     1,
+     0,
+     2,
+     1,
+     0,
+     5
+    ]
+   ],
+   "note": "rows = true (first label or none), columns = predicted (argmax if >= threshold else none)"
+  },
+  "caveat": "hand-written, differently worded, small n; indicative not definitive"
+ },
+ "heldout_rules_only": {
+  "per_label": {
+   "M001": {
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333,
+    "support": 5
+   },
+   "M002": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 5
+   },
+   "M003": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 5
+   },
+   "M004": {
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333,
+    "support": 5
+   },
+   "M005": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 5
+   },
+   "M006": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 5
+   },
+   "M007": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 5
+   },
+   "M008": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 5
+   },
+   "M009": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 5
+   },
+   "M010": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 5
+   },
+   "M011": {
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333,
+    "support": 5
+   },
+   "M012": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 5
+   },
+   "M013": {
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333,
+    "support": 5
+   }
+  },
+  "micro": {
+   "precision": 1.0,
+   "recall": 0.246,
+   "f1": 0.395
+  },
+  "macro": {
+   "precision": 0.692,
+   "recall": 0.246,
+   "f1": 0.347
+  },
+  "exact_match": 0.388
+ },
+ "heldout_combined_rules_or_ml": {
+  "per_label": {
+   "M001": {
+    "precision": 0.5,
+    "recall": 0.8,
+    "f1": 0.615,
+    "support": 5
+   },
+   "M002": {
+    "precision": 0.5,
+    "recall": 0.8,
+    "f1": 0.615,
+    "support": 5
+   },
+   "M003": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 5
+   },
+   "M004": {
+    "precision": 0.625,
+    "recall": 1.0,
+    "f1": 0.769,
+    "support": 5
+   },
+   "M005": {
+    "precision": 0.8,
+    "recall": 0.8,
+    "f1": 0.8,
+    "support": 5
+   },
+   "M006": {
+    "precision": 0.667,
+    "recall": 0.8,
+    "f1": 0.727,
+    "support": 5
+   },
+   "M007": {
+    "precision": 0.571,
+    "recall": 0.8,
+    "f1": 0.667,
+    "support": 5
+   },
+   "M008": {
+    "precision": 0.714,
+    "recall": 1.0,
+    "f1": 0.833,
+    "support": 5
+   },
+   "M009": {
+    "precision": 0.714,
+    "recall": 1.0,
+    "f1": 0.833,
+    "support": 5
+   },
+   "M010": {
+    "precision": 0.8,
+    "recall": 0.8,
+    "f1": 0.8,
+    "support": 5
+   },
+   "M011": {
+    "precision": 0.714,
+    "recall": 1.0,
+    "f1": 0.833,
+    "support": 5
+   },
+   "M012": {
+    "precision": 0.833,
+    "recall": 1.0,
+    "f1": 0.909,
+    "support": 5
+   },
+   "M013": {
+    "precision": 0.714,
+    "recall": 1.0,
+    "f1": 0.833,
+    "support": 5
+   }
+  },
+  "micro": {
+   "precision": 0.682,
+   "recall": 0.892,
+   "f1": 0.773
+  },
+  "macro": {
+   "precision": 0.704,
+   "recall": 0.892,
+   "f1": 0.779
+  },
+  "exact_match": 0.625
+ },
+ "production_path_heldout": {
+  "rules_only": {
+   "micro": {
+    "precision": 1.0,
+    "recall": 0.246,
+    "f1": 0.395
+   },
+   "macro": {
+    "precision": 0.692,
+    "recall": 0.246,
+    "f1": 0.347
+   }
+  },
+  "production_rules_plus_gated_ml": {
+   "micro": {
+    "precision": 0.902,
+    "recall": 0.708,
+    "f1": 0.793
+   },
+   "macro": {
+    "precision": 0.876,
+    "recall": 0.708,
+    "f1": 0.762
+   }
+  },
+  "production_confusion": {
+   "labels": [
+    "M001",
+    "M002",
+    "M003",
+    "M004",
+    "M005",
+    "M006",
+    "M007",
+    "M008",
+    "M009",
+    "M010",
+    "M011",
+    "M012",
+    "M013",
+    "none"
+   ],
+   "matrix": [
+    [
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     5
+    ],
+    [
+     0,
+     0,
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     0,
+     3,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     4,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3,
+     0,
+     0,
+     0,
+     2
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     5,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     5,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     5,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     12
+    ]
+   ],
+   "note": "rows true (first label or none), columns predicted (first detected label or none)"
+  },
+  "n": 80,
+  "caveat": "hand-written, n=80; indicative not definitive"
+ }
+}

@@ -58,7 +58,7 @@ def test_action_signal_and_merge():
 
 
 def test_ml_probs_threshold():
-    d = detect("", ml_probs={"M001": 0.9, "M002": 0.2})
+    d = detect("they say this is totally safe", ml_probs={"M001": 0.9, "M002": 0.2})
     assert [x.id for x in d] == ["M001"] and d[0].source == "ml"
 
 

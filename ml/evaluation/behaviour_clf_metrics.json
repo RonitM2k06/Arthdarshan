@@ -1,0 +1,790 @@
+{
+ "model": "behaviour_clf",
+ "data_version": "synthetic-v1-f95e6bc827",
+ "synthetic_data": true,
+ "threshold": 0.25,
+ "n_train": 1016,
+ "n_test_synthetic": 254,
+ "train_seconds": 0.26,
+ "synthetic_split": {
+  "per_label": {
+   "social_proof_reliance": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 17
+   },
+   "friend_reliance": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 25
+   },
+   "authority_reliance": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 13
+   },
+   "urgency_reaction": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 18
+   },
+   "greed_driven": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 19
+   },
+   "fear_panic": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 22
+   },
+   "loss_chasing": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 26
+   },
+   "evidence_seeking": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 19
+   },
+   "independent_reasoning": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 19
+   },
+   "uncertainty_acknowledgement": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 22
+   },
+   "deliberate_pause": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 21
+   },
+   "overconfidence": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 22
+   }
+  },
+  "micro": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0
+  },
+  "macro": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0
+  },
+  "exact_match": 1.0,
+  "confusion": {
+   "labels": [
+    "social_proof_reliance",
+    "friend_reliance",
+    "authority_reliance",
+    "urgency_reaction",
+    "greed_driven",
+    "fear_panic",
+    "loss_chasing",
+    "evidence_seeking",
+    "independent_reasoning",
+    "uncertainty_acknowledgement",
+    "deliberate_pause",
+    "overconfidence",
+    "none"
+   ],
+   "matrix": [
+    [
+     16,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     21,
+     0,
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     12,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     15,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     18,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     22,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     19,
+     0,
+     1,
+     1,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     18,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     18,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     18,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     15,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     19,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     33
+    ]
+   ],
+   "note": "rows = true (first label or none), columns = predicted (argmax if >= threshold else none)"
+  },
+  "caveat": "random split of template-generated data: optimistic, same phrasing as training"
+ },
+ "heldout_handwritten": {
+  "per_label": {
+   "social_proof_reliance": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "friend_reliance": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 3
+   },
+   "authority_reliance": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "urgency_reaction": {
+    "precision": 0.5,
+    "recall": 0.667,
+    "f1": 0.571,
+    "support": 3
+   },
+   "greed_driven": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "fear_panic": {
+    "precision": 0.5,
+    "recall": 0.333,
+    "f1": 0.4,
+    "support": 3
+   },
+   "loss_chasing": {
+    "precision": 0.5,
+    "recall": 0.667,
+    "f1": 0.571,
+    "support": 3
+   },
+   "evidence_seeking": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "independent_reasoning": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "uncertainty_acknowledgement": {
+    "precision": 0.429,
+    "recall": 1.0,
+    "f1": 0.6,
+    "support": 3
+   },
+   "deliberate_pause": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "overconfidence": {
+    "precision": 0.5,
+    "recall": 0.333,
+    "f1": 0.4,
+    "support": 3
+   }
+  },
+  "micro": {
+   "precision": 0.652,
+   "recall": 0.833,
+   "f1": 0.732
+  },
+  "macro": {
+   "precision": 0.661,
+   "recall": 0.833,
+   "f1": 0.724
+  },
+  "exact_match": 0.667,
+  "n": 42,
+  "confusion": {
+   "labels": [
+    "social_proof_reliance",
+    "friend_reliance",
+    "authority_reliance",
+    "urgency_reaction",
+    "greed_driven",
+    "fear_panic",
+    "loss_chasing",
+    "evidence_seeking",
+    "independent_reasoning",
+    "uncertainty_acknowledgement",
+    "deliberate_pause",
+    "overconfidence",
+    "none"
+   ],
+   "matrix": [
+    [
+     3,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     3,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     3,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     2,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     3,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1,
+     0,
+     1,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     0,
+     1,
+     3
+    ]
+   ],
+   "note": "rows = true (first label or none), columns = predicted (argmax if >= threshold else none)"
+  },
+  "caveat": "hand-written, differently worded, small n; indicative not definitive"
+ },
+ "heldout_rules_only": {
+  "per_label": {
+   "social_proof_reliance": {
+    "precision": 1.0,
+    "recall": 0.333,
+    "f1": 0.5,
+    "support": 3
+   },
+   "friend_reliance": {
+    "precision": 1.0,
+    "recall": 0.667,
+    "f1": 0.8,
+    "support": 3
+   },
+   "authority_reliance": {
+    "precision": 1.0,
+    "recall": 0.333,
+    "f1": 0.5,
+    "support": 3
+   },
+   "urgency_reaction": {
+    "precision": 0.333,
+    "recall": 0.333,
+    "f1": 0.333,
+    "support": 3
+   },
+   "greed_driven": {
+    "precision": 1.0,
+    "recall": 0.667,
+    "f1": 0.8,
+    "support": 3
+   },
+   "fear_panic": {
+    "precision": 1.0,
+    "recall": 0.333,
+    "f1": 0.5,
+    "support": 3
+   },
+   "loss_chasing": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 3
+   },
+   "evidence_seeking": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "independent_reasoning": {
+    "precision": 1.0,
+    "recall": 0.333,
+    "f1": 0.5,
+    "support": 3
+   },
+   "uncertainty_acknowledgement": {
+    "precision": 1.0,
+    "recall": 0.333,
+    "f1": 0.5,
+    "support": 3
+   },
+   "deliberate_pause": {
+    "precision": 1.0,
+    "recall": 0.667,
+    "f1": 0.8,
+    "support": 3
+   },
+   "overconfidence": {
+    "precision": 1.0,
+    "recall": 0.333,
+    "f1": 0.5,
+    "support": 3
+   }
+  },
+  "micro": {
+   "precision": 0.8,
+   "recall": 0.444,
+   "f1": 0.571
+  },
+  "macro": {
+   "precision": 0.84,
+   "recall": 0.444,
+   "f1": 0.549
+  },
+  "exact_match": 0.452
+ },
+ "heldout_combined_rules_or_ml": {
+  "per_label": {
+   "social_proof_reliance": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "friend_reliance": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 3
+   },
+   "authority_reliance": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "urgency_reaction": {
+    "precision": 0.4,
+    "recall": 0.667,
+    "f1": 0.5,
+    "support": 3
+   },
+   "greed_driven": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "fear_panic": {
+    "precision": 0.5,
+    "recall": 0.333,
+    "f1": 0.4,
+    "support": 3
+   },
+   "loss_chasing": {
+    "precision": 0.4,
+    "recall": 0.667,
+    "f1": 0.5,
+    "support": 3
+   },
+   "evidence_seeking": {
+    "precision": 0.6,
+    "recall": 1.0,
+    "f1": 0.75,
+    "support": 3
+   },
+   "independent_reasoning": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "uncertainty_acknowledgement": {
+    "precision": 0.429,
+    "recall": 1.0,
+    "f1": 0.6,
+    "support": 3
+   },
+   "deliberate_pause": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.857,
+    "support": 3
+   },
+   "overconfidence": {
+    "precision": 0.5,
+    "recall": 0.333,
+    "f1": 0.4,
+    "support": 3
+   }
+  },
+  "micro": {
+   "precision": 0.612,
+   "recall": 0.833,
+   "f1": 0.706
+  },
+  "macro": {
+   "precision": 0.632,
+   "recall": 0.833,
+   "f1": 0.703
+  },
+  "exact_match": 0.595
+ }
+}

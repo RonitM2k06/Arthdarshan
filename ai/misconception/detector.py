@@ -69,8 +69,10 @@ def detect(text: str, action_signals: list[str] | None = None, ml_probs: dict[st
 
     for d in detect_rules(text):
         add(d)
+    # ML-only evidence is gated: skip clearly sceptical or very short text, and require a margin above the tuned threshold
+    ml_ok = bool(text) and len(text.split()) >= 3 and not _SKEPTIC.search(text)
     for mid, p in (ml_probs or {}).items():
-        if p >= ml_threshold and mid in BY_ID:
+        if ml_ok and p >= max(ml_threshold, 0.55) and mid in BY_ID:
             add(Detection(mid, "ml", float(p), ""))
     for mid in action_signals or []:
         if mid in BY_ID:

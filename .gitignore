@@ -6,7 +6,7 @@ node_modules/
 .next/
 *.db
 *.log
-ml/models/*.joblib
 data/processed/
 .pytest_cache/
 data/voices/*.onnx
+data/models/

@@ -1,16 +1,15 @@
-"""Local speech-to-text via faster-whisper (lazy, CPU int8). Falls back cleanly when unavailable."""
+"""Local speech-to-text via faster-whisper, run in the isolated voice worker. Falls back cleanly when unavailable."""
 from __future__ import annotations
 
+import importlib.util
 import logging
 import tempfile
-import threading
 from pathlib import Path
 
 from apps.api.config import get_settings
+from . import rpc
 
 log = logging.getLogger("arth.stt")
-_lock = threading.Lock()
-_model = {"obj": None, "error": None}
 LANG_HINT = {"en": "en", "hi": "hi", "hinglish": None}  # Hinglish: let Whisper auto-detect
 
 
@@ -18,20 +17,10 @@ def status() -> dict:
     s = get_settings()
     if s.low_resource:
         return {"available": False, "engine": "faster-whisper", "reason": "low-resource mode", "fallback": "browser_speech_or_text"}
-    try:
-        import faster_whisper  # noqa: F401
-    except Exception:  # noqa: BLE001
+    if importlib.util.find_spec("faster_whisper") is None:
         return {"available": False, "engine": "faster-whisper", "reason": "faster-whisper not installed", "fallback": "browser_speech_or_text"}
-    return {"available": True, "engine": "faster-whisper", "model": s.whisper_model, "loaded": _model["obj"] is not None,
+    return {"available": True, "engine": "faster-whisper (isolated worker)", "model": s.whisper_model,
             "note": "model loads on first use (downloads once if not cached)", "fallback": "browser_speech_or_text"}
-
-
-def _get():
-    with _lock:
-        if _model["obj"] is None:
-            from faster_whisper import WhisperModel
-            _model["obj"] = WhisperModel(get_settings().whisper_model, device="cpu", compute_type="int8")
-        return _model["obj"]
 
 
 def transcribe(audio_bytes: bytes, language: str = "en", suffix: str = ".webm") -> dict:
@@ -47,11 +36,13 @@ def transcribe(audio_bytes: bytes, language: str = "en", suffix: str = ".webm") 
         f.write(audio_bytes)
         path = f.name
     try:
-        segs, info = _get().transcribe(path, language=LANG_HINT.get(language), vad_filter=True, beam_size=1)
-        text = " ".join(s.text.strip() for s in segs).strip()
-        return {"text": text, "language": info.language, "engine": "faster-whisper"}
-    except Exception as exc:  # noqa: BLE001
-        log.warning("transcription failed: %s", type(exc).__name__)
-        raise RuntimeError("transcription failed") from exc
+        head, _ = rpc.call({"op": "stt", "path": path, "language": LANG_HINT.get(language), "model": get_settings().whisper_model,
+                          "model_dir": str(Path(get_settings().piper_voices_dir).parent / "models")}, timeout=600)
+    except rpc.VoiceUnavailable as exc:
+        raise RuntimeError(str(exc)) from exc
     finally:
         Path(path).unlink(missing_ok=True)
+    if not head.get("ok"):
+        log.warning("transcription failed: %s", head.get("error"))
+        raise RuntimeError("transcription failed")
+    return {"text": head["text"], "language": head.get("language"), "engine": "faster-whisper"}

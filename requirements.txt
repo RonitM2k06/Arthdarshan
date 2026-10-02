@@ -13,4 +13,5 @@ sentence-transformers
 pypdf
 PyYAML
 pytest
-# optional (voice): faster-whisper, piper-tts
+# optional local voice (the app falls back to browser speech, then text, if these are absent):
+#   faster-whisper piper-tts "av>=14,<17"

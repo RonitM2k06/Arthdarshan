@@ -1,0 +1,8 @@
+{
+ "name": "success",
+ "generator": "synthetic-v1",
+ "rows": 4800,
+ "sha256_10": "7343f03eb6",
+ "synthetic": true,
+ "warning": "SYNTHETIC data. Not real learner data."
+}

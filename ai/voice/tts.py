@@ -1,18 +1,16 @@
-"""Local text-to-speech via Piper (lazy). If no voice is installed the client falls back to browser speechSynthesis."""
+"""Local text-to-speech via Piper, run in an isolated worker process (see worker.py). If no voice is installed or the
+worker fails, the client falls back to browser speechSynthesis."""
 from __future__ import annotations
 
-import io
+import importlib.util
 import logging
 import re
-import threading
-import wave
 from pathlib import Path
 
 from apps.api.config import get_settings
+from . import rpc
 
 log = logging.getLogger("arth.tts")
-_lock = threading.Lock()
-_voices: dict[str, object] = {}
 # Hinglish is Hindi written in Roman letters; the English voice reads it intelligibly. Devanagari uses the Hindi voice.
 VOICE_FOR = {"en": "en_US-lessac-low", "hinglish": "en_US-lessac-low", "hi": "hi_IN-pratham-medium"}
 
@@ -23,14 +21,10 @@ def _voice_path(name: str) -> Path:
 
 def status() -> dict:
     s = get_settings()
-    try:
-        import piper  # noqa: F401
-        have_lib = True
-    except Exception:  # noqa: BLE001
-        have_lib = False
+    have_lib = importlib.util.find_spec("piper") is not None   # no native import inside the API process
     voices = {lang: _voice_path(v).exists() for lang, v in VOICE_FOR.items()}
-    return {"available": have_lib and any(voices.values()) and not s.low_resource, "engine": "piper", "library": have_lib, "voices": voices,
-            "fallback": "browser_speech_synthesis"}
+    return {"available": have_lib and any(voices.values()) and not s.low_resource, "engine": "piper (isolated worker)", "library": have_lib,
+            "voices": voices, "fallback": "browser_speech_synthesis"}
 
 
 def clean_for_speech(text: str) -> str:
@@ -49,16 +43,11 @@ def synthesize(text: str, language: str = "en") -> bytes:
         name = VOICE_FOR["en"]
         if not _voice_path(name).exists():
             raise RuntimeError("no Piper voice installed")
-    with _lock:
-        if name not in _voices:
-            from piper import PiperVoice
-            _voices[name] = PiperVoice.load(str(_voice_path(name)))
-        voice = _voices[name]
-    buf = io.BytesIO()
     try:
-        with wave.open(buf, "wb") as wf:
-            voice.synthesize_wav(clean_for_speech(text), wf)  # type: ignore[attr-defined]
-    except Exception as exc:  # noqa: BLE001
-        log.warning("synthesis failed: %s", type(exc).__name__)
-        raise RuntimeError("synthesis failed") from exc
-    return buf.getvalue()
+        head, payload = rpc.call({"op": "tts", "text": clean_for_speech(text), "voice": str(_voice_path(name))}, timeout=90)
+    except rpc.VoiceUnavailable as exc:
+        raise RuntimeError(str(exc)) from exc
+    if not head.get("ok"):
+        log.warning("synthesis failed: %s", head.get("error"))
+        raise RuntimeError("synthesis failed")
+    return payload
