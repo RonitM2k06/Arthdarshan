@@ -1,0 +1,501 @@
+{
+ "id": "hidden_fee",
+ "version": 1,
+ "title": "The Hidden Fee",
+ "tagline": "A brochure shouts 'up to 10%'. The charges are in small print.",
+ "character": {
+  "name": "Farida",
+  "age": 31,
+  "role": "shop owner reading a brochure (fictional)"
+ },
+ "difficulty": 2,
+ "concept_tags": [
+  "fees",
+  "financial_disclosures",
+  "compounding",
+  "mutual_fund"
+ ],
+ "pressure_tags": [
+  "urgency",
+  "authority"
+ ],
+ "tests_misconceptions": [
+  "M012",
+  "M005",
+  "M008"
+ ],
+ "initial_state": "f1_brochure",
+ "states": {
+  "f1_brochure": {
+   "id": "f1_brochure",
+   "title": "The brochure",
+   "narrative": "An agent gives Farida a brochure for the fictional 'Sunrise Wealth Plan'. The headline is large; other lines are small.",
+   "channel": {
+    "type": "document",
+    "sender": "Sunrise Wealth Plan brochure (fictional)",
+    "messages": [
+     "Illustration: up to 10% growth per year*",
+     "Only a small admin charge.",
+     "Sign today and receive a free gift.",
+     "*Illustrative, not guaranteed. Charges apply — see page 14."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "urgency",
+     "text": "“Sign today for a free gift.”",
+     "intensity": 2
+    },
+    {
+     "type": "authority",
+     "text": "A confident, helpful agent.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "fb_head",
+     "label": "“Up to 10% a year” in large print",
+     "text": "The biggest number is the best case.",
+     "kind": "red_flag",
+     "why": "'Up to' describes a ceiling, not what you will get. Marketing leads with the best-looking figure.",
+     "risk_factor": "headline_figure"
+    },
+    {
+     "id": "fb_admin",
+     "label": "“Only a small admin charge” — no number given",
+     "text": "The size of the charge is not stated.",
+     "kind": "red_flag",
+     "why": "A cost described as 'small' without a number cannot be compared. Ask for it in rupees and percentages.",
+     "risk_factor": "missing_disclosure"
+    },
+    {
+     "id": "fb_gift",
+     "label": "Free gift for signing today",
+     "text": "A reason to decide quickly.",
+     "kind": "red_flag",
+     "why": "Rewards for deciding today work against careful reading of the charges.",
+     "risk_factor": "urgency"
+    },
+    {
+     "id": "fb_note",
+     "label": "“Not guaranteed. Charges apply — see page 14.”",
+     "text": "The important facts are in the small footnote.",
+     "kind": "neutral",
+     "why": "Good news: the footnote tells you where to look. Read the footnotes first."
+    }
+   ],
+   "actions": [
+    {
+     "id": "sign_now",
+     "label": "Sign today — 10% sounds great and the charge is 'small'",
+     "quality": "unsafe",
+     "next": "t_surprise",
+     "consequence": "You sign. Months later the statement shows deductions you never calculated.",
+     "verification": false,
+     "misconception_signals": [
+      "M012",
+      "M005"
+     ]
+    },
+    {
+     "id": "ask_charges",
+     "label": "Ask for every charge in rupees and percentages, in writing",
+     "quality": "safe",
+     "next": "f2_charges",
+     "consequence": "The agent hands over the charges table on page 14.",
+     "verification": true,
+     "requests_evidence": true
+    },
+    {
+     "id": "take_home",
+     "label": "Take it home and read the footnotes before deciding",
+     "quality": "safe",
+     "next": "f2_charges",
+     "consequence": "The gift offer lapses; the charges table is on page 14.",
+     "verification": true,
+     "requests_evidence": true
+    },
+    {
+     "id": "compare_headlines",
+     "label": "Compare this plan's 10% with another plan's 'up to 9%'",
+     "quality": "unsafe",
+     "next": "f2_charges",
+     "consequence": "You compare two best-case numbers. Neither shows what you would keep.",
+     "misconception_signals": [
+      "M005"
+     ]
+    }
+   ],
+   "reasoning_prompt": "What do you want to know before deciding?"
+  },
+  "f2_charges": {
+   "id": "f2_charges",
+   "title": "Page 14: the charges",
+   "narrative": "The charges are on page 14 (fictional). Plan A is the 'Sunrise Wealth Plan'. Plan B is a different, lower-cost fictional plan.",
+   "channel": {
+    "type": "document",
+    "sender": "Charges table (fictional)",
+    "messages": [
+     "Plan A — Entry charge: 3% of amount. Yearly charge: 2.5% of fund value. Exit charge: 4% if you leave in the first 5 years.",
+     "Plan B — Entry charge: 0%. Yearly charge: 0.5% of fund value. Exit charge: 1% if you leave in the first year."
+    ]
+   },
+   "pressure": [],
+   "evidence": [
+    {
+     "id": "c_year",
+     "label": "A 2.5% charge every year, on a growing balance",
+     "text": "It repeats every year.",
+     "kind": "red_flag",
+     "why": "A yearly charge compounds against you: it is taken from a balance that is supposed to be growing.",
+     "risk_factor": "annual_fee"
+    },
+    {
+     "id": "c_entry",
+     "label": "A 3% entry charge reduces the amount that is invested",
+     "text": "₹1,00,000 becomes ₹97,000 on day one.",
+     "kind": "red_flag",
+     "why": "Entry charges come off the top before any growth begins.",
+     "risk_factor": "entry_load"
+    },
+    {
+     "id": "c_exit",
+     "label": "A 4% exit charge in the first five years",
+     "text": "Leaving early costs extra.",
+     "kind": "red_flag",
+     "why": "This links to liquidity: needing your money early would cost a further 4%.",
+     "risk_factor": "exit_load"
+    },
+    {
+     "id": "c_b",
+     "label": "Plan B shows much lower charges",
+     "text": "0% entry, 0.5% yearly, 1% exit in year one.",
+     "kind": "neutral",
+     "why": "Lower charges are only one factor. They do not guarantee better returns, but they remove a certain drag."
+    }
+   ],
+   "actions": [
+    {
+     "id": "calc_net",
+     "label": "Estimate net outcomes with the fee simulator, using one hypothetical growth rate for both plans",
+     "quality": "safe",
+     "next": "f3_compare",
+     "consequence": "You test both plans on equal assumptions.",
+     "verification": true,
+     "requests_evidence": true,
+     "observations": [
+      {
+       "dimension": "concept_knowledge",
+       "value": 90
+      }
+     ]
+    },
+    {
+     "id": "ignore_fee",
+     "label": "2.5% looks small — I'll ignore the charges and look at growth",
+     "quality": "unsafe",
+     "next": "f3_compare",
+     "consequence": "You set the charges aside and focus on the headline growth.",
+     "misconception_signals": [
+      "M012"
+     ],
+     "observations": [
+      {
+       "dimension": "concept_knowledge",
+       "value": 15
+      }
+     ]
+    },
+    {
+     "id": "pick_headline",
+     "label": "Pick whichever plan shows the higher 'up to' growth",
+     "quality": "unsafe",
+     "next": "f3_compare",
+     "consequence": "You choose by the best-case number.",
+     "misconception_signals": [
+      "M005"
+     ],
+     "observations": [
+      {
+       "dimension": "concept_knowledge",
+       "value": 20
+      }
+     ]
+    },
+    {
+     "id": "ask_which_earns",
+     "label": "Ask the agent which plan will earn more",
+     "quality": "mixed",
+     "next": "f3_compare",
+     "consequence": "The agent smiles: “Mine, of course!” Nobody can honestly know future returns.",
+     "observations": [
+      {
+       "dimension": "concept_knowledge",
+       "value": 45
+      }
+     ]
+    }
+   ],
+   "reasoning_prompt": "How do you think the charges change the final amount?",
+   "simulation_hint": "fee_erosion"
+  },
+  "f3_compare": {
+   "id": "f3_compare",
+   "title": "Same growth, different charges",
+   "narrative": "Using the same hypothetical 8% gross growth for both plans (illustrative — real growth varies and can be negative, but charges apply either way), ₹1,00,000 would become about ₹125,578 in Plan A and ₹143,296 in Plan B after 5 years; after 20 years about ₹272,483 versus ₹421,635. That is a gap of ₹17,718 after 5 years and ₹149,152 after 20 years from charges alone.",
+   "channel": {
+    "type": "document",
+    "sender": "ILLUSTRATIVE · SIMULATED · NO REAL MONEY",
+    "messages": [
+     "Hypothetical gross growth: 8% per year for both plans"
+    ]
+   },
+   "pressure": [],
+   "evidence": [
+    {
+     "id": "g_gap",
+     "label": "A gap of ₹17,718 after 5 years",
+     "text": "Same assumed growth, different charges.",
+     "kind": "neutral",
+     "why": "The gap comes only from charges. This is why 'small' percentages matter over time."
+    },
+    {
+     "id": "g_hyp",
+     "label": "8% is hypothetical",
+     "text": "Real results vary and can be negative.",
+     "kind": "neutral",
+     "why": "Charges apply even in years when growth is poor. This simulation illustrates charges, it does not forecast returns."
+    },
+    {
+     "id": "g_exit",
+     "label": "Leaving Plan A early costs a further 4%",
+     "text": "It also reduces flexibility.",
+     "kind": "red_flag",
+     "why": "An exit charge is a price on changing your mind or needing money.",
+     "risk_factor": "exit_load"
+    }
+   ],
+   "actions": [
+    {
+     "id": "ask_docs",
+     "label": "Ask for the official key-facts document and all charges in writing, and decide only when I can explain them myself",
+     "quality": "safe",
+     "next": "t_informed",
+     "consequence": "You collect the documents and read them at home.",
+     "verification": true
+    },
+    {
+     "id": "lower_fee_guarantee",
+     "label": "Choose the lower-charge plan because lower charges mean better returns",
+     "quality": "mixed",
+     "next": "t_partial",
+     "consequence": "Lower charges help, but they do not guarantee anything about returns."
+    },
+    {
+     "id": "friendly_agent",
+     "label": "Choose the plan whose agent seems friendliest",
+     "quality": "unsafe",
+     "next": "t_surprise",
+     "consequence": "You decide on a feeling about a person rather than the numbers.",
+     "misconception_signals": [
+      "M008"
+     ]
+    },
+    {
+     "id": "take_gift",
+     "label": "Take the free gift and sign Plan A",
+     "quality": "unsafe",
+     "next": "t_surprise",
+     "consequence": "You trade a gift for a long list of charges.",
+     "misconception_signals": [
+      "M012"
+     ]
+    }
+   ],
+   "reasoning_prompt": "What is your decision process now?",
+   "simulation_hint": "fee_erosion"
+  },
+  "t_informed": {
+   "id": "t_informed",
+   "title": "You made the charges visible",
+   "narrative": "You asked for every cost in writing and compared plans on equal assumptions. Decisions made after seeing the costs are different decisions.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You made the charges visible",
+    "summary": "You asked for every cost in writing and compared plans on equal assumptions. Decisions made after seeing the costs are different decisions.",
+    "kind": "safe"
+   }
+  },
+  "t_partial": {
+   "id": "t_partial",
+   "title": "A good instinct, with a gap",
+   "narrative": "Looking at charges is wise. But lower charges do not guarantee better returns, and other factors — risk, flexibility, goals — still matter. Ask for the key-facts document.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "A good instinct, with a gap",
+    "summary": "Looking at charges is wise. But lower charges do not guarantee better returns, and other factors — risk, flexibility, goals — still matter. Ask for the key-facts document.",
+    "kind": "mixed"
+   }
+  },
+  "t_surprise": {
+   "id": "t_surprise",
+   "title": "The charges arrived later",
+   "narrative": "Without checking charges, the illustration looked better than the net result. In the simulation with 8% growth, 20 years of Plan A charges cost about ₹149,152 compared with Plan B (illustrative, simulated).",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "The charges arrived later",
+    "summary": "Without checking charges, the illustration looked better than the net result. In the simulation with 8% growth, 20 years of Plan A charges cost about ₹149,152 compared with Plan B (illustrative, simulated).",
+    "kind": "unsafe",
+    "simulated_loss": 149152
+   }
+  }
+ },
+ "reflection": {
+  "key_points": [
+   "Headline growth is a best case. Net outcome = growth minus every cost.",
+   "A yearly charge compounds: over decades even small percentages take a large share.",
+   "Ask for all charges in rupees, in writing, and read the footnotes first.",
+   "Low charges do not guarantee good results — they just remove a certain drag."
+  ],
+  "questions": [
+   "What cost would you ask about first?"
+  ],
+  "micro_lesson": {
+   "concept_id": "fees",
+   "title": "Read the charges before the headline",
+   "body": "Three questions: What is every charge in rupees? When is each charge taken (once or every year)? What does it cost to leave early? Then compare options on the same assumptions."
+  }
+ },
+ "scoring": {
+  "dimensions": [
+   "concept_knowledge",
+   "terminology",
+   "evidence_verification"
+  ]
+ },
+ "i18n": {
+  "hinglish": {
+   "title": "The Hidden Fee (Chhupi Hui Fee)",
+   "tagline": "Brochure chillata hai 'up to 10%'. Charges chhoti likhai mein hain.",
+   "states.f1_brochure.title": "Brochure",
+   "states.f1_brochure.narrative": "Ek agent Farida ko kaalpanik 'Sunrise Wealth Plan' ka brochure deta hai. Headline bada hai; baaki lines chhoti.",
+   "states.f1_brochure.channel.messages.0": "Illustration: saal mein up to 10% growth*",
+   "states.f1_brochure.channel.messages.1": "Sirf ek chhota admin charge.",
+   "states.f1_brochure.channel.messages.2": "Aaj sign karo aur free gift pao.",
+   "states.f1_brochure.channel.messages.3": "*Illustrative, guaranteed nahi. Charges lagu — page 14 dekho.",
+   "states.f1_brochure.pressure.0.text": "“Aaj sign karo free gift ke liye.”",
+   "states.f1_brochure.pressure.1.text": "Ek aatmavishwasi, madadgaar agent.",
+   "states.f1_brochure.evidence.fb_head.label": "“Saal mein up to 10%” bade akshron mein",
+   "states.f1_brochure.evidence.fb_head.text": "Sabse bada number sabse achha case hai.",
+   "states.f1_brochure.evidence.fb_head.why": "'Up to' sheersh seema hai, jo aapko milega wo nahi. Marketing sabse achhe dikhne wale figure se shuru karti hai.",
+   "states.f1_brochure.evidence.fb_admin.label": "“Sirf chhota admin charge” — koi number nahi",
+   "states.f1_brochure.evidence.fb_admin.text": "Charge ka size nahi bataya.",
+   "states.f1_brochure.evidence.fb_admin.why": "Bina number ke 'chhota' kahe gaye kharche ki tulna nahi ho sakti. Use rupees aur percentage mein poochho.",
+   "states.f1_brochure.evidence.fb_gift.label": "Aaj sign karne par free gift",
+   "states.f1_brochure.evidence.fb_gift.text": "Jaldi faisla karne ki wajah.",
+   "states.f1_brochure.evidence.fb_gift.why": "Aaj faisla karne ke inaam charges ko dhyan se padhne ke khilaf kaam karte hain.",
+   "states.f1_brochure.evidence.fb_note.label": "“Guaranteed nahi. Charges lagu — page 14 dekho.”",
+   "states.f1_brochure.evidence.fb_note.text": "Zaroori baatein chhote footnote mein hain.",
+   "states.f1_brochure.evidence.fb_note.why": "Achhi baat: footnote batata hai kahan dekhna hai. Footnote pehle padho.",
+   "states.f1_brochure.actions.sign_now.label": "Aaj hi sign karo — 10% achha hai aur charge 'chhota' hai",
+   "states.f1_brochure.actions.sign_now.consequence": "Aap sign karte ho. Mahino baad statement mein aise kate hue paise dikhte hain jinka hisaab aapne nahi lagaya.",
+   "states.f1_brochure.actions.ask_charges.label": "Har charge rupees aur percentage mein, likhit mein maango",
+   "states.f1_brochure.actions.ask_charges.consequence": "Agent page 14 ka charges table deta hai.",
+   "states.f1_brochure.actions.take_home.label": "Ghar le jao aur faisle se pehle footnotes padho",
+   "states.f1_brochure.actions.take_home.consequence": "Gift offer khatam hota hai; charges table page 14 par hai.",
+   "states.f1_brochure.actions.compare_headlines.label": "Is plan ke 10% ki doosre plan ke 'up to 9%' se tulna karo",
+   "states.f1_brochure.actions.compare_headlines.consequence": "Aap do best-case number ki tulna karte ho. Koi bhi nahi dikhata ki aap kitna rakhoge.",
+   "states.f1_brochure.reasoning_prompt": "Faisle se pehle aap kya jaanna chahte ho?",
+   "states.f2_charges.title": "Page 14: charges",
+   "states.f2_charges.narrative": "Charges page 14 par hain (kaalpanik). Plan A 'Sunrise Wealth Plan' hai. Plan B ek doosra, kam kharche wala kaalpanik plan hai.",
+   "states.f2_charges.channel.messages.0": "Plan A — Entry charge: rakam ka 3%. Yearly charge: fund value ka 2.5%. Exit charge: pehle 5 saal mein nikalne par 4%.",
+   "states.f2_charges.channel.messages.1": "Plan B — Entry charge: 0%. Yearly charge: fund value ka 0.5%. Exit charge: pehle saal mein nikalne par 1%.",
+   "states.f2_charges.evidence.c_year.label": "Har saal 2.5% charge, badhte balance par",
+   "states.f2_charges.evidence.c_year.text": "Ye har saal dohrata hai.",
+   "states.f2_charges.evidence.c_year.why": "Yearly charge aapke khilaf compound hota hai: ye us balance se kata jaata hai jo badhna chahiye.",
+   "states.f2_charges.evidence.c_entry.label": "3% entry charge nivesh hone wali rakam ghatata hai",
+   "states.f2_charges.evidence.c_entry.text": "₹1,00,000 pehle din ₹97,000 ho jaata hai.",
+   "states.f2_charges.evidence.c_entry.why": "Entry charge growth shuru hone se pehle hi upar se kat jaate hain.",
+   "states.f2_charges.evidence.c_exit.label": "Pehle paanch saal mein 4% exit charge",
+   "states.f2_charges.evidence.c_exit.text": "Jaldi nikalna mehnga padta hai.",
+   "states.f2_charges.evidence.c_exit.why": "Ye liquidity se judta hai: paise jaldi chahiye to aur 4% lagega.",
+   "states.f2_charges.evidence.c_b.label": "Plan B ke charges bahut kam hain",
+   "states.f2_charges.evidence.c_b.text": "0% entry, 0.5% yearly, pehle saal 1% exit.",
+   "states.f2_charges.evidence.c_b.why": "Kam charges sirf ek karak hain. Ye behtar returns ki guarantee nahi, par ek pakka bojh hatate hain.",
+   "states.f2_charges.actions.calc_net.label": "Fee simulator se net nateeje nikalo, dono plans ke liye ek hi hypothetical growth rate ke saath",
+   "states.f2_charges.actions.calc_net.consequence": "Aap dono plans ko ek jaisi manyataon par parakhte ho.",
+   "states.f2_charges.actions.ignore_fee.label": "2.5% chhota lagta hai — charges ignore karke growth dekhungi",
+   "states.f2_charges.actions.ignore_fee.consequence": "Aap charges ko alag rakhkar headline growth par dhyan dete ho.",
+   "states.f2_charges.actions.pick_headline.label": "Jis plan ka 'up to' growth zyada ho wo chuno",
+   "states.f2_charges.actions.pick_headline.consequence": "Aap best-case number se chunte ho.",
+   "states.f2_charges.actions.ask_which_earns.label": "Agent se poochho kaun sa plan zyada kamayega",
+   "states.f2_charges.actions.ask_which_earns.consequence": "Agent muskurata hai: “Mera, zaahir hai!” Bhavishya ke returns koi imaandaari se nahi jaan sakta.",
+   "states.f2_charges.reasoning_prompt": "Aapko kya lagta hai charges antim rakam ko kaise badalte hain?",
+   "states.f3_compare.title": "Ek jaisi growth, alag charges",
+   "states.f3_compare.narrative": "Dono plans ke liye ek hi hypothetical 8% gross growth lene par (illustrative — asli growth badalti hai aur negative bhi ho sakti hai, par charges dono haal mein lagte hain), ₹1,00,000 5 saal baad Plan A mein lagbhag ₹125,578 aur Plan B mein ₹143,296 hoga; 20 saal baad lagbhag ₹272,483 versus ₹421,635. Sirf charges se 5 saal mein ₹17,718 aur 20 saal mein ₹149,152 ka fark.",
+   "states.f3_compare.channel.messages.0": "Dono plans ke liye hypothetical gross growth: 8% prati varsh",
+   "states.f3_compare.evidence.g_gap.label": "5 saal mein ₹17,718 ka fark",
+   "states.f3_compare.evidence.g_gap.text": "Maani hui growth ek jaisi, charges alag.",
+   "states.f3_compare.evidence.g_gap.why": "Fark sirf charges se aata hai. Isi liye samay ke saath 'chhote' percentage bhi maayne rakhte hain.",
+   "states.f3_compare.evidence.g_hyp.label": "8% hypothetical hai",
+   "states.f3_compare.evidence.g_hyp.text": "Asli nateeje badalte hain aur negative ho sakte hain.",
+   "states.f3_compare.evidence.g_hyp.why": "Kharab growth wale saalon mein bhi charges lagte hain. Ye simulation charges dikhata hai, returns ki bhavishyavani nahi.",
+   "states.f3_compare.evidence.g_exit.label": "Plan A jaldi chhodne par aur 4%",
+   "states.f3_compare.evidence.g_exit.text": "Ye lachilapan bhi ghatata hai.",
+   "states.f3_compare.evidence.g_exit.why": "Exit charge apna mann badalne ya paise ki zaroorat par laga daam hai.",
+   "states.f3_compare.actions.ask_docs.label": "Official key-facts document aur saare charges likhit mein maango, aur tabhi faisla karo jab khud samjha sako",
+   "states.f3_compare.actions.ask_docs.consequence": "Aap documents jama karte ho aur ghar par padhte ho.",
+   "states.f3_compare.actions.lower_fee_guarantee.label": "Kam charge wala plan chuno kyunki kam charge matlab behtar returns",
+   "states.f3_compare.actions.lower_fee_guarantee.consequence": "Kam charges madad karte hain, par returns ki koi guarantee nahi.",
+   "states.f3_compare.actions.friendly_agent.label": "Jis plan ka agent sabse dostana lage wo chuno",
+   "states.f3_compare.actions.friendly_agent.consequence": "Aap numbers ki jagah ek insaan ke ehsaas par faisla karte ho.",
+   "states.f3_compare.actions.take_gift.label": "Free gift lo aur Plan A sign karo",
+   "states.f3_compare.actions.take_gift.consequence": "Aap gift ke badle charges ki lambi list lete ho.",
+   "states.f3_compare.reasoning_prompt": "Ab aapka faisla lene ka tareeka kya hai?",
+   "states.t_informed.title": "Aapne charges ko saamne rakha",
+   "states.t_informed.narrative": "Aapne har kharche ko likhit mein maanga aur plans ko ek jaisi manyataon par tola. Kharche dekhne ke baad liye faisle alag hote hain.",
+   "states.t_informed.outcome.headline": "Aapne charges ko saamne rakha",
+   "states.t_informed.outcome.summary": "Aapne har kharche ko likhit mein maanga aur plans ko ek jaisi manyataon par tola. Kharche dekhne ke baad liye faisle alag hote hain.",
+   "states.t_partial.title": "Achha anuman, ek kami ke saath",
+   "states.t_partial.narrative": "Charges dekhna samajhdari hai. Par kam charges behtar returns ki guarantee nahi, aur risk, lachilapan, goals jaise karak bhi maayne rakhte hain. Key-facts document maango.",
+   "states.t_partial.outcome.headline": "Achha anuman, ek kami ke saath",
+   "states.t_partial.outcome.summary": "Charges dekhna samajhdari hai. Par kam charges behtar returns ki guarantee nahi, aur risk, lachilapan, goals jaise karak bhi maayne rakhte hain. Key-facts document maango.",
+   "states.t_surprise.title": "Charges baad mein aaye",
+   "states.t_surprise.narrative": "Charges dekhe bina illustration net nateeje se behtar dikha. 8% growth wale simulation mein Plan A ke 20 saal ke charges Plan B ke mukable lagbhag ₹149,152 mehnge pade (illustrative, simulated).",
+   "states.t_surprise.outcome.headline": "Charges baad mein aaye",
+   "states.t_surprise.outcome.summary": "Charges dekhe bina illustration net nateeje se behtar dikha. 8% growth wale simulation mein Plan A ke 20 saal ke charges Plan B ke mukable lagbhag ₹149,152 mehnge pade (illustrative, simulated).",
+   "reflection.key_points.0": "Headline growth best case hai. Net nateeja = growth minus har kharcha.",
+   "reflection.key_points.1": "Yearly charge compound hota hai: dashakon mein chhote percentage bhi bada hissa le jaate hain.",
+   "reflection.key_points.2": "Saare charges rupees mein, likhit mein maango, aur footnote pehle padho.",
+   "reflection.key_points.3": "Kam charges achhe nateeje ki guarantee nahi — ye bas ek pakka bojh hatate hain.",
+   "reflection.questions.0": "Sabse pehle kis kharche ke baare mein poochhoge?",
+   "reflection.micro_lesson.title": "Headline se pehle charges padho",
+   "reflection.micro_lesson.body": "Teen sawaal: Har charge rupees mein kitna? Har charge kab kata jaata hai (ek baar ya har saal)? Jaldi nikalne par kitna lagta hai? Phir options ki ek jaisi manyataon par tulna karo."
+  }
+ }
+}

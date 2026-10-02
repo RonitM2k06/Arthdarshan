@@ -1,0 +1,618 @@
+{
+ "id": "family_file",
+ "version": 1,
+ "title": "The Family File",
+ "tagline": "What would your family need if something happened to you?",
+ "character": {
+  "name": "Savita",
+  "age": 61,
+  "role": "retired teacher organising her accounts (fictional); her son is Vikram"
+ },
+ "difficulty": 1,
+ "concept_tags": [
+  "nomination",
+  "kyc",
+  "financial_disclosures",
+  "saving"
+ ],
+ "pressure_tags": [
+  "fear",
+  "authority",
+  "urgency"
+ ],
+ "tests_misconceptions": [
+  "M013",
+  "M007",
+  "M006"
+ ],
+ "initial_state": "fa1_drawer",
+ "states": {
+  "fa1_drawer": {
+   "id": "fa1_drawer",
+   "title": "The steel drawer",
+   "narrative": "Savita Aunty (fictional) keeps receipts in a steel drawer. Her son Vikram asks: “If something happens to you, how would we find everything?” She looks through her papers.",
+   "channel": {
+    "type": "document",
+    "sender": "What is in the drawer",
+    "messages": [
+     "Fixed-deposit receipts, a passbook, some fund statements, a few old letters.",
+     "One old deposit shows no nominee. The mobile number on two accounts is her old one."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "fear",
+     "text": "It feels uncomfortable to think about.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "a_nom",
+     "label": "One old deposit has no nominee on record",
+     "text": "Nobody is named for that account.",
+     "kind": "red_flag",
+     "why": "Without a nominee on record, claims can become slower and more confusing for the family.",
+     "risk_factor": "missing_nominee"
+    },
+    {
+     "id": "a_phone",
+     "label": "Old mobile number on two accounts",
+     "text": "Alerts go to a number she no longer uses.",
+     "kind": "red_flag",
+     "why": "Outdated contact details mean you miss alerts — and unfamiliar callers can exploit confusion.",
+     "risk_factor": "outdated_contact"
+    },
+    {
+     "id": "a_scatter",
+     "label": "Documents are in three places with no list",
+     "text": "Only Savita knows where things are.",
+     "kind": "red_flag",
+     "why": "A one-page list of accounts and where documents are kept spares families a long search.",
+     "risk_factor": "no_record"
+    },
+    {
+     "id": "a_family",
+     "label": "Nobody in the family knows which accounts exist",
+     "text": "Vikram has never seen the papers.",
+     "kind": "red_flag",
+     "why": "A trusted person should know that the list exists and where it is — not your passwords.",
+     "risk_factor": "no_awareness"
+    },
+    {
+     "id": "a_drawer",
+     "label": "Receipts are carefully kept",
+     "text": "Savita is organised in her own way.",
+     "kind": "reassuring",
+     "why": "A good start. What is missing is a shared, up-to-date picture."
+    }
+   ],
+   "actions": [
+    {
+     "id": "make_list",
+     "label": "Make a one-page list of accounts and where documents are; update nominees and contact details through each institution's official channel",
+     "quality": "safe",
+     "next": "fa2_nominee",
+     "consequence": "You start writing the list and book a branch visit.",
+     "simple_label": "Make a list and update details",
+     "verification": true
+    },
+    {
+     "id": "wait",
+     "label": "There is no hurry — we'll deal with it if something happens",
+     "quality": "unsafe",
+     "next": "t_unprepared",
+     "consequence": "The drawer stays as it is.",
+     "simple_label": "Wait",
+     "misconception_signals": [
+      "M013"
+     ]
+    },
+    {
+     "id": "write_passwords",
+     "label": "Write all my passwords and PINs on a note for Vikram",
+     "quality": "unsafe",
+     "next": "t_risky_note",
+     "consequence": "A note with every password sits in the drawer.",
+     "simple_label": "Write passwords on a note"
+    },
+    {
+     "id": "ask_group",
+     "label": "Ask relatives in the WhatsApp group which agent I should hire to sort it all out",
+     "quality": "mixed",
+     "next": "fa2_nominee",
+     "consequence": "Five agents are recommended by five relatives. Nobody has checked anyone.",
+     "simple_label": "Ask the group for an agent",
+     "requests_evidence": true
+    }
+   ],
+   "reasoning_prompt": "What matters most about being prepared?"
+  },
+  "fa2_nominee": {
+   "id": "fa2_nominee",
+   "title": "“If I'm nominee, it's all mine, right?”",
+   "narrative": "At the bank, Vikram asks: “If I am the nominee, does everything automatically become mine?” What is the careful understanding?",
+   "channel": {
+    "type": "chat",
+    "sender": "Vikram (son, fictional)",
+    "messages": [
+     "So the nominee gets everything, right?"
+    ]
+   },
+   "pressure": [],
+   "evidence": [
+    {
+     "id": "o_rules",
+     "label": "Rules about heirs can differ from the nominee on record",
+     "text": "The institution's own guidance explains how claims work.",
+     "kind": "neutral",
+     "why": "Nomination helps the institution know whom to contact and pay. Who ultimately inherits can depend on other rules — ask the institution and check its official guidance."
+    }
+   ],
+   "actions": [
+    {
+     "id": "nom_careful",
+     "label": "A nominee is named so the institution knows whom to deal with. Who ultimately inherits can depend on other rules, so I'll ask the institution for its official guidance",
+     "quality": "safe",
+     "next": "fa3_call",
+     "consequence": "The clerk hands over the institution's guidance leaflet.",
+     "simple_label": "Ask the institution",
+     "verification": true,
+     "concept_tags": [
+      "nomination"
+     ]
+    },
+    {
+     "id": "nom_all",
+     "label": "Yes — the nominee automatically owns everything, nothing else is needed",
+     "quality": "unsafe",
+     "next": "fa3_call",
+     "consequence": "This is a common over-simplification that can cause family disputes.",
+     "simple_label": "Nominee owns everything",
+     "misconception_signals": [
+      "M013"
+     ],
+     "concept_tags": [
+      "nomination"
+     ]
+    },
+    {
+     "id": "nom_none",
+     "label": "Nominee doesn't matter at all",
+     "quality": "unsafe",
+     "next": "fa3_call",
+     "consequence": "Nominee details do matter for the institution — they just are not the whole story.",
+     "simple_label": "Nominee doesn't matter",
+     "misconception_signals": [
+      "M013"
+     ],
+     "concept_tags": [
+      "nomination"
+     ]
+    }
+   ],
+   "reasoning_prompt": "Why do you think nomination matters?"
+  },
+  "fa3_call": {
+   "id": "fa3_call",
+   "title": "A call about KYC",
+   "narrative": "That evening an unknown caller says: “Your KYC has expired. Read out the 6-digit code that was just sent to you, or your accounts will be blocked today.”",
+   "channel": {
+    "type": "call",
+    "sender": "Unknown caller (fictional)",
+    "messages": [
+     "Your KYC has expired. Tell me the code on your phone, quickly, or accounts will be blocked today."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "urgency",
+     "text": "“Blocked today.”",
+     "intensity": 3
+    },
+    {
+     "type": "fear",
+     "text": "Fear of losing access to savings.",
+     "intensity": 2
+    },
+    {
+     "type": "authority",
+     "text": "The caller sounds official.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "c_code",
+     "label": "The caller wants a code just sent to your phone",
+     "text": "A one-time code is a key to your money.",
+     "kind": "red_flag",
+     "why": "Genuine institutions never ask you to read out one-time codes, PINs or passwords. Never share them with anyone who contacts you.",
+     "risk_factor": "credential_request"
+    },
+    {
+     "id": "c_unk",
+     "label": "An unknown number called you",
+     "text": "You did not start this contact.",
+     "kind": "red_flag",
+     "why": "Contact that you did not start, with urgency, is a classic scam pattern.",
+     "risk_factor": "unsolicited"
+    },
+    {
+     "id": "c_block",
+     "label": "“Accounts will be blocked today”",
+     "text": "A threat with a deadline.",
+     "kind": "red_flag",
+     "why": "Threats and deadlines stop you from checking.",
+     "risk_factor": "urgency"
+    }
+   ],
+   "actions": [
+    {
+     "id": "hang_up",
+     "label": "Hang up, and contact the bank using the number on its official website or my card",
+     "quality": "safe",
+     "next": "fa4_rights",
+     "consequence": "You hang up. The bank confirms there is no KYC issue.",
+     "simple_label": "Hang up and call the bank myself",
+     "verification": true
+    },
+    {
+     "id": "read_code",
+     "label": "Read out the code so the accounts are not blocked",
+     "quality": "unsafe",
+     "next": "t_scammed",
+     "consequence": "In this fictional story, ₹40,000 is gone within minutes.",
+     "simple_label": "Read out the code",
+     "verification": false,
+     "misconception_signals": [
+      "M006",
+      "M007"
+     ]
+    },
+    {
+     "id": "hand_phone",
+     "label": "Hand the phone to Vikram to handle",
+     "quality": "mixed",
+     "next": "fa4_rights",
+     "consequence": "Vikram hangs up and calls the bank. A good outcome — but Savita did not learn what the signs were.",
+     "simple_label": "Hand phone to son"
+    }
+   ],
+   "reasoning_prompt": "What is the first thing you notice about this call?"
+  },
+  "fa4_rights": {
+   "id": "fa4_rights",
+   "title": "A charge she doesn't recognise",
+   "narrative": "A statement shows a ₹590 'service fee' Savita doesn't recognise. Then a stranger messages: “We recover wrongly charged fees. Pay ₹1,500 and we'll get it back in 2 days.”",
+   "channel": {
+    "type": "sms",
+    "sender": "Unknown sender (fictional)",
+    "messages": [
+     "We recover wrongly charged fees! Pay ₹1,500 now. Money back in 2 days."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "urgency",
+     "text": "“Pay now.”",
+     "intensity": 2
+    },
+    {
+     "type": "loss_recovery",
+     "text": "Wanting the ₹590 back.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "r_fee",
+     "label": "An unexplained ₹590 charge",
+     "text": "She can ask her institution to explain it.",
+     "kind": "neutral",
+     "why": "You have the right to ask for an explanation of any charge, in writing, and to escalate if you are not satisfied."
+    },
+    {
+     "id": "r_agent",
+     "label": "A stranger offers to recover it for ₹1,500",
+     "text": "The 'fee' to recover is bigger than the loss.",
+     "kind": "red_flag",
+     "why": "Paying to recover money is a classic scam. Official complaint routes do not charge you to ask for an explanation.",
+     "risk_factor": "recovery_scam"
+    }
+   ],
+   "actions": [
+    {
+     "id": "write_complain",
+     "label": "Ask the institution in writing to explain the charge; if unresolved, use its complaint process and then the regulator's official grievance portal",
+     "quality": "safe",
+     "next": "t_prepared",
+     "consequence": "You write a short letter and keep a copy.",
+     "simple_label": "Ask in writing",
+     "verification": true,
+     "concept_tags": [
+      "financial_disclosures"
+     ]
+    },
+    {
+     "id": "ignore",
+     "label": "Ignore it — it's probably normal",
+     "quality": "mixed",
+     "next": "t_partial",
+     "consequence": "Maybe it is normal — but you will not know.",
+     "simple_label": "Ignore it"
+    },
+    {
+     "id": "pay_recovery",
+     "label": "Pay the ₹1,500 — getting ₹590 back plus the problem solved is worth it",
+     "quality": "unsafe",
+     "next": "t_scammed",
+     "consequence": "You pay ₹1,500 (simulated). The sender stops replying.",
+     "simple_label": "Pay the recovery fee",
+     "misconception_signals": [
+      "M010"
+     ]
+    },
+    {
+     "id": "social_only",
+     "label": "Post angrily about the bank on social media and do nothing else",
+     "quality": "mixed",
+     "next": "t_partial",
+     "consequence": "You feel heard, but no one with the power to fix it sees it.",
+     "simple_label": "Post on social media"
+    }
+   ],
+   "reasoning_prompt": "What are your rights when you do not understand a charge?"
+  },
+  "t_prepared": {
+   "id": "t_prepared",
+   "title": "A family that can find everything",
+   "narrative": "You made a list, updated details through official channels, protected your one-time codes and used the proper route for a charge. Preparedness is mostly small, calm steps done before they are needed.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "A family that can find everything",
+    "summary": "You made a list, updated details through official channels, protected your one-time codes and used the proper route for a charge. Preparedness is mostly small, calm steps done before they are needed.",
+    "kind": "safe"
+   }
+  },
+  "t_partial": {
+   "id": "t_partial",
+   "title": "A good start with gaps",
+   "narrative": "You avoided the worst traps, but gaps remain: an unexplained charge unchecked, or no record created. Small steps taken before they are needed make later steps easier.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "A good start with gaps",
+    "summary": "You avoided the worst traps, but gaps remain: an unexplained charge unchecked, or no record created. Small steps taken before they are needed make later steps easier.",
+    "kind": "mixed"
+   }
+  },
+  "t_unprepared": {
+   "id": "t_unprepared",
+   "title": "Left for later",
+   "narrative": "Preparedness works only if it is done before it is needed. Postponed paperwork tends to become a burden on the family at the hardest time. It takes about an hour to start.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "Left for later",
+    "summary": "Preparedness works only if it is done before it is needed. Postponed paperwork tends to become a burden on the family at the hardest time. It takes about an hour to start.",
+    "kind": "unsafe"
+   }
+  },
+  "t_risky_note": {
+   "id": "t_risky_note",
+   "title": "A note that can be misused",
+   "narrative": "A note with every password and PIN can be lost, seen or misused. A safer approach is a list of which accounts exist and where documents are, and using each institution's official process for family access.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "A note that can be misused",
+    "summary": "A note with every password and PIN can be lost, seen or misused. A safer approach is a list of which accounts exist and where documents are, and using each institution's official process for family access.",
+    "kind": "unsafe"
+   }
+  },
+  "t_scammed": {
+   "id": "t_scammed",
+   "title": "The code was the key",
+   "narrative": "A one-time code, PIN or password is the key to your money; no genuine institution asks you to read it out. In this fictional story ₹40,000 left the account. Hanging up and calling the official number protects you.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "The code was the key",
+    "summary": "A one-time code, PIN or password is the key to your money; no genuine institution asks you to read it out. In this fictional story ₹40,000 left the account. Hanging up and calling the official number protects you.",
+    "kind": "unsafe",
+    "simulated_loss": 40000
+   }
+  }
+ },
+ "reflection": {
+  "key_points": [
+   "Preparedness works only if it is done before it is needed: a one-page list, updated nominees, current contact details.",
+   "A nominee on record helps the institution; rules on inheritance can differ, so check official guidance.",
+   "Never read out one-time codes, PINs or passwords to anyone who contacts you.",
+   "You have the right to ask for an explanation of any charge — and nobody legitimate charges you to ask."
+  ],
+  "questions": [
+   "Who in your family knows where your documents are?"
+  ],
+  "micro_lesson": {
+   "concept_id": "nomination",
+   "title": "The one-page family file",
+   "body": "Write: each account and which institution holds it, where the papers are, who the nominee is, and which phone number is registered. Share where the list is — never your passwords. Review it once a year."
+  }
+ },
+ "scoring": {
+  "dimensions": [
+   "concept_knowledge",
+   "scam_awareness",
+   "evidence_verification"
+  ]
+ },
+ "i18n": {
+  "hinglish": {
+   "title": "The Family File (Parivaar ki File)",
+   "tagline": "Agar aapko kuch ho jaye to parivaar ko kya chahiye hoga?",
+   "states.fa1_drawer.title": "Steel ki daraaz",
+   "states.fa1_drawer.narrative": "Savita Aunty (kaalpanik) ki steel ki daraaz mein rasidein rakhi hain. Unka beta Vikram poochta hai: “Agar aapko kuch ho gaya to hum sab kaise dhundhenge?” Wo apne kaagaz dekhti hain.",
+   "states.fa1_drawer.channel.messages.0": "Fixed-deposit ki rasidein, ek passbook, kuch fund statements, kuch purane patra.",
+   "states.fa1_drawer.channel.messages.1": "Ek purane deposit par nominee nahi likha. Do accounts par mobile number uska purana hai.",
+   "states.fa1_drawer.pressure.0.text": "Iske baare mein sochna asahaj lagta hai.",
+   "states.fa1_drawer.evidence.a_nom.label": "Ek purane deposit par nominee darj nahi",
+   "states.fa1_drawer.evidence.a_nom.text": "Us account ke liye kisi ka naam nahi.",
+   "states.fa1_drawer.evidence.a_nom.why": "Nominee darj na hone par parivaar ke liye daave dheere aur uljhe ho sakte hain.",
+   "states.fa1_drawer.evidence.a_phone.label": "Do accounts par purana mobile number",
+   "states.fa1_drawer.evidence.a_phone.text": "Alerts us number par jaate hain jo wo ab use nahi karti.",
+   "states.fa1_drawer.evidence.a_phone.why": "Purane sampark vivaran ka matlab alerts chhoot'te hain — aur anjaan callers uljhan ka faayda utha sakte hain.",
+   "states.fa1_drawer.evidence.a_scatter.label": "Documents teen jagah hain aur koi list nahi",
+   "states.fa1_drawer.evidence.a_scatter.text": "Sirf Savita jaanti hai kya kahan hai.",
+   "states.fa1_drawer.evidence.a_scatter.why": "Accounts aur documents ki ek-page list parivaar ko lambi talaash se bachati hai.",
+   "states.fa1_drawer.evidence.a_family.label": "Parivaar mein kisi ko nahi pata kaun se accounts hain",
+   "states.fa1_drawer.evidence.a_family.text": "Vikram ne kaagaz kabhi nahi dekhe.",
+   "states.fa1_drawer.evidence.a_family.why": "Kisi bharosemand ko pata hona chahiye ki list hai aur kahan hai — aapke passwords nahi.",
+   "states.fa1_drawer.evidence.a_drawer.label": "Rasidein dhyan se rakhi hain",
+   "states.fa1_drawer.evidence.a_drawer.text": "Savita apne tareeke se vyavasthit hai.",
+   "states.fa1_drawer.evidence.a_drawer.why": "Achhi shuruaat. Jo kami hai wo saajha, updated tasveer hai.",
+   "states.fa1_drawer.actions.make_list.label": "Accounts aur documents ki ek-page list banao; har sanstha ke official channel se nominee aur sampark vivaran update karo",
+   "states.fa1_drawer.actions.make_list.consequence": "Aap list likhna shuru karte ho aur branch jaane ka samay lete ho.",
+   "states.fa1_drawer.actions.make_list.simple_label": "List banao aur vivaran update karo",
+   "states.fa1_drawer.actions.wait.label": "Jaldi kya hai — kuch hone par dekh lenge",
+   "states.fa1_drawer.actions.wait.consequence": "Daraaz jaisi hai waisi rehti hai.",
+   "states.fa1_drawer.actions.wait.simple_label": "Intezaar karo",
+   "states.fa1_drawer.actions.write_passwords.label": "Mere saare password aur PIN ek parche par Vikram ke liye likh do",
+   "states.fa1_drawer.actions.write_passwords.consequence": "Har password wala parcha daraaz mein rakha hai.",
+   "states.fa1_drawer.actions.write_passwords.simple_label": "Password parche par likho",
+   "states.fa1_drawer.actions.ask_group.label": "WhatsApp group ke rishtedaron se poochho kaun sa agent rakhna chahiye sab sambhalne ke liye",
+   "states.fa1_drawer.actions.ask_group.consequence": "Paanch rishtedar paanch agents batate hain. Kisi ne kisi ko check nahi kiya.",
+   "states.fa1_drawer.actions.ask_group.simple_label": "Group se agent poochho",
+   "states.fa1_drawer.reasoning_prompt": "Taiyar rehne ke baare mein sabse zaroori kya hai?",
+   "states.fa2_nominee.title": "“Agar main nominee hoon to sab mera, hai na?”",
+   "states.fa2_nominee.narrative": "Bank mein Vikram poochta hai: “Agar main nominee hoon to kya sab kuch apne aap mera ho jaata hai?” Sahi, savdhaan samajh kya hai?",
+   "states.fa2_nominee.channel.messages.0": "To nominee ko sab milta hai, hai na?",
+   "states.fa2_nominee.evidence.o_rules.label": "Waaris ke niyam darj nominee se alag ho sakte hain",
+   "states.fa2_nominee.evidence.o_rules.text": "Sanstha ka apna margdarshan batata hai daave kaise chalte hain.",
+   "states.fa2_nominee.evidence.o_rules.why": "Nomination sanstha ko batata hai kisse sampark karna hai aur kise dena hai. Antim waaris kaun hoga wo doosre niyamon par nirbhar ho sakta hai — sanstha se poochho aur uska official margdarshan dekho.",
+   "states.fa2_nominee.actions.nom_careful.label": "Nominee isliye likha jaata hai ki sanstha jaane kisse baat karni hai. Antim waaris doosre niyamon par nirbhar ho sakta hai, isliye sanstha se uska official margdarshan poochhungi",
+   "states.fa2_nominee.actions.nom_careful.consequence": "Clerk sanstha ka margdarshan patrak deta hai.",
+   "states.fa2_nominee.actions.nom_careful.simple_label": "Sanstha se poochho",
+   "states.fa2_nominee.actions.nom_all.label": "Haan — nominee ko apne aap sab milta hai, aur kuch nahi chahiye",
+   "states.fa2_nominee.actions.nom_all.consequence": "Ye aam ati-saralikaran hai jo parivaar mein vivaad la sakta hai.",
+   "states.fa2_nominee.actions.nom_all.simple_label": "Nominee ko sab milta hai",
+   "states.fa2_nominee.actions.nom_none.label": "Nominee ka koi matlab nahi",
+   "states.fa2_nominee.actions.nom_none.consequence": "Nominee vivaran sanstha ke liye maayne rakhte hain — bas wahi poori kahani nahi.",
+   "states.fa2_nominee.actions.nom_none.simple_label": "Nominee ka matlab nahi",
+   "states.fa2_nominee.reasoning_prompt": "Aapke hisaab se nomination kyun zaroori hai?",
+   "states.fa3_call.title": "KYC ke baare mein ek call",
+   "states.fa3_call.narrative": "Us shaam ek anjaan caller kehta hai: “Aapka KYC expire ho gaya hai. Abhi bheja gaya 6-ank ka code bataiye, warna aaj aapke accounts block ho jayenge.”",
+   "states.fa3_call.channel.messages.0": "Aapka KYC expire ho gaya hai. Phone par aaya code jaldi bataiye, warna aaj accounts block ho jayenge.",
+   "states.fa3_call.pressure.0.text": "“Aaj block.”",
+   "states.fa3_call.pressure.1.text": "Bachat tak pahunch khone ka darr.",
+   "states.fa3_call.pressure.2.text": "Caller official lagta hai.",
+   "states.fa3_call.evidence.c_code.label": "Caller aapke phone par abhi aaya code maangta hai",
+   "states.fa3_call.evidence.c_code.text": "One-time code aapke paise ki chaabi hai.",
+   "states.fa3_call.evidence.c_code.why": "Asli sansthayein aapse one-time code, PIN ya password bolne ko kabhi nahi kehti. Sampark karne wale kisi se bhi kabhi share mat karo.",
+   "states.fa3_call.evidence.c_unk.label": "Ek anjaan number ne aapko call kiya",
+   "states.fa3_call.evidence.c_unk.text": "Ye sampark aapne shuru nahi kiya.",
+   "states.fa3_call.evidence.c_unk.why": "Aapne shuru nahi kiya, jaldi ke saath — ye ek classic scam pattern hai.",
+   "states.fa3_call.evidence.c_block.label": "“Aaj accounts block ho jayenge”",
+   "states.fa3_call.evidence.c_block.text": "Deadline ke saath dhamki.",
+   "states.fa3_call.evidence.c_block.why": "Dhamki aur deadline aapko check karne se rokti hain.",
+   "states.fa3_call.actions.hang_up.label": "Call kaato, aur bank ko uski official website ya card par diye number se sampark karo",
+   "states.fa3_call.actions.hang_up.consequence": "Aap call kaat dete ho. Bank confirm karta hai ki KYC mein koi samasya nahi.",
+   "states.fa3_call.actions.hang_up.simple_label": "Call kaato aur bank ko khud call karo",
+   "states.fa3_call.actions.read_code.label": "Code bata do taaki accounts block na hon",
+   "states.fa3_call.actions.read_code.consequence": "Is kaalpanik kahani mein kuch hi minuton mein ₹40,000 chale jaate hain.",
+   "states.fa3_call.actions.read_code.simple_label": "Code bata do",
+   "states.fa3_call.actions.hand_phone.label": "Phone Vikram ko de do",
+   "states.fa3_call.actions.hand_phone.consequence": "Vikram call kaat kar bank ko call karta hai. Achha nateeja — par Savita ne ye nahi seekha ki sanket kya the.",
+   "states.fa3_call.actions.hand_phone.simple_label": "Phone bete ko do",
+   "states.fa3_call.reasoning_prompt": "Is call mein sabse pehle aap kya dekhte ho?",
+   "states.fa4_rights.title": "Ek charge jise wo nahi pehchanti",
+   "states.fa4_rights.narrative": "Ek statement mein ₹590 ki 'service fee' dikhti hai jise Savita nahi pehchanti. Phir ek ajnabi message karta hai: “Hum galat charge ki gayi fees wapas dilate hain. ₹1,500 do, 2 din mein mil jayegi.”",
+   "states.fa4_rights.channel.messages.0": "Hum galat charge ki gayi fees wapas dilate hain! Abhi ₹1,500 do. 2 din mein paisa wapas.",
+   "states.fa4_rights.pressure.0.text": "“Abhi do.”",
+   "states.fa4_rights.pressure.1.text": "₹590 wapas paane ki ichha.",
+   "states.fa4_rights.evidence.r_fee.label": "Ek anjaan ₹590 ka charge",
+   "states.fa4_rights.evidence.r_fee.text": "Wo apni sanstha se iska spashtikaran maang sakti hai.",
+   "states.fa4_rights.evidence.r_fee.why": "Aapko kisi bhi charge ka likhit spashtikaran maangne aur santusht na hone par aage shikayat karne ka adhikar hai.",
+   "states.fa4_rights.evidence.r_agent.label": "Ek ajnabi ise ₹1,500 mein wapas dilane ka vaada karta hai",
+   "states.fa4_rights.evidence.r_agent.text": "Wapas dilane ki 'fee' nuksaan se badi hai.",
+   "states.fa4_rights.evidence.r_agent.why": "Paisa wapas paane ke liye paise dena classic scam hai. Official shikayat raaste aapse spashtikaran maangne ke paise nahi lete.",
+   "states.fa4_rights.actions.write_complain.label": "Sanstha se likhit mein charge samjhane ko kaho; hal na ho to uski shikayat prakriya aur phir regulator ka official grievance portal use karo",
+   "states.fa4_rights.actions.write_complain.consequence": "Aap ek chhota patra likhte ho aur uski copy rakhte ho.",
+   "states.fa4_rights.actions.write_complain.simple_label": "Likhit mein poochho",
+   "states.fa4_rights.actions.ignore.label": "Ignore karo — shayad normal hoga",
+   "states.fa4_rights.actions.ignore.consequence": "Ho sakta hai normal ho — par aapko pata nahi chalega.",
+   "states.fa4_rights.actions.ignore.simple_label": "Ignore karo",
+   "states.fa4_rights.actions.pay_recovery.label": "₹1,500 de do — ₹590 wapas aur samasya hal ho jaye to theek hai",
+   "states.fa4_rights.actions.pay_recovery.consequence": "Aap ₹1,500 (simulated) dete ho. Bhejne wala jawab dena band kar deta hai.",
+   "states.fa4_rights.actions.pay_recovery.simple_label": "Recovery fee do",
+   "states.fa4_rights.actions.social_only.label": "Bank ke baare mein social media par gussa nikalo aur kuch nahi karo",
+   "states.fa4_rights.actions.social_only.consequence": "Aapko sunwai ka ehsaas hota hai, par jo sudhaar sakta hai wo nahi dekhta.",
+   "states.fa4_rights.actions.social_only.simple_label": "Social media par likho",
+   "states.fa4_rights.reasoning_prompt": "Jab charge samajh na aaye to aapke adhikar kya hain?",
+   "states.t_prepared.title": "Ek parivaar jo sab dhundh sakta hai",
+   "states.t_prepared.narrative": "Aapne list banayi, official channels se vivaran update kiye, one-time codes ko surakshit rakha aur charge ke liye sahi raasta apnaya. Taiyari zyadatar chhote, shaant kadam hain jo zaroorat se pehle uthaaye jaate hain.",
+   "states.t_prepared.outcome.headline": "Ek parivaar jo sab dhundh sakta hai",
+   "states.t_prepared.outcome.summary": "Aapne list banayi, official channels se vivaran update kiye, one-time codes ko surakshit rakha aur charge ke liye sahi raasta apnaya. Taiyari zyadatar chhote, shaant kadam hain jo zaroorat se pehle uthaaye jaate hain.",
+   "states.t_partial.title": "Achhi shuruaat, kuch kami ke saath",
+   "states.t_partial.narrative": "Aap sabse bure jaal se bache, par kuch kami rahi: anjaan charge ki jaanch nahi, ya koi record nahi bana. Zaroorat se pehle ke chhote kadam baad ke kadam aasan banate hain.",
+   "states.t_partial.outcome.headline": "Achhi shuruaat, kuch kami ke saath",
+   "states.t_partial.outcome.summary": "Aap sabse bure jaal se bache, par kuch kami rahi: anjaan charge ki jaanch nahi, ya koi record nahi bana. Zaroorat se pehle ke chhote kadam baad ke kadam aasan banate hain.",
+   "states.t_unprepared.title": "Baad ke liye chhod diya",
+   "states.t_unprepared.narrative": "Taiyari tabhi kaam aati hai jab zaroorat se pehle ki jaye. Taali hui kaagazi karwaai kathin samay mein parivaar par bojh ban jaati hai. Shuru karne mein lagbhag ek ghanta lagta hai.",
+   "states.t_unprepared.outcome.headline": "Baad ke liye chhod diya",
+   "states.t_unprepared.outcome.summary": "Taiyari tabhi kaam aati hai jab zaroorat se pehle ki jaye. Taali hui kaagazi karwaai kathin samay mein parivaar par bojh ban jaati hai. Shuru karne mein lagbhag ek ghanta lagta hai.",
+   "states.t_risky_note.title": "Ek parcha jiska durupyog ho sakta hai",
+   "states.t_risky_note.narrative": "Har password aur PIN wala parcha kho sakta hai, dikh sakta hai ya durupyog ho sakta hai. Surakshit tareeka hai ki kaun se accounts hain aur documents kahan hain iski list rakhein aur parivaar ki pahunch ke liye har sanstha ki official prakriya use karein.",
+   "states.t_risky_note.outcome.headline": "Ek parcha jiska durupyog ho sakta hai",
+   "states.t_risky_note.outcome.summary": "Har password aur PIN wala parcha kho sakta hai, dikh sakta hai ya durupyog ho sakta hai. Surakshit tareeka hai ki kaun se accounts hain aur documents kahan hain iski list rakhein aur parivaar ki pahunch ke liye har sanstha ki official prakriya use karein.",
+   "states.t_scammed.title": "Code hi chaabi tha",
+   "states.t_scammed.narrative": "One-time code, PIN ya password aapke paise ki chaabi hai; koi asli sanstha ise bolne ko nahi kehti. Is kaalpanik kahani mein ₹40,000 account se nikal gaye. Call kaat kar official number par baat karna aapko bachata hai.",
+   "states.t_scammed.outcome.headline": "Code hi chaabi tha",
+   "states.t_scammed.outcome.summary": "One-time code, PIN ya password aapke paise ki chaabi hai; koi asli sanstha ise bolne ko nahi kehti. Is kaalpanik kahani mein ₹40,000 account se nikal gaye. Call kaat kar official number par baat karna aapko bachata hai.",
+   "reflection.key_points.0": "Taiyari tabhi kaam aati hai jab zaroorat se pehle ho: ek-page list, updated nominee, current sampark vivaran.",
+   "reflection.key_points.1": "Darj nominee sanstha ki madad karta hai; waaris ke niyam alag ho sakte hain, isliye official margdarshan dekho.",
+   "reflection.key_points.2": "Sampark karne wale kisi ko bhi one-time code, PIN ya password kabhi mat bolo.",
+   "reflection.key_points.3": "Aapko kisi bhi charge ka spashtikaran maangne ka adhikar hai — aur koi asli vyakti ismein paise nahi leta.",
+   "reflection.questions.0": "Aapke parivaar mein kisko pata hai ki aapke documents kahan hain?",
+   "reflection.micro_lesson.title": "Ek-page ki family file",
+   "reflection.micro_lesson.body": "Likho: har account aur kaun si sanstha ke paas hai, kaagaz kahan hain, nominee kaun hai, kaun sa phone number registered hai. List kahan hai ye batao — password kabhi nahi. Saal mein ek baar dekho."
+  }
+ }
+}

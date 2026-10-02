@@ -9,3 +9,4 @@ node_modules/
 ml/models/*.joblib
 data/processed/
 .pytest_cache/
+data/voices/*.onnx

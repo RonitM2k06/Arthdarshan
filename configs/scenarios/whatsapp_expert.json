@@ -1,0 +1,826 @@
+{
+ "id": "whatsapp_expert",
+ "version": 1,
+ "title": "The WhatsApp Expert",
+ "tagline": "A forwarded video promises tips from an 'ex-top fund manager'.",
+ "character": {
+  "name": "Meera",
+  "age": 52,
+  "role": "school teacher in a family WhatsApp group"
+ },
+ "difficulty": 2,
+ "concept_tags": [
+  "social_proof",
+  "verification",
+  "fraud_red_flags",
+  "risk"
+ ],
+ "pressure_tags": [
+  "social_proof",
+  "authority",
+  "greed",
+  "loss_recovery"
+ ],
+ "tests_misconceptions": [
+  "M002",
+  "M003",
+  "M005",
+  "M007",
+  "M010",
+  "M011"
+ ],
+ "initial_state": "w1_forward",
+ "states": {
+  "w1_forward": {
+   "id": "w1_forward",
+   "title": "A forward from family",
+   "narrative": "Meera's cousin forwards a video to the family WhatsApp group. Many relatives react with 👍. All names and numbers are fictional.",
+   "channel": {
+    "type": "whatsapp",
+    "sender": "Rajesh Bhaiya (cousin, fictional) — Forwarded many times",
+    "messages": [
+     "Watch this! Karan Sir's FREE webinar. His students made 85% in the last 3 months 🔥",
+     "[screenshots of 'profits' from 5 students]",
+     "Join his Premium group for ₹3,000 and get daily tips. Sir is an ex-top fund manager!"
+    ]
+   },
+   "pressure": [
+    {
+     "type": "social_proof",
+     "text": "Many relatives in the group have reacted with 👍.",
+     "intensity": 2
+    },
+    {
+     "type": "authority",
+     "text": "“Ex-top fund manager.”",
+     "intensity": 2
+    },
+    {
+     "type": "greed",
+     "text": "“85% in 3 months.”",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "k_past",
+     "label": "“85% in the last 3 months”",
+     "text": "A past result is advertised as the proof.",
+     "kind": "red_flag",
+     "why": "Past results — even real ones — do not guarantee future results, and three months says very little. The number may also be selected or edited.",
+     "risk_factor": "past_performance"
+    },
+    {
+     "id": "k_screens",
+     "label": "Screenshots from 5 'students'",
+     "text": "Five profit screenshots, no dates, no names.",
+     "kind": "red_flag",
+     "why": "Screenshots are chosen by the seller and are easy to fake. You are seeing winners only.",
+     "risk_factor": "cherry_picked"
+    },
+    {
+     "id": "k_auth",
+     "label": "“Ex-top fund manager”",
+     "text": "No firm, years or record is given.",
+     "kind": "red_flag",
+     "why": "A title without a checkable record is only a claim. Authority language is not evidence.",
+     "risk_factor": "authority_claim"
+    },
+    {
+     "id": "k_sell",
+     "label": "Tips are sold for ₹3,000",
+     "text": "The seller is paid whether or not tips work.",
+     "kind": "red_flag",
+     "why": "When someone earns from selling tips, their income does not depend on your results.",
+     "risk_factor": "conflict_of_interest"
+    },
+    {
+     "id": "k_risk",
+     "label": "No mention of losses or risk",
+     "text": "Only gains are shown.",
+     "kind": "red_flag",
+     "why": "Honest material talks about what can go wrong. Missing risk talk is a signal.",
+     "risk_factor": "missing_disclosure"
+    },
+    {
+     "id": "k_fwd",
+     "label": "The message has been forwarded many times",
+     "text": "Nobody knows who made it first.",
+     "kind": "red_flag",
+     "why": "A forward can be repeated by many people who never checked it. Repetition is not verification.",
+     "risk_factor": "social_proof"
+    },
+    {
+     "id": "k_fam",
+     "label": "It comes from a cousin you trust",
+     "text": "Rajesh is sincere and well-meaning.",
+     "kind": "reassuring",
+     "why": "Sincerity is not the same as being right. A trusted sender can still pass on a scam."
+    }
+   ],
+   "actions": [
+    {
+     "id": "join_premium",
+     "label": "Join the Premium group — so many in the family are watching",
+     "quality": "unsafe",
+     "next": "w2_tip",
+     "consequence": "You pay a simulated ₹3,000. A 'tip of the day' arrives.",
+     "verification": false,
+     "misconception_signals": [
+      "M002",
+      "M003",
+      "M007"
+     ]
+    },
+    {
+     "id": "ask_cousin",
+     "label": "Ask Rajesh what happened to him personally",
+     "quality": "mixed",
+     "next": "w_cousin",
+     "consequence": "Rajesh replies warmly and with excitement…",
+     "requests_evidence": true
+    },
+    {
+     "id": "check_claims",
+     "label": "Check the claims independently before replying",
+     "quality": "safe",
+     "next": "w_check",
+     "consequence": "You search for the expert's record and the 85% claim.",
+     "verification": true,
+     "requests_evidence": true
+    },
+    {
+     "id": "ignore",
+     "label": "Don't join; stay out of it",
+     "quality": "safe",
+     "next": "t_ignore",
+     "consequence": "You skip the video and stay out of the group."
+    },
+    {
+     "id": "forward",
+     "label": "Forward it to my other groups — it looks useful",
+     "quality": "unsafe",
+     "next": "t_forwarded",
+     "consequence": "You forward it to 30 relatives and friends.",
+     "misconception_signals": [
+      "M002"
+     ]
+    }
+   ],
+   "reasoning_prompt": "Why does this message feel convincing or not?"
+  },
+  "w_cousin": {
+   "id": "w_cousin",
+   "title": "Rajesh's story",
+   "narrative": "Rajesh answers your question about his own experience.",
+   "channel": {
+    "type": "whatsapp",
+    "sender": "Rajesh Bhaiya (cousin, fictional)",
+    "messages": [
+     "I made ₹4,000 in two weeks!! Also lost ₹2,500 earlier but forgot to mention 😅",
+     "Sir gives me ₹500 for every person who joins, so tell your friends!"
+    ]
+   },
+   "pressure": [
+    {
+     "type": "peer_pressure",
+     "text": "Your cousin is warmly encouraging you.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "c_surv",
+     "label": "The losses came out only after you asked",
+     "text": "He forgot the loss until prompted.",
+     "kind": "red_flag",
+     "why": "People tend to share wins and forget losses, so what you hear is a selected story.",
+     "risk_factor": "survivorship"
+    },
+    {
+     "id": "c_ref",
+     "label": "He earns ₹500 per person he brings",
+     "text": "A referral bonus ties his income to your joining.",
+     "kind": "red_flag",
+     "why": "A referral payment gives even a sincere person a reason to push.",
+     "risk_factor": "conflict_of_interest"
+    },
+    {
+     "id": "c_net",
+     "label": "His net result is about ₹1,500 — before the ₹3,000 fee",
+     "text": "₹4,000 gain − ₹2,500 earlier loss = ₹1,500, and the ₹3,000 joining fee is separate.",
+     "kind": "neutral",
+     "why": "Looking at the net figure after all costs gives a clearer picture than headline wins."
+    }
+   ],
+   "actions": [
+    {
+     "id": "trust_cousin",
+     "label": "He's family — he wouldn't mislead me",
+     "quality": "unsafe",
+     "next": "w2_tip",
+     "consequence": "You join. A tip of the day arrives.",
+     "verification": false,
+     "misconception_signals": [
+      "M011"
+     ]
+    },
+    {
+     "id": "check_after",
+     "label": "Thank him, then check the claims independently",
+     "quality": "safe",
+     "next": "w_check",
+     "consequence": "You begin checking the expert's record.",
+     "verification": true,
+     "requests_evidence": true
+    },
+    {
+     "id": "gently_point",
+     "label": "Point out the referral bonus and suggest he step back",
+     "quality": "safe",
+     "next": "t_helped_family",
+     "consequence": "Rajesh is quiet for a moment, then agrees to pause.",
+     "verification": true
+    }
+   ],
+   "reasoning_prompt": "What does Rajesh's reply tell you, and what does it not?"
+  },
+  "w2_tip": {
+   "id": "w2_tip",
+   "title": "The tip of the day",
+   "narrative": "After you join, the first 'tip' arrives. (A fictional company — this app does not tell anyone what to buy.)",
+   "channel": {
+    "type": "whatsapp",
+    "sender": "Karan Sir Premium (fictional)",
+    "messages": [
+     "Tip of the day: NalandaFab Ltd (fictional). Entry now, target +20% by Friday.",
+     "Members only. Do not share this with non-members."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "urgency",
+     "text": "“By Friday.”",
+     "intensity": 2
+    },
+    {
+     "type": "greed",
+     "text": "“+20%.”",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "t_target",
+     "label": "A +20% target stated as if it were certain",
+     "text": "A precise gain in days, no uncertainty.",
+     "kind": "red_flag",
+     "why": "Nobody can reliably predict a price in days. Honest voices speak in probabilities and risks.",
+     "risk_factor": "prediction"
+    },
+    {
+     "id": "t_secret",
+     "label": "“Do not share” with non-members",
+     "text": "Secrecy is part of the sales pitch.",
+     "kind": "red_flag",
+     "why": "Secrecy prevents other people from questioning the claims.",
+     "risk_factor": "secrecy"
+    },
+    {
+     "id": "t_basis",
+     "label": "A name and a number, no reasoning",
+     "text": "Nothing explains why.",
+     "kind": "red_flag",
+     "why": "A claim with no reasoning cannot be examined.",
+     "risk_factor": "missing_disclosure"
+    },
+    {
+     "id": "t_paid",
+     "label": "The seller was paid before any result",
+     "text": "Your ₹3,000 is already earned.",
+     "kind": "red_flag",
+     "why": "The seller wins whether or not the tip works.",
+     "risk_factor": "conflict_of_interest"
+    }
+   ],
+   "actions": [
+    {
+     "id": "act_tip",
+     "label": "Act on the tip right away",
+     "quality": "unsafe",
+     "next": "w3_vip",
+     "consequence": "In this fictional world the price falls 12% by evening, and a new message arrives.",
+     "verification": false,
+     "misconception_signals": [
+      "M005"
+     ]
+    },
+    {
+     "id": "ask_basis",
+     "label": "Ask in writing for the reasoning and the full track record",
+     "quality": "safe",
+     "next": "w_check",
+     "consequence": "Your questions are ignored. You start checking on your own.",
+     "verification": true,
+     "requests_evidence": true
+    },
+    {
+     "id": "leave",
+     "label": "Leave the group; treat the ₹3,000 as a lesson",
+     "quality": "safe",
+     "next": "t_left_loss",
+     "consequence": "You leave the group and do not act on any tip."
+    }
+   ],
+   "reasoning_prompt": "What would make you trust (or not trust) a tip?"
+  },
+  "w3_vip": {
+   "id": "w3_vip",
+   "title": "The loss and the “recovery plan”",
+   "narrative": "The simulated price fell 12%. Karan Sir responds.",
+   "channel": {
+    "type": "whatsapp",
+    "sender": "Karan Sir Premium (fictional)",
+    "messages": [
+     "Don't panic! Members who panicked lost; those who stayed will win.",
+     "Join VIP for ₹10,000. Our recovery plan will win it all back this week."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "loss_recovery",
+     "text": "“Win it all back this week.”",
+     "intensity": 3
+    },
+    {
+     "type": "fear",
+     "text": "“Those who panicked lost.”",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "v_recover",
+     "label": "A new payment is offered to recover a loss",
+     "text": "₹10,000 to “win it back”.",
+     "kind": "red_flag",
+     "why": "Paying more to recover a loss is how losses grow. Past payments are not a reason for a new one.",
+     "risk_factor": "loss_recovery"
+    },
+    {
+     "id": "v_blame",
+     "label": "The loss is blamed on members for “panicking”",
+     "text": "The seller is never wrong; the buyer is.",
+     "kind": "red_flag",
+     "why": "A source that can never be wrong cannot be checked.",
+     "risk_factor": "unfalsifiable"
+    },
+    {
+     "id": "v_record",
+     "label": "No account of how the earlier tips did",
+     "text": "Only the winning stories are posted.",
+     "kind": "red_flag",
+     "why": "A trustworthy source shows its whole record, including losses.",
+     "risk_factor": "cherry_picked"
+    }
+   ],
+   "actions": [
+    {
+     "id": "join_vip",
+     "label": "Join VIP — I must win it back",
+     "quality": "unsafe",
+     "next": "t_vip_loss",
+     "consequence": "You pay a simulated ₹10,000. The next tip also falls.",
+     "verification": false,
+     "misconception_signals": [
+      "M010"
+     ]
+    },
+    {
+     "id": "stop",
+     "label": "Stop paying; accept the loss and leave",
+     "quality": "safe",
+     "next": "t_left_loss",
+     "consequence": "You stop. The loss is real but capped."
+    },
+    {
+     "id": "ask_record",
+     "label": "Ask for the complete record in writing before anything else",
+     "quality": "safe",
+     "next": "w_check",
+     "consequence": "There is no reply. You begin checking independently.",
+     "verification": true,
+     "requests_evidence": true
+    }
+   ],
+   "reasoning_prompt": "What are you feeling right now?"
+  },
+  "w_check": {
+   "id": "w_check",
+   "title": "What independent checks show",
+   "narrative": "You spend 30 minutes checking. These are the (fictional) findings.",
+   "channel": {
+    "type": "document",
+    "sender": "Your notes",
+    "messages": [
+     "Findings from independent checks"
+    ]
+   },
+   "pressure": [],
+   "evidence": [
+    {
+     "id": "ch_record",
+     "label": "No verifiable record for the claimed fund manager",
+     "text": "No firm name, no years, no published results.",
+     "kind": "red_flag",
+     "why": "Claims of past roles should be checkable. Here nothing can be confirmed.",
+     "risk_factor": "no_track_record"
+    },
+    {
+     "id": "ch_reg",
+     "label": "No registration shown for a paid advice service",
+     "text": "People who sell paid investment advice are generally expected to be registered, and registration can be looked up on the regulator's official site. None is shown.",
+     "kind": "red_flag",
+     "why": "Always look it up yourself on the official site rather than trusting a screenshot.",
+     "risk_factor": "no_registration"
+    },
+    {
+     "id": "ch_crop",
+     "label": "Screenshots are cropped: no dates, no account names",
+     "text": "Nothing in them can be confirmed.",
+     "kind": "red_flag",
+     "why": "Cropped evidence is a way of hiding context.",
+     "risk_factor": "cherry_picked"
+    },
+    {
+     "id": "ch_short",
+     "label": "85% covers only three months and ignores losses",
+     "text": "A short window can look good by luck.",
+     "kind": "red_flag",
+     "why": "Even if true, a short window says little about the future.",
+     "risk_factor": "past_performance"
+    }
+   ],
+   "actions": [
+    {
+     "id": "warn_family",
+     "label": "Reply in the family group with how I checked",
+     "quality": "safe",
+     "next": "t_helped_family",
+     "consequence": "You share the steps, not just the conclusion.",
+     "verification": true
+    },
+    {
+     "id": "report_leave",
+     "label": "Leave and report the account",
+     "quality": "safe",
+     "next": "t_checked",
+     "consequence": "You leave and report the account.",
+     "verification": true
+    },
+    {
+     "id": "wait_results",
+     "label": "Wait a month to see if his tips work out, then decide",
+     "quality": "unsafe",
+     "next": "t_wait",
+     "consequence": "Meanwhile you keep receiving 'winning' screenshots.",
+     "misconception_signals": [
+      "M003"
+     ]
+    }
+   ],
+   "reasoning_prompt": "What is the strongest finding, and why?"
+  },
+  "t_ignore": {
+   "id": "t_ignore",
+   "title": "You stayed out",
+   "narrative": "You protected your money without needing to prove anything. Next time, checking the claim can also help protect your family.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You stayed out",
+    "summary": "You protected your money without needing to prove anything. Next time, checking the claim can also help protect your family.",
+    "kind": "safe"
+   }
+  },
+  "t_forwarded": {
+   "id": "t_forwarded",
+   "title": "You helped it spread",
+   "narrative": "Forwarding unchecked claims makes them look more credible. In this fictional story 3 of your contacts joined and one lost ₹3,000. You can undo harm by sending a correction with how to check.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You helped it spread",
+    "summary": "Forwarding unchecked claims makes them look more credible. In this fictional story 3 of your contacts joined and one lost ₹3,000. You can undo harm by sending a correction with how to check.",
+    "kind": "unsafe",
+    "simulated_loss": 3000
+   }
+  },
+  "t_vip_loss": {
+   "id": "t_vip_loss",
+   "title": "The recovery plan lost more",
+   "narrative": "After ₹3,000 + ₹10,000 (simulated) and a second falling tip, nothing was recovered. Paying more to recover a loss is how losses grow.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "The recovery plan lost more",
+    "summary": "After ₹3,000 + ₹10,000 (simulated) and a second falling tip, nothing was recovered. Paying more to recover a loss is how losses grow.",
+    "kind": "unsafe",
+    "simulated_loss": 13000
+   }
+  },
+  "t_left_loss": {
+   "id": "t_left_loss",
+   "title": "You stopped the loss",
+   "narrative": "You lost the ₹3,000 joining fee (simulated) but stopped there. The strongest checkpoint was before paying: checking the claim independently.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You stopped the loss",
+    "summary": "You lost the ₹3,000 joining fee (simulated) but stopped there. The strongest checkpoint was before paying: checking the claim independently.",
+    "kind": "mixed",
+    "simulated_loss": 3000
+   }
+  },
+  "t_helped_family": {
+   "id": "t_helped_family",
+   "title": "You protected the family",
+   "narrative": "You acted on evidence and shared the method. Teaching others how to check is more powerful than telling them what to believe.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You protected the family",
+    "summary": "You acted on evidence and shared the method. Teaching others how to check is more powerful than telling them what to believe.",
+    "kind": "safe"
+   }
+  },
+  "t_checked": {
+   "id": "t_checked",
+   "title": "You checked and reported",
+   "narrative": "You found nothing to support the claims and kept your money. Reporting helps protect others.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You checked and reported",
+    "summary": "You found nothing to support the claims and kept your money. Reporting helps protect others.",
+    "kind": "safe"
+   }
+  },
+  "t_wait": {
+   "id": "t_wait",
+   "title": "Waiting is not verifying",
+   "narrative": "A month of results from a source you cannot verify tells you little: short windows can look good by luck, and screenshots can be chosen. Verification means checking independently, not waiting to see.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "Waiting is not verifying",
+    "summary": "A month of results from a source you cannot verify tells you little: short windows can look good by luck, and screenshots can be chosen. Verification means checking independently, not waiting to see.",
+    "kind": "mixed"
+   }
+  }
+ },
+ "reflection": {
+  "key_points": [
+   "A trusted sender can still pass on a scam. Sincerity is not evidence.",
+   "Screenshots and testimonials are chosen by the seller. Ask for the full record, including losses.",
+   "Past results do not guarantee future results, especially over a few months.",
+   "If someone earns from your joining or buying, they have a reason to push."
+  ],
+  "questions": [
+   "What would you ask a 'tips' seller before paying?"
+  ],
+  "micro_lesson": {
+   "concept_id": "social_proof",
+   "title": "Crowds are not evidence",
+   "body": "When many people repeat the same claim, ask: did any of them check it? Look for independent evidence: official records, full track records including losses, and people with no financial stake."
+  }
+ },
+ "scoring": {
+  "dimensions": [
+   "herd_resistance",
+   "independent_reasoning",
+   "evidence_verification",
+   "scam_awareness"
+  ]
+ },
+ "i18n": {
+  "hinglish": {
+   "title": "The WhatsApp Expert (Forward wala Guru)",
+   "tagline": "Ek forward video 'ex-top fund manager' ke tips ka vaada karta hai.",
+   "states.w1_forward.title": "Parivaar se ek forward",
+   "states.w1_forward.narrative": "Meera ke cousin ne family WhatsApp group mein ek video forward kiya. Kai rishtedaron ne 👍 diya. Sab naam aur number kaalpanik hain.",
+   "states.w1_forward.channel.messages.0": "Dekho! Karan Sir ka FREE webinar. Unke students ne pichhle 3 mahine mein 85% kamaye 🔥",
+   "states.w1_forward.channel.messages.1": "[5 students ke 'profit' ke screenshots]",
+   "states.w1_forward.channel.messages.2": "₹3,000 mein Premium group join karo aur daily tips pao. Sir ex-top fund manager hain!",
+   "states.w1_forward.pressure.0.text": "Group ke kai rishtedaron ne 👍 diya hai.",
+   "states.w1_forward.pressure.1.text": "“Ex-top fund manager.”",
+   "states.w1_forward.pressure.2.text": "“3 mahine mein 85%.”",
+   "states.w1_forward.evidence.k_past.label": "“Pichhle 3 mahine mein 85%”",
+   "states.w1_forward.evidence.k_past.text": "Pichhla result hi saboot ki tarah dikhaya gaya hai.",
+   "states.w1_forward.evidence.k_past.why": "Pichhle results — asli bhi ho to — aage ki guarantee nahi, aur teen mahine bahut kam hote hain. Number chuna ya edit kiya bhi ho sakta hai.",
+   "states.w1_forward.evidence.k_screens.label": "5 'students' ke screenshots",
+   "states.w1_forward.evidence.k_screens.text": "Paanch profit screenshots, na date, na naam.",
+   "states.w1_forward.evidence.k_screens.why": "Screenshots seller chunta hai aur nakli banana aasan hai. Aap sirf jeetne walon ko dekh rahe ho.",
+   "states.w1_forward.evidence.k_auth.label": "“Ex-top fund manager”",
+   "states.w1_forward.evidence.k_auth.text": "Na firm, na saal, na record bataya gaya.",
+   "states.w1_forward.evidence.k_auth.why": "Jaanch-yogya record ke bina title sirf daava hai. Authority wali bhasha saboot nahi.",
+   "states.w1_forward.evidence.k_sell.label": "Tips ₹3,000 mein bechi ja rahi hain",
+   "states.w1_forward.evidence.k_sell.text": "Tips kaam kare ya na kare, seller ko paisa milta hai.",
+   "states.w1_forward.evidence.k_sell.why": "Jab koi tips bechkar kamata hai, uski kamai aapke results par nirbhar nahi.",
+   "states.w1_forward.evidence.k_risk.label": "Nuksaan ya risk ka koi zikr nahi",
+   "states.w1_forward.evidence.k_risk.text": "Sirf munafa dikhaya gaya hai.",
+   "states.w1_forward.evidence.k_risk.why": "Imaandaar jaankari batati hai ki kya galat ho sakta hai. Risk ka zikr na hona ek sanket hai.",
+   "states.w1_forward.evidence.k_fwd.label": "Message kai baar forward hua hai",
+   "states.w1_forward.evidence.k_fwd.text": "Kisi ko nahi pata pehle kisne banaya.",
+   "states.w1_forward.evidence.k_fwd.why": "Forward kai log bina check kiye dohra sakte hain. Dohrana verification nahi hai.",
+   "states.w1_forward.evidence.k_fam.label": "Ye aapke bharosemand cousin se aaya hai",
+   "states.w1_forward.evidence.k_fam.text": "Rajesh imaandaar aur nek niyat wala hai.",
+   "states.w1_forward.evidence.k_fam.why": "Imaandaari ka matlab sahi hona nahi. Bharosemand bhejne wala bhi scam aage badha sakta hai.",
+   "states.w1_forward.actions.join_premium.label": "Premium group join karo — parivaar mein itne log dekh rahe hain",
+   "states.w1_forward.actions.join_premium.consequence": "Aap simulated ₹3,000 dete ho. 'Aaj ka tip' aata hai.",
+   "states.w1_forward.actions.ask_cousin.label": "Rajesh se poochho ki usse khud kya hua",
+   "states.w1_forward.actions.ask_cousin.consequence": "Rajesh garmjoshi se jawab deta hai…",
+   "states.w1_forward.actions.check_claims.label": "Reply se pehle daavon ko swatantra roop se check karo",
+   "states.w1_forward.actions.check_claims.consequence": "Aap expert ke record aur 85% ke daave ko search karte ho.",
+   "states.w1_forward.actions.ignore.label": "Join mat karo; door raho",
+   "states.w1_forward.actions.ignore.consequence": "Aap video chhod dete ho aur group se door rehte ho.",
+   "states.w1_forward.actions.forward.label": "Ise apne doosre groups mein bhi forward karo — kaam ka lagta hai",
+   "states.w1_forward.actions.forward.consequence": "Aap ise 30 rishtedaron aur dostoon ko forward karte ho.",
+   "states.w1_forward.reasoning_prompt": "Ye message aapko kyun convincing lagta hai ya nahi?",
+   "states.w_cousin.title": "Rajesh ki kahani",
+   "states.w_cousin.narrative": "Rajesh apne anubhav ke baare mein aapke sawaal ka jawab deta hai.",
+   "states.w_cousin.channel.messages.0": "Do hafte mein ₹4,000 kamaye!! Pehle ₹2,500 ka nuksaan bhi hua tha, batana bhool gaya 😅",
+   "states.w_cousin.channel.messages.1": "Sir har naye member ke liye mujhe ₹500 dete hain, to apne dostoon ko bolo!",
+   "states.w_cousin.pressure.0.text": "Aapka cousin pyaar se aapko protsahit kar raha hai.",
+   "states.w_cousin.evidence.c_surv.label": "Nuksaan tabhi bataya jab aapne poocha",
+   "states.w_cousin.evidence.c_surv.text": "Poochhne par hi nuksaan yaad aaya.",
+   "states.w_cousin.evidence.c_surv.why": "Log jeet batate hain aur haar bhool jaate hain, isliye jo sunte ho wo chuni hui kahani hoti hai.",
+   "states.w_cousin.evidence.c_ref.label": "Wo har laaye hue vyakti par ₹500 kamata hai",
+   "states.w_cousin.evidence.c_ref.text": "Referral bonus uski kamai ko aapke judne se jodta hai.",
+   "states.w_cousin.evidence.c_ref.why": "Referral ka paisa imaandaar insaan ko bhi dabaav daalne ki wajah deta hai.",
+   "states.w_cousin.evidence.c_net.label": "Uska net result lagbhag ₹1,500 — ₹3,000 fee se pehle",
+   "states.w_cousin.evidence.c_net.text": "₹4,000 faayda − ₹2,500 purana nuksaan = ₹1,500, aur ₹3,000 joining fee alag hai.",
+   "states.w_cousin.evidence.c_net.why": "Sab kharche ke baad net figure dekhna headline jeet se saaf tasveer deta hai.",
+   "states.w_cousin.actions.trust_cousin.label": "Wo apna hai — mujhe gumrah nahi karega",
+   "states.w_cousin.actions.trust_cousin.consequence": "Aap join karte ho. Aaj ka tip aata hai.",
+   "states.w_cousin.actions.check_after.label": "Use shukriya kaho, phir daavon ko swatantra roop se check karo",
+   "states.w_cousin.actions.check_after.consequence": "Aap expert ka record check karna shuru karte ho.",
+   "states.w_cousin.actions.gently_point.label": "Referral bonus ki taraf ishara karo aur use peeche hatne ko kaho",
+   "states.w_cousin.actions.gently_point.consequence": "Rajesh thodi der chup rehta hai, phir ruk jaata hai.",
+   "states.w_cousin.reasoning_prompt": "Rajesh ke jawab se kya pata chalta hai, aur kya nahi?",
+   "states.w2_tip.title": "Aaj ka tip",
+   "states.w2_tip.narrative": "Join karne ke baad pehla 'tip' aata hai. (Kaalpanik company — ye app kisi ko kuch kharidne ko nahi kehta.)",
+   "states.w2_tip.channel.messages.0": "Aaj ka tip: NalandaFab Ltd (kaalpanik). Abhi entry, Friday tak +20% target.",
+   "states.w2_tip.channel.messages.1": "Sirf members ke liye. Non-members ko share mat karo.",
+   "states.w2_tip.pressure.0.text": "“Friday tak.”",
+   "states.w2_tip.pressure.1.text": "“+20%.”",
+   "states.w2_tip.evidence.t_target.label": "+20% target jaise pakka ho",
+   "states.w2_tip.evidence.t_target.text": "Kuch dinon mein sateek faayda, koi anishchitta nahi.",
+   "states.w2_tip.evidence.t_target.why": "Kuch dinon mein daam sahi sahi koi nahi bata sakta. Imaandaar log sambhavna aur risk ki baat karte hain.",
+   "states.w2_tip.evidence.t_secret.label": "Non-members ko “share mat karo”",
+   "states.w2_tip.evidence.t_secret.text": "Gopniyata sales pitch ka hissa hai.",
+   "states.w2_tip.evidence.t_secret.why": "Gopniyata dusron ko daavon par sawaal karne se rokti hai.",
+   "states.w2_tip.evidence.t_basis.label": "Ek naam aur ek number, koi tark nahi",
+   "states.w2_tip.evidence.t_basis.text": "Kuch bhi nahi batata ki kyun.",
+   "states.w2_tip.evidence.t_basis.why": "Bina tark ka daava jaancha nahi ja sakta.",
+   "states.w2_tip.evidence.t_paid.label": "Seller ko result se pehle hi paisa mila",
+   "states.w2_tip.evidence.t_paid.text": "Aapke ₹3,000 pehle hi kamaye ja chuke hain.",
+   "states.w2_tip.evidence.t_paid.why": "Tip kaam kare ya na kare, seller jeet'ta hai.",
+   "states.w2_tip.actions.act_tip.label": "Tip par turant amal karo",
+   "states.w2_tip.actions.act_tip.consequence": "Is kaalpanik duniya mein shaam tak daam 12% gir jaata hai, aur naya message aata hai.",
+   "states.w2_tip.actions.ask_basis.label": "Likhit mein tark aur poora track record maango",
+   "states.w2_tip.actions.ask_basis.consequence": "Aapke sawaal anadekhe hote hain. Aap khud check karna shuru karte ho.",
+   "states.w2_tip.actions.leave.label": "Group chhodo; ₹3,000 ko seekh maano",
+   "states.w2_tip.actions.leave.consequence": "Aap group chhodte ho aur kisi tip par amal nahi karte.",
+   "states.w2_tip.reasoning_prompt": "Kis baat se aap tip par bharosa karoge (ya nahi)?",
+   "states.w3_vip.title": "Nuksaan aur “recovery plan”",
+   "states.w3_vip.narrative": "Simulated daam 12% gira. Karan Sir jawab dete hain.",
+   "states.w3_vip.channel.messages.0": "Ghabrao mat! Jo ghabraye unhe nuksaan hua; jo tike wo jeetenge.",
+   "states.w3_vip.channel.messages.1": "VIP ₹10,000 mein join karo. Hamara recovery plan ye hafte sab wapas jeet lega.",
+   "states.w3_vip.pressure.0.text": "“Is hafte sab wapas jeet lo.”",
+   "states.w3_vip.pressure.1.text": "“Jo ghabraye unhe nuksaan hua.”",
+   "states.w3_vip.evidence.v_recover.label": "Nuksaan ki bharpai ke liye naya payment",
+   "states.w3_vip.evidence.v_recover.text": "“Wapas jeetne” ke liye ₹10,000.",
+   "states.w3_vip.evidence.v_recover.why": "Nuksaan ki bharpai ke liye aur dene se nuksaan badhta hai. Pichhle payments naye payment ki wajah nahi.",
+   "states.w3_vip.evidence.v_blame.label": "Nuksaan ka dosh members ke “ghabrane” par",
+   "states.w3_vip.evidence.v_blame.text": "Seller kabhi galat nahi; kharidne wala galat hai.",
+   "states.w3_vip.evidence.v_blame.why": "Jo source kabhi galat nahi ho sakta, use jaancha nahi ja sakta.",
+   "states.w3_vip.evidence.v_record.label": "Pichhle tips ka koi hisaab nahi",
+   "states.w3_vip.evidence.v_record.text": "Sirf jeet ki kahaniyan post hoti hain.",
+   "states.w3_vip.evidence.v_record.why": "Bharosemand source poora record dikhata hai, nuksaan samet.",
+   "states.w3_vip.actions.join_vip.label": "VIP join karo — mujhe wapas jeetna hi hai",
+   "states.w3_vip.actions.join_vip.consequence": "Aap simulated ₹10,000 dete ho. Agla tip bhi gir jaata hai.",
+   "states.w3_vip.actions.stop.label": "Paise dena band karo; nuksaan maan kar chhodo",
+   "states.w3_vip.actions.stop.consequence": "Aap ruk jaate ho. Nuksaan asli hai par seemit.",
+   "states.w3_vip.actions.ask_record.label": "Kuch bhi karne se pehle likhit mein poora record maango",
+   "states.w3_vip.actions.ask_record.consequence": "Koi jawab nahi aata. Aap swatantra jaanch shuru karte ho.",
+   "states.w3_vip.reasoning_prompt": "Abhi aap kya mehsoos kar rahe ho?",
+   "states.w_check.title": "Swatantra jaanch kya batati hai",
+   "states.w_check.narrative": "Aap 30 minute check karte ho. Ye (kaalpanik) nateeje hain.",
+   "states.w_check.channel.messages.0": "Swatantra jaanch ke nateeje",
+   "states.w_check.evidence.ch_record.label": "Daave wale fund manager ka koi jaanch-yogya record nahi",
+   "states.w_check.evidence.ch_record.text": "Na firm ka naam, na saal, na published results.",
+   "states.w_check.evidence.ch_record.why": "Pichhli bhumikaon ke daave jaanch-yogya hone chahiye. Yahan kuch confirm nahi hota.",
+   "states.w_check.evidence.ch_reg.label": "Paid advice service ka koi registration nahi dikhaya",
+   "states.w_check.evidence.ch_reg.text": "Jo paid investment advice bechte hain unse aam taur par registered hone ki ummeed hoti hai, aur registration regulator ki official site par dekha ja sakta hai. Yahan koi nahi dikhaya.",
+   "states.w_check.evidence.ch_reg.why": "Hamesha khud official site par dekho, screenshot par bharosa mat karo.",
+   "states.w_check.evidence.ch_crop.label": "Screenshots kate hue hain: na date, na account naam",
+   "states.w_check.evidence.ch_crop.text": "Unmein kuch bhi confirm nahi ho sakta.",
+   "states.w_check.evidence.ch_crop.why": "Kata hua saboot sandarbh chhupane ka tareeka hai.",
+   "states.w_check.evidence.ch_short.label": "85% sirf teen mahine ka hai aur nuksaan nazarandaaz karta hai",
+   "states.w_check.evidence.ch_short.text": "Chhoti avadhi kismat se achhi dikh sakti hai.",
+   "states.w_check.evidence.ch_short.why": "Sach bhi ho to chhoti avadhi bhavishya ke baare mein kam batati hai.",
+   "states.w_check.actions.warn_family.label": "Family group mein reply karo ki maine kaise check kiya",
+   "states.w_check.actions.warn_family.consequence": "Aap sirf nateeja nahi, kadam bhi batate ho.",
+   "states.w_check.actions.report_leave.label": "Chhodo aur account report karo",
+   "states.w_check.actions.report_leave.consequence": "Aap chhodte ho aur account report karte ho.",
+   "states.w_check.actions.wait_results.label": "Ek mahina ruko dekho tips chalte hain ya nahi, phir faisla",
+   "states.w_check.actions.wait_results.consequence": "Is beech aapko 'jeet' ke screenshots milte rehte hain.",
+   "states.w_check.reasoning_prompt": "Sabse mazboot nateeja kya hai, aur kyun?",
+   "states.t_ignore.title": "Aap door rahe",
+   "states.t_ignore.narrative": "Aapne kuch sabit kiye bina paisa bacha liya. Agli baar daave ko check karna parivaar ko bachane mein bhi madad kar sakta hai.",
+   "states.t_ignore.outcome.headline": "Aap door rahe",
+   "states.t_ignore.outcome.summary": "Aapne kuch sabit kiye bina paisa bacha liya. Agli baar daave ko check karna parivaar ko bachane mein bhi madad kar sakta hai.",
+   "states.t_forwarded.title": "Aapne ise failne mein madad ki",
+   "states.t_forwarded.narrative": "Bina check kiye forward karne se daava aur bharosemand lagta hai. Is kaalpanik kahani mein aapke 3 contacts ne join kiya aur ek ne ₹3,000 gawaye. Sudhaar bhej kar aur check karne ka tareeka bata kar aap nuksaan kam kar sakte ho.",
+   "states.t_forwarded.outcome.headline": "Aapne ise failne mein madad ki",
+   "states.t_forwarded.outcome.summary": "Bina check kiye forward karne se daava aur bharosemand lagta hai. Is kaalpanik kahani mein aapke 3 contacts ne join kiya aur ek ne ₹3,000 gawaye. Sudhaar bhej kar aur check karne ka tareeka bata kar aap nuksaan kam kar sakte ho.",
+   "states.t_vip_loss.title": "Recovery plan ne aur gawaya",
+   "states.t_vip_loss.narrative": "₹3,000 + ₹10,000 (simulated) aur doosre girte tip ke baad kuch recover nahi hua. Nuksaan ki bharpai ke liye aur dene se nuksaan badhta hai.",
+   "states.t_vip_loss.outcome.headline": "Recovery plan ne aur gawaya",
+   "states.t_vip_loss.outcome.summary": "₹3,000 + ₹10,000 (simulated) aur doosre girte tip ke baad kuch recover nahi hua. Nuksaan ki bharpai ke liye aur dene se nuksaan badhta hai.",
+   "states.t_left_loss.title": "Aapne nuksaan rok diya",
+   "states.t_left_loss.narrative": "Aapne ₹3,000 joining fee (simulated) gawai par wahin ruk gaye. Sabse mazboot checkpoint paise dene se pehle tha: daave ko swatantra roop se check karna.",
+   "states.t_left_loss.outcome.headline": "Aapne nuksaan rok diya",
+   "states.t_left_loss.outcome.summary": "Aapne ₹3,000 joining fee (simulated) gawai par wahin ruk gaye. Sabse mazboot checkpoint paise dene se pehle tha: daave ko swatantra roop se check karna.",
+   "states.t_helped_family.title": "Aapne parivaar ko bachaya",
+   "states.t_helped_family.narrative": "Aapne saboot par kaam kiya aur tareeka batata. Doosron ko check karna sikhana unhe kya maanna hai batane se zyada asardaar hai.",
+   "states.t_helped_family.outcome.headline": "Aapne parivaar ko bachaya",
+   "states.t_helped_family.outcome.summary": "Aapne saboot par kaam kiya aur tareeka batata. Doosron ko check karna sikhana unhe kya maanna hai batane se zyada asardaar hai.",
+   "states.t_checked.title": "Aapne check kiya aur report kiya",
+   "states.t_checked.narrative": "Aapko daavon ka koi saboot nahi mila aur paisa bacha. Report karne se doosre bhi surakshit rehte hain.",
+   "states.t_checked.outcome.headline": "Aapne check kiya aur report kiya",
+   "states.t_checked.outcome.summary": "Aapko daavon ka koi saboot nahi mila aur paisa bacha. Report karne se doosre bhi surakshit rehte hain.",
+   "states.t_wait.title": "Intezaar karna verify karna nahi hai",
+   "states.t_wait.narrative": "Jis source ko aap verify nahi kar sakte uske ek mahine ke results kam batate hain: chhoti avadhi kismat se achhi dikh sakti hai aur screenshots chune ja sakte hain. Verification ka matlab swatantra jaanch hai, intezaar nahi.",
+   "states.t_wait.outcome.headline": "Intezaar karna verify karna nahi hai",
+   "states.t_wait.outcome.summary": "Jis source ko aap verify nahi kar sakte uske ek mahine ke results kam batate hain: chhoti avadhi kismat se achhi dikh sakti hai aur screenshots chune ja sakte hain. Verification ka matlab swatantra jaanch hai, intezaar nahi.",
+   "reflection.key_points.0": "Bharosemand bhejne wala bhi scam aage badha sakta hai. Imaandaari saboot nahi.",
+   "reflection.key_points.1": "Screenshots aur testimonials seller chunta hai. Poora record maango, nuksaan samet.",
+   "reflection.key_points.2": "Pichhle results aage ki guarantee nahi, khaaskar kuch mahino ke.",
+   "reflection.key_points.3": "Agar kisi ko aapke judne ya kharidne se kamai hoti hai, to uske paas dabaav ki wajah hai.",
+   "reflection.questions.0": "Paise dene se pehle 'tips' seller se kya poochhoge?",
+   "reflection.micro_lesson.title": "Bheed saboot nahi hai",
+   "reflection.micro_lesson.body": "Jab bahut log ek hi daava dohrate hain, poochho: kisi ne check kiya? Swatantra saboot dekho: official records, nuksaan samet poora track record, aur wo log jinka koi financial hit nahi."
+  }
+ }
+}

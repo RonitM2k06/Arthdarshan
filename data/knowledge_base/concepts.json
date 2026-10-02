@@ -1,0 +1,1411 @@
+[
+ {
+  "id": "saving",
+  "name": {
+   "en": "Saving",
+   "hinglish": "Saving (Bachat)",
+   "hi": "बचत"
+  },
+  "category": "basics",
+  "simple": {
+   "en": "Saving means keeping some money aside today so it is available later, for emergencies or goals.",
+   "hinglish": "Saving ka matlab hai aaj kuch paisa alag rakhna taaki baad mein emergency ya goals ke liye mil sake.",
+   "hi": "बचत का मतलब है आज कुछ पैसा अलग रखना ताकि बाद में आपात स्थिति या लक्ष्यों के लिए मिल सके।"
+  },
+  "detailed": "Saving is different from investing: savings are kept for safety and easy access, while investments accept some risk in the hope of growth. Many planners suggest first building an emergency cushion covering several months of expenses before taking investment risk. This is general education, not advice for any person.",
+  "examples": [
+   "Meera sets aside ₹2,000 every month in a separate account for sudden medical or repair costs (fictional)."
+  ],
+  "related": [
+   "inflation",
+   "liquidity",
+   "risk"
+  ],
+  "misconceptions": [
+   "M013"
+  ],
+  "quiz": [
+   {
+    "id": "q_saving_1",
+    "question": "What is the main purpose of an emergency fund?",
+    "options": [
+     {
+      "text": "To earn the highest possible return",
+      "misconception_id": "M005"
+     },
+     {
+      "text": "To cover unexpected costs without selling investments in a hurry",
+      "misconception_id": null
+     },
+     {
+      "text": "To buy a hot tip",
+      "misconception_id": "M006"
+     },
+     {
+      "text": "To avoid ever using a bank",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "An emergency fund is about safety and access, not about maximising returns.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "family_file",
+   "urgent_decision"
+  ],
+  "aliases": [
+   "saving",
+   "savings",
+   "bachat",
+   "बचत",
+   "emergency fund"
+  ],
+  "simulation": "emergency_savings"
+ },
+ {
+  "id": "inflation",
+  "name": {
+   "en": "Inflation",
+   "hinglish": "Inflation (Mehngai)",
+   "hi": "महंगाई"
+  },
+  "category": "basics",
+  "simple": {
+   "en": "Inflation is the general rise in prices over time, so the same money buys less later.",
+   "hinglish": "Inflation ka matlab hai samay ke saath chizon ke daam badhna, jisse wahi paisa baad mein kam kharid pata hai.",
+   "hi": "महंगाई का मतलब है समय के साथ कीमतों का बढ़ना, जिससे वही पैसा बाद में कम खरीद पाता है।"
+  },
+  "detailed": "If prices rise 6% a year, something costing ₹100 today would cost about ₹106 next year. Money that earns less than inflation loses buying power in real terms, even if the rupee number does not fall. This is why 'safe' and 'growing' are different questions.",
+  "examples": [
+   "At an illustrative 6% inflation, a ₹1,000 grocery basket costs about ₹1,791 after 10 years."
+  ],
+  "related": [
+   "saving",
+   "compounding",
+   "risk"
+  ],
+  "misconceptions": [],
+  "quiz": [
+   {
+    "id": "q_infl_1",
+    "question": "If your savings earn 4% and prices rise 6% in a year, what happens to buying power?",
+    "options": [
+     {
+      "text": "It rises",
+      "misconception_id": null
+     },
+     {
+      "text": "It falls",
+      "misconception_id": null
+     },
+     {
+      "text": "It stays exactly the same",
+      "misconception_id": null
+     },
+     {
+      "text": "It cannot be known",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "Earning less than inflation means each rupee buys less than before (illustrative numbers).",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [],
+  "aliases": [
+   "inflation",
+   "mehngai",
+   "mehangai",
+   "महंगाई",
+   "price rise"
+  ],
+  "simulation": "inflation"
+ },
+ {
+  "id": "compounding",
+  "name": {
+   "en": "Compounding",
+   "hinglish": "Compounding",
+   "hi": "चक्रवृद्धि"
+  },
+  "category": "basics",
+  "simple": {
+   "en": "Compounding is earning growth on your earlier growth as well, so amounts can snowball over long periods.",
+   "hinglish": "Compounding mein aapko pehle ki kamai par bhi kamai milti hai, isliye lambe samay mein rakam snowball ki tarah badhti hai.",
+   "hi": "चक्रवृद्धि में पहले की कमाई पर भी कमाई मिलती है, इसलिए लंबे समय में रकम बर्फ़ के गोले की तरह बढ़ती है।"
+  },
+  "detailed": "Illustration: ₹10,000 growing at a hypothetical 8% a year becomes about ₹14,693 after 5 years and ₹21,589 after 10 years. Time does most of the work. The same logic works against you with costs and debts. These numbers are illustrative; real outcomes vary and can be negative.",
+  "examples": [
+   "₹10,000 at a hypothetical 8% for 10 years ≈ ₹21,589 (illustrative, simulated)."
+  ],
+  "related": [
+   "fees",
+   "inflation",
+   "sip"
+  ],
+  "misconceptions": [
+   "M012"
+  ],
+  "quiz": [
+   {
+    "id": "q_comp_1",
+    "question": "Why does starting earlier matter in compounding?",
+    "options": [
+     {
+      "text": "Early money has more time to grow on its own growth",
+      "misconception_id": null
+     },
+     {
+      "text": "Early money is guaranteed to earn more",
+      "misconception_id": "M001"
+     },
+     {
+      "text": "Later money cannot grow",
+      "misconception_id": null
+     },
+     {
+      "text": "It does not matter",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 0,
+    "explanation": "Compounding rewards time, but it never guarantees a result.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "hidden_fee"
+  ],
+  "aliases": [
+   "compounding",
+   "chakravriddhi",
+   "chakravridhi",
+   "चक्रवृद्धि",
+   "compound interest"
+  ],
+  "simulation": "compounding"
+ },
+ {
+  "id": "risk",
+  "name": {
+   "en": "Risk",
+   "hinglish": "Risk (Jokhim)",
+   "hi": "जोखिम"
+  },
+  "category": "core",
+  "simple": {
+   "en": "Risk is the chance that the result is different from what you hoped, including losing money.",
+   "hinglish": "Risk ka matlab hai ki natija aapki ummeed se alag ho sakta hai, paisa ghatne ki sambhavna samet.",
+   "hi": "जोखिम का मतलब है कि नतीजा आपकी उम्मीद से अलग हो सकता है, पैसा घटने की संभावना सहित।"
+  },
+  "detailed": "Risk and potential return are linked: the chance of a higher outcome usually comes with the chance of a bigger loss. A promise of high return with 'no risk' is a contradiction. Risk is not only market ups and downs; it also includes fraud, being unable to withdraw, and costs.",
+  "examples": [
+   "A fictional fund can show gains one year and losses the next; no one can guarantee which."
+  ],
+  "related": [
+   "volatility",
+   "diversification",
+   "liquidity",
+   "fraud_red_flags"
+  ],
+  "misconceptions": [
+   "M001",
+   "M003",
+   "M005",
+   "M009"
+  ],
+  "quiz": [
+   {
+    "id": "q_risk_1",
+    "question": "A message promises 'guaranteed 30% returns, no risk'. What is the best reading of this?",
+    "options": [
+     {
+      "text": "A strong opportunity",
+      "misconception_id": "M005"
+     },
+     {
+      "text": "A claim that contradicts how risk and return normally relate, to be verified independently",
+      "misconception_id": null
+     },
+     {
+      "text": "Proof of a regulated scheme",
+      "misconception_id": "M007"
+     },
+     {
+      "text": "A reason to join before slots end",
+      "misconception_id": "M006"
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "High promised return plus 'no risk' is a classic warning sign.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "guaranteed_opportunity",
+   "whatsapp_expert"
+  ],
+  "aliases": [
+   "risk",
+   "jokhim",
+   "jokhim kya hai",
+   "जोखिम",
+   "risk kya hai"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "volatility",
+  "name": {
+   "en": "Volatility",
+   "hinglish": "Volatility (Utaar-Chadhav)",
+   "hi": "अस्थिरता"
+  },
+  "category": "core",
+  "simple": {
+   "en": "Volatility is how much and how fast a price moves up and down. Big swings mean more uncertainty on the way.",
+   "hinglish": "Volatility ka matlab hai ki kisi cheez ka daam kitna aur kitni tezi se upar-neeche hota hai. Zyada utaar-chadhav matlab raaste mein zyada anishchitta.",
+   "hi": "अस्थिरता यानी किसी चीज़ की कीमत कितनी और कितनी तेज़ी से ऊपर-नीचे होती है। ज़्यादा उतार-चढ़ाव यानी रास्ते में ज़्यादा अनिश्चितता।"
+  },
+  "detailed": "A fictional fund moving between ₹90 and ₹110 is less volatile than one moving between ₹60 and ₹140. Volatility is not the same as permanent loss, but big swings can push people to react emotionally. No one can predict when or by how much prices will move.",
+  "examples": [
+   "Two fictional funds can end the year at the same price but one took a much bumpier road."
+  ],
+  "related": [
+   "risk",
+   "diversification",
+   "fomo"
+  ],
+  "misconceptions": [
+   "M010"
+  ],
+  "quiz": [
+   {
+    "id": "q_vol_1",
+    "question": "What does high volatility describe?",
+    "options": [
+     {
+      "text": "Prices swing widely and quickly",
+      "misconception_id": null
+     },
+     {
+      "text": "Prices will certainly rise",
+      "misconception_id": "M001"
+     },
+     {
+      "text": "Prices never change",
+      "misconception_id": null
+     },
+     {
+      "text": "A fund is a scam",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 0,
+    "explanation": "Volatility is about the size of price swings, not their direction.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "market_shock"
+  ],
+  "aliases": [
+   "volatility",
+   "volatile",
+   "utaar chadhav",
+   "utar chadhav",
+   "अस्थिरता",
+   "volatility kya hoti hai",
+   "volatility kya hai"
+  ],
+  "simulation": "volatility"
+ },
+ {
+  "id": "diversification",
+  "name": {
+   "en": "Diversification",
+   "hinglish": "Diversification",
+   "hi": "विविधीकरण"
+  },
+  "category": "core",
+  "simple": {
+   "en": "Diversification means not depending on a single thing. Spreading across different assets can reduce the damage if one of them does badly.",
+   "hinglish": "Diversification ka matlab hai sab kuch ek hi cheez par na chhodna. Alag-alag assets mein baantne se ek ke kharab hone par nuksaan kam ho sakta hai.",
+   "hi": "विविधीकरण का मतलब है सब कुछ एक ही चीज़ पर न छोड़ना। अलग-अलग संपत्तियों में बाँटने से एक के बिगड़ने पर नुकसान कम हो सकता है।"
+  },
+  "detailed": "It reduces concentration risk but cannot remove market-wide risk: in a broad fall, many assets can drop together. Two very similar assets (for example two companies in the same sector) are not truly diversified.",
+  "examples": [
+   "A fictional ₹50,000 split across four unrelated assets lost less in one sector's bad year than ₹50,000 in a single asset (illustrative)."
+  ],
+  "related": [
+   "concentration_risk",
+   "risk",
+   "volatility"
+  ],
+  "misconceptions": [
+   "M004"
+  ],
+  "quiz": [
+   {
+    "id": "q_div_1",
+    "question": "Which statement about diversification is most accurate?",
+    "options": [
+     {
+      "text": "It removes all risk",
+      "misconception_id": "M004"
+     },
+     {
+      "text": "It can reduce the impact of one asset failing but not market-wide falls",
+      "misconception_id": null
+     },
+     {
+      "text": "It guarantees profit",
+      "misconception_id": "M001"
+     },
+     {
+      "text": "It means buying many similar things",
+      "misconception_id": "M004"
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "Diversification manages concentration risk; it does not eliminate risk.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "one_basket"
+  ],
+  "aliases": [
+   "diversification",
+   "diversify",
+   "vividhikaran",
+   "विविधीकरण",
+   "ek tokri"
+  ],
+  "simulation": "diversification"
+ },
+ {
+  "id": "concentration_risk",
+  "name": {
+   "en": "Concentration risk",
+   "hinglish": "Concentration risk",
+   "hi": "एकाग्रता जोखिम"
+  },
+  "category": "core",
+  "simple": {
+   "en": "Concentration risk is the danger of having too much of your money tied to one company, sector or idea.",
+   "hinglish": "Concentration risk ka matlab hai ek hi company, sector ya idea mein zyada paisa laga hona.",
+   "hi": "एकाग्रता जोखिम यानी एक ही कंपनी, क्षेत्र या विचार में बहुत ज़्यादा पैसा लगा होना।"
+  },
+  "detailed": "If one fictional company is 100% of your simulated money and it falls 35%, you lose 35% of everything. If it is 25% of your money, the same fall costs about 9% overall.",
+  "examples": [
+   "Imran puts all ₹50,000 into one company because a colleague likes it (fictional)."
+  ],
+  "related": [
+   "diversification",
+   "risk"
+  ],
+  "misconceptions": [
+   "M004",
+   "M009"
+  ],
+  "quiz": [
+   {
+    "id": "q_conc_1",
+    "question": "A fictional company falls 40%. It was 10% of your money. Roughly how much did your total fall because of it?",
+    "options": [
+     {
+      "text": "40%",
+      "misconception_id": null
+     },
+     {
+      "text": "4%",
+      "misconception_id": null
+     },
+     {
+      "text": "10%",
+      "misconception_id": null
+     },
+     {
+      "text": "0%",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "40% of the 10% share is about 4% of the total.",
+    "difficulty": 2
+   }
+  ],
+  "scenarios": [
+   "one_basket"
+  ],
+  "aliases": [
+   "concentration",
+   "concentration risk",
+   "ek hi jagah paisa"
+  ],
+  "simulation": "concentration"
+ },
+ {
+  "id": "liquidity",
+  "name": {
+   "en": "Liquidity",
+   "hinglish": "Liquidity",
+   "hi": "तरलता"
+  },
+  "category": "core",
+  "simple": {
+   "en": "Liquidity is how quickly you can turn something into cash without losing much value.",
+   "hinglish": "Liquidity ka matlab hai ki aap kisi cheez ko kitni jaldi, bina zyada nuksaan ke, cash mein badal sakte ho.",
+   "hi": "तरलता यानी आप किसी चीज़ को कितनी जल्दी, बिना ज़्यादा नुकसान के, नकद में बदल सकते हैं।"
+  },
+  "detailed": "Money in a bank account is very liquid. A locked-in product, land, or a scheme that delays withdrawals is not. A product that makes withdrawing difficult or demands fees to release your money deserves extra caution.",
+  "examples": [
+   "A scheme that says 'withdrawals open after 12 months' ties up money for a year (fictional)."
+  ],
+  "related": [
+   "saving",
+   "risk",
+   "fraud_red_flags"
+  ],
+  "misconceptions": [],
+  "quiz": [
+   {
+    "id": "q_liq_1",
+    "question": "Which is MOST liquid?",
+    "options": [
+     {
+      "text": "Money in a savings account",
+      "misconception_id": null
+     },
+     {
+      "text": "A plot of land",
+      "misconception_id": null
+     },
+     {
+      "text": "A 5-year locked deposit",
+      "misconception_id": null
+     },
+     {
+      "text": "A scheme that blocks withdrawals",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 0,
+    "explanation": "Liquid means easy to convert to cash quickly with little loss.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [],
+  "aliases": [
+   "liquidity",
+   "tarlata",
+   "तरलता",
+   "liquid"
+  ],
+  "simulation": "liquidity"
+ },
+ {
+  "id": "stock",
+  "name": {
+   "en": "Stock (share)",
+   "hinglish": "Stock (Share)",
+   "hi": "शेयर"
+  },
+  "category": "products",
+  "simple": {
+   "en": "A stock is a small ownership share in a company. Its price can rise or fall and nobody can guarantee which.",
+   "hinglish": "Stock kisi company mein chhota sa ownership hissa hota hai. Iska daam badh ya ghat sakta hai aur koi guarantee nahi de sakta.",
+   "hi": "स्टॉक किसी कंपनी में छोटा-सा स्वामित्व हिस्सा है। इसकी कीमत बढ़ या घट सकती है और कोई गारंटी नहीं दे सकता।"
+  },
+  "detailed": "Owning a share means a claim on part of a company's fortunes. Prices move with company results, news, and market mood. This is a description of what a stock is, not a suggestion to buy or sell any stock.",
+  "examples": [
+   "'Kaveri Solar Ltd' (fictional) has a share price that moves daily."
+  ],
+  "related": [
+   "risk",
+   "volatility",
+   "mutual_fund"
+  ],
+  "misconceptions": [
+   "M003"
+  ],
+  "quiz": [
+   {
+    "id": "q_stock_1",
+    "question": "What does owning a share mean?",
+    "options": [
+     {
+      "text": "A guaranteed fixed return",
+      "misconception_id": "M001"
+     },
+     {
+      "text": "A small ownership stake in a company",
+      "misconception_id": null
+     },
+     {
+      "text": "A loan to the government",
+      "misconception_id": null
+     },
+     {
+      "text": "A bank deposit",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "A share is partial ownership; returns are not fixed.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "whatsapp_expert"
+  ],
+  "aliases": [
+   "stock",
+   "share",
+   "shares",
+   "stock kya hai",
+   "शेयर"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "mutual_fund",
+  "name": {
+   "en": "Mutual fund",
+   "hinglish": "Mutual fund",
+   "hi": "म्यूचुअल फंड"
+  },
+  "category": "products",
+  "simple": {
+   "en": "A mutual fund pools money from many people and a professional manager invests it according to a stated plan.",
+   "hinglish": "Mutual fund mein bahut logon ka paisa ikattha hota hai aur ek professional manager use tay yojana ke hisaab se invest karta hai.",
+   "hi": "म्यूचुअल फंड में कई लोगों का पैसा इकट्ठा होता है और पेशेवर मैनेजर उसे तय योजना के अनुसार निवेश करता है।"
+  },
+  "detailed": "You own units; the value per unit is the NAV. Risk depends on what the fund holds, and charges (expense ratio, sometimes exit load) reduce what you keep. Funds publish documents describing objectives, risks and costs; their risk label is called a riskometer. Returns are not guaranteed.",
+  "examples": [
+   "'Aakash Debt Opportunities Fund' (fictional) invests in a mix of loans to companies."
+  ],
+  "related": [
+   "nav",
+   "sip",
+   "fees",
+   "financial_disclosures",
+   "diversification"
+  ],
+  "misconceptions": [
+   "M001",
+   "M012"
+  ],
+  "quiz": [
+   {
+    "id": "q_mf_1",
+    "question": "What is a mutual fund unit's NAV?",
+    "options": [
+     {
+      "text": "The guaranteed return",
+      "misconception_id": "M001"
+     },
+     {
+      "text": "The value of one unit based on the fund's assets minus liabilities",
+      "misconception_id": null
+     },
+     {
+      "text": "The fee charged",
+      "misconception_id": null
+     },
+     {
+      "text": "The minimum investment",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "NAV is a per-unit value, not a promise of anything.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "confusing_document",
+   "hidden_fee"
+  ],
+  "aliases": [
+   "mutual fund",
+   "mutual funds",
+   "म्यूचुअल फंड",
+   "fund kya hai"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "sip",
+  "name": {
+   "en": "SIP",
+   "hinglish": "SIP",
+   "hi": "एसआईपी"
+  },
+  "category": "products",
+  "simple": {
+   "en": "A SIP (systematic investment plan) is a way of putting in a fixed amount at regular intervals instead of all at once.",
+   "hinglish": "SIP ek tareeka hai jisme aap har mahine ek tay rakam daalte ho, ek saath sab nahi.",
+   "hi": "SIP एक तरीका है जिसमें आप एक साथ नहीं बल्कि नियमित अंतराल पर तय रकम डालते हैं।"
+  },
+  "detailed": "A SIP is a method of investing regularly, not a product and not a guarantee. It spreads out the timing of purchases, which can make swings less stressful, but the value can still fall and you can still lose money.",
+  "examples": [
+   "Putting a fictional ₹500 every month rather than ₹6,000 once a year."
+  ],
+  "related": [
+   "mutual_fund",
+   "compounding",
+   "volatility"
+  ],
+  "misconceptions": [
+   "M001"
+  ],
+  "quiz": [
+   {
+    "id": "q_sip_1",
+    "question": "Which is true about a SIP?",
+    "options": [
+     {
+      "text": "It guarantees profit",
+      "misconception_id": "M001"
+     },
+     {
+      "text": "It is a method of investing regularly",
+      "misconception_id": null
+     },
+     {
+      "text": "It is a special type of fraud",
+      "misconception_id": null
+     },
+     {
+      "text": "It removes all risk",
+      "misconception_id": "M004"
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "SIP describes how you invest, not what you invest in or what you will earn.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [],
+  "aliases": [
+   "sip",
+   "systematic investment plan",
+   "एसआईपी"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "nav",
+  "name": {
+   "en": "NAV",
+   "hinglish": "NAV",
+   "hi": "NAV"
+  },
+  "category": "products",
+  "simple": {
+   "en": "NAV (net asset value) is the value of one unit of a fund: what the fund owns minus what it owes, divided by the number of units.",
+   "hinglish": "NAV fund ki ek unit ki keemat hai: fund ke paas jo hai usme se jo dena hai wo ghata kar, units se bhaag.",
+   "hi": "NAV किसी फंड की एक यूनिट का मूल्य है: फंड के पास जो है उसमें से जो देना है घटाकर, यूनिट से भाग।"
+  },
+  "detailed": "A low NAV does not mean 'cheap' and a high NAV does not mean 'expensive'. What matters is what happens to the value over time and what costs are charged. NAV is a measurement, not a forecast.",
+  "examples": [
+   "A fund with NAV ₹10 and one with NAV ₹100 can both grow 8% from where they are."
+  ],
+  "related": [
+   "mutual_fund",
+   "fees"
+  ],
+  "misconceptions": [
+   "M005"
+  ],
+  "quiz": [
+   {
+    "id": "q_nav_1",
+    "question": "A fund with NAV ₹10 vs another with NAV ₹100: which is automatically the better deal?",
+    "options": [
+     {
+      "text": "The ₹10 one",
+      "misconception_id": "M005"
+     },
+     {
+      "text": "The ₹100 one",
+      "misconception_id": null
+     },
+     {
+      "text": "Neither; NAV alone says nothing about future results",
+      "misconception_id": null
+     },
+     {
+      "text": "Both are guaranteed to grow",
+      "misconception_id": "M001"
+     }
+    ],
+    "correct_index": 2,
+    "explanation": "NAV level alone tells you nothing about quality or future performance.",
+    "difficulty": 2
+   }
+  ],
+  "scenarios": [
+   "confusing_document"
+  ],
+  "aliases": [
+   "nav",
+   "net asset value"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "bond",
+  "name": {
+   "en": "Bond",
+   "hinglish": "Bond",
+   "hi": "बॉन्ड"
+  },
+  "category": "products",
+  "simple": {
+   "en": "A bond is a loan you give to a government or company, which promises to pay interest and return the amount later.",
+   "hinglish": "Bond ek karz hai jo aap sarkar ya company ko dete ho; wo byaj dene aur baad mein rakam lautane ka vaada karti hai.",
+   "hi": "बॉन्ड एक कर्ज़ है जो आप सरकार या कंपनी को देते हैं; वह ब्याज देने और बाद में रकम लौटाने का वादा करती है।"
+  },
+  "detailed": "The promise is only as good as the borrower. A borrower can fail to pay (credit risk), and bond prices move when interest rates change. 'Debt' does not mean 'risk-free'.",
+  "examples": [
+   "A fictional company 'Sutlej Roadways' borrows through bonds to build depots."
+  ],
+  "related": [
+   "risk",
+   "mutual_fund",
+   "financial_disclosures"
+  ],
+  "misconceptions": [
+   "M001"
+  ],
+  "quiz": [
+   {
+    "id": "q_bond_1",
+    "question": "What is credit risk in a bond?",
+    "options": [
+     {
+      "text": "The borrower may not pay as promised",
+      "misconception_id": null
+     },
+     {
+      "text": "The price will certainly rise",
+      "misconception_id": "M001"
+     },
+     {
+      "text": "The bond is free of risk",
+      "misconception_id": "M001"
+     },
+     {
+      "text": "The government will always pay",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 0,
+    "explanation": "Credit risk is the chance the borrower fails to pay interest or principal.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "confusing_document"
+  ],
+  "aliases": [
+   "bond",
+   "bonds",
+   "बॉन्ड"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "etf",
+  "name": {
+   "en": "ETF",
+   "hinglish": "ETF",
+   "hi": "ETF"
+  },
+  "category": "products",
+  "simple": {
+   "en": "An ETF is a fund that trades on an exchange like a share, often following a basket or an index.",
+   "hinglish": "ETF ek fund hai jo share ki tarah exchange par kharida-becha jaata hai, aksar kisi basket ya index ko follow karta hai.",
+   "hi": "ETF एक फंड है जो शेयर की तरह एक्सचेंज पर खरीदा-बेचा जाता है, अक्सर किसी बास्केट या इंडेक्स को फॉलो करता है।"
+  },
+  "detailed": "Because it trades throughout the day, its price can differ a little from its underlying value, and trading costs apply. It still carries market risk.",
+  "examples": [
+   "A fictional 'BharatFictio 100 ETF' tracks 100 fictional companies."
+  ],
+  "related": [
+   "mutual_fund",
+   "diversification",
+   "fees"
+  ],
+  "misconceptions": [
+   "M004"
+  ],
+  "quiz": [
+   {
+    "id": "q_etf_1",
+    "question": "What is special about an ETF?",
+    "options": [
+     {
+      "text": "It trades on an exchange during the day",
+      "misconception_id": null
+     },
+     {
+      "text": "It never falls in value",
+      "misconception_id": "M004"
+     },
+     {
+      "text": "It is guaranteed by the exchange",
+      "misconception_id": "M001"
+     },
+     {
+      "text": "It has no costs",
+      "misconception_id": "M012"
+     }
+    ],
+    "correct_index": 0,
+    "explanation": "ETFs trade like shares but still carry market risk and costs.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [],
+  "aliases": [
+   "etf",
+   "exchange traded fund"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "kyc",
+  "name": {
+   "en": "KYC",
+   "hinglish": "KYC",
+   "hi": "केवाईसी"
+  },
+  "category": "rights",
+  "simple": {
+   "en": "KYC (Know Your Customer) is the identity and address verification that regulated financial firms do before opening an account.",
+   "hinglish": "KYC (Know Your Customer) wo pehchaan aur pate ki jaanch hai jo regulated financial firms account kholne se pehle karti hain.",
+   "hi": "KYC (अपने ग्राहक को जानें) वह पहचान और पते का सत्यापन है जो विनियमित वित्तीय संस्थाएँ खाता खोलने से पहले करती हैं।"
+  },
+  "detailed": "KYC should be done through the institution's official app, website or branch that you opened yourself. Never share one-time codes, PINs or passwords with anyone who contacts you about 'KYC expiry'; such messages are a common scam pattern. ARTHDARSHAN never asks for any identity or account details.",
+  "examples": [
+   "A fictional SMS says 'Your KYC expires today, click here' — a typical phishing pattern."
+  ],
+  "related": [
+   "verification",
+   "fraud_red_flags",
+   "nomination"
+  ],
+  "misconceptions": [
+   "M007"
+  ],
+  "quiz": [
+   {
+    "id": "q_kyc_1",
+    "question": "You get an SMS: 'KYC expiring today, click this link.' What is a safer approach?",
+    "options": [
+     {
+      "text": "Click quickly to avoid losing the account",
+      "misconception_id": "M006"
+     },
+     {
+      "text": "Open the institution's official app or website yourself, or contact it through its official number",
+      "misconception_id": null
+     },
+     {
+      "text": "Reply with your details",
+      "misconception_id": null
+     },
+     {
+      "text": "Forward it to friends",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "Use official channels you opened yourself, not links sent to you.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "family_file"
+  ],
+  "aliases": [
+   "kyc",
+   "know your customer",
+   "केवाईसी"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "nomination",
+  "name": {
+   "en": "Nomination",
+   "hinglish": "Nomination",
+   "hi": "नामांकन"
+  },
+  "category": "rights",
+  "simple": {
+   "en": "Nomination is naming a person you trust to be contacted and to receive your holdings if something happens to you.",
+   "hinglish": "Nomination ka matlab hai kisi bharosemand vyakti ka naam likhna jise aapke saath kuch hone par aapki holdings milengi aur sampark kiya jayega.",
+   "hi": "नामांकन का मतलब है किसी भरोसेमंद व्यक्ति का नाम दर्ज करना जिसे आपके साथ कुछ होने पर आपकी होल्डिंग्स मिलेंगी और संपर्क किया जाएगा।"
+  },
+  "detailed": "Nomination helps an institution know whom to deal with. Rules about legal heirs can differ from the nominee on record, so check each institution's official guidance. Keep nominee details updated for each account and keep a simple list of accounts that a trusted person knows about.",
+  "examples": [
+   "Savita Aunty updates the nominee on one old deposit and writes a one-page list of her accounts (fictional)."
+  ],
+  "related": [
+   "kyc",
+   "financial_disclosures"
+  ],
+  "misconceptions": [
+   "M013"
+  ],
+  "quiz": [
+   {
+    "id": "q_nom_1",
+    "question": "When is the best time to review nominations?",
+    "options": [
+     {
+      "text": "Only after something happens",
+      "misconception_id": "M013"
+     },
+     {
+      "text": "Before it is needed, and again when life changes",
+      "misconception_id": null
+     },
+     {
+      "text": "Never; the bank will find out",
+      "misconception_id": "M013"
+     },
+     {
+      "text": "Only if you are old",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "Preparedness works only if done before it is needed.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "family_file"
+  ],
+  "aliases": [
+   "nomination",
+   "nominee",
+   "nomination kya hai",
+   "नामांकन"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "fees",
+  "name": {
+   "en": "Fees and charges",
+   "hinglish": "Fees (Shulk)",
+   "hi": "शुल्क"
+  },
+  "category": "core",
+  "simple": {
+   "en": "Fees are what you pay to hold or use a product. They reduce what you keep, and over many years even small-looking fees add up.",
+   "hinglish": "Fees wo kharcha hai jo aap kisi product ko rakhne ya use karne ke liye dete ho. Ye aapke haath mein bachne wali rakam ghatate hain, aur kai saal mein chhoti fees bhi bahut ho jaati hain.",
+   "hi": "शुल्क वह खर्च है जो आप किसी उत्पाद को रखने या उपयोग करने के लिए देते हैं। ये आपके हाथ में बचने वाली रकम घटाते हैं और कई सालों में छोटे शुल्क भी बहुत हो जाते हैं।"
+  },
+  "detailed": "Illustration: ₹1,00,000 growing at a hypothetical 8% a year for 20 years reaches about ₹4,66,096. With a 2.5% yearly charge (net 5.5%) the same period gives about ₹2,91,776. Costs show up in documents as expense ratio, entry/exit load, brokerage and other charges. Always ask for all charges in rupees.",
+  "examples": [
+   "A 2.5% yearly charge on a fictional plan reduces the final amount by about 37% over 20 years (illustrative)."
+  ],
+  "related": [
+   "compounding",
+   "financial_disclosures",
+   "mutual_fund"
+  ],
+  "misconceptions": [
+   "M012"
+  ],
+  "quiz": [
+   {
+    "id": "q_fee_1",
+    "question": "Why can a 'small' 2% yearly fee matter a lot?",
+    "options": [
+     {
+      "text": "It does not matter",
+      "misconception_id": "M012"
+     },
+     {
+      "text": "It applies every year and compounds against your growth",
+      "misconception_id": null
+     },
+     {
+      "text": "It is paid only once",
+      "misconception_id": null
+     },
+     {
+      "text": "It is refunded at the end",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "Annual charges compound over time and reduce the final amount significantly.",
+    "difficulty": 2
+   }
+  ],
+  "scenarios": [
+   "hidden_fee"
+  ],
+  "aliases": [
+   "fees",
+   "fee",
+   "charges",
+   "expense ratio",
+   "shulk",
+   "शुल्क",
+   "load"
+  ],
+  "simulation": "fee_erosion"
+ },
+ {
+  "id": "fraud_red_flags",
+  "name": {
+   "en": "Fraud red flags",
+   "hinglish": "Fraud red flags",
+   "hi": "ठगी के संकेत"
+  },
+  "category": "safety",
+  "simple": {
+   "en": "Red flags are warning signs: guaranteed returns, pressure to hurry, strangers contacting you, payments to personal accounts, and fees to withdraw.",
+   "hinglish": "Red flags chetavani ke sanket hain: guaranteed returns, jaldi ka dabaav, anjaan ka sampark, personal account mein payment, aur withdraw karne ki fee.",
+   "hi": "रेड फ़्लैग चेतावनी के संकेत हैं: गारंटीशुदा रिटर्न, जल्दबाज़ी का दबाव, अजनबी का संपर्क, निजी खाते में भुगतान और निकासी के लिए शुल्क।"
+  },
+  "detailed": "No single sign proves fraud, but several together should make you stop and verify. Typical signs: guaranteed or very high returns; urgency and scarcity; unsolicited contact; claims of authority you cannot check; payments to individuals; refusal to give written details; pressure to keep it secret; and 'fees' to release your money.",
+  "examples": [
+   "Rahul's Telegram message had seven red flags at once (fictional)."
+  ],
+  "related": [
+   "verification",
+   "social_proof",
+   "fomo",
+   "risk"
+  ],
+  "misconceptions": [
+   "M001",
+   "M002",
+   "M006",
+   "M007",
+   "M010"
+  ],
+  "quiz": [
+   {
+    "id": "q_red_1",
+    "question": "Which is a classic red flag?",
+    "options": [
+     {
+      "text": "A fee demanded before you can withdraw your own money",
+      "misconception_id": null
+     },
+     {
+      "text": "A published, plain-language document of risks",
+      "misconception_id": null
+     },
+     {
+      "text": "A company name you can look up on an official list",
+      "misconception_id": null
+     },
+     {
+      "text": "Time to think",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 0,
+    "explanation": "Asking for payment to release your own money is a common scam pattern.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "guaranteed_opportunity",
+   "urgent_decision",
+   "whatsapp_expert"
+  ],
+  "aliases": [
+   "fraud",
+   "scam",
+   "red flag",
+   "red flags",
+   "fraud red flags",
+   "thagi",
+   "ठगी",
+   "dhokha"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "verification",
+  "name": {
+   "en": "Verification",
+   "hinglish": "Verification",
+   "hi": "सत्यापन"
+  },
+  "category": "safety",
+  "simple": {
+   "en": "Verification means checking a claim yourself through a source you chose, not trusting the person making the claim.",
+   "hinglish": "Verification ka matlab hai kisi daave ko apne chune hue source se khud check karna, daava karne wale par bharosa karke nahi.",
+   "hi": "सत्यापन का मतलब है किसी दावे को अपने चुने स्रोत से खुद जाँचना, दावा करने वाले पर भरोसा करके नहीं।"
+  },
+  "detailed": "A simple workflow: Claim → Source → Authority → Evidence → Independent verification → Decision. Type the official website address yourself; do not use links or numbers sent by the person asking for money. If you cannot verify, treat it as unverified and do not pay.",
+  "examples": [
+   "Looking up a registration number on the regulator's own website instead of trusting a screenshot."
+  ],
+  "related": [
+   "fraud_red_flags",
+   "social_proof",
+   "financial_disclosures"
+  ],
+  "misconceptions": [
+   "M007",
+   "M011"
+  ],
+  "quiz": [
+   {
+    "id": "q_ver_1",
+    "question": "What does 'independent verification' mean?",
+    "options": [
+     {
+      "text": "Asking the seller if they are genuine",
+      "misconception_id": null
+     },
+     {
+      "text": "Checking through a source the seller does not control",
+      "misconception_id": null
+     },
+     {
+      "text": "Asking friends who also paid",
+      "misconception_id": "M011"
+     },
+     {
+      "text": "Reading the seller's testimonials",
+      "misconception_id": "M002"
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "The checking source must be one the claimant cannot control.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "guaranteed_opportunity",
+   "whatsapp_expert",
+   "confusing_document"
+  ],
+  "aliases": [
+   "verification",
+   "verify",
+   "satyapan",
+   "सत्यापन",
+   "evidence lab"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "financial_disclosures",
+  "name": {
+   "en": "Financial disclosures",
+   "hinglish": "Financial disclosures",
+   "hi": "प्रकटीकरण"
+  },
+  "category": "rights",
+  "simple": {
+   "en": "Disclosures are the documents that must tell you about a product's risks, costs and terms. Reading them, or asking for a plain-language explanation, is your right.",
+   "hinglish": "Disclosures wo documents hain jo product ke risk, kharche aur sharton ke baare mein batate hain. Unhe padhna ya saral bhasha mein samjhane ko kehna aapka adhikar hai.",
+   "hi": "प्रकटीकरण वे दस्तावेज़ हैं जो उत्पाद के जोखिम, खर्च और शर्तें बताते हैं। उन्हें पढ़ना या सरल भाषा में समझाने को कहना आपका अधिकार है।"
+  },
+  "detailed": "Look for: who is responsible, what the product invests in, what can go wrong, all charges in rupees, when and how you can withdraw, and how to complain. If a document is full of terms you do not understand, that is a reason to ask — not a sign of expertise.",
+  "examples": [
+   "Gopal circles every term he does not understand in a fictional fund summary and asks for plain explanations."
+  ],
+  "related": [
+   "fees",
+   "verification",
+   "mutual_fund"
+  ],
+  "misconceptions": [
+   "M008",
+   "M012"
+  ],
+  "quiz": [
+   {
+    "id": "q_disc_1",
+    "question": "A document is full of jargon you do not understand. What is a sound next step?",
+    "options": [
+     {
+      "text": "Sign it, because it looks professional",
+      "misconception_id": "M008"
+     },
+     {
+      "text": "Ask for plain-language explanations and a list of all costs before deciding",
+      "misconception_id": null
+     },
+     {
+      "text": "Look only at the highest number",
+      "misconception_id": "M005"
+     },
+     {
+      "text": "Ask the seller to decide for you",
+      "misconception_id": null
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "Jargon is not credibility. Understanding comes before signing.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "confusing_document",
+   "hidden_fee"
+  ],
+  "aliases": [
+   "disclosure",
+   "disclosures",
+   "document",
+   "prospectus",
+   "key facts"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "social_proof",
+  "name": {
+   "en": "Social proof",
+   "hinglish": "Social proof",
+   "hi": "सामाजिक प्रमाण"
+  },
+  "category": "behaviour",
+  "simple": {
+   "en": "Social proof is our habit of copying what many others seem to be doing. It is a shortcut, not evidence.",
+   "hinglish": "Social proof hamari aadat hai ki jo bahut log karte dikhte hain wahi karna. Ye shortcut hai, saboot nahi.",
+   "hi": "सामाजिक प्रमाण हमारी आदत है कि जो बहुत लोग करते दिखें वही करना। यह शॉर्टकट है, सबूत नहीं।"
+  },
+  "detailed": "Crowds can be wrong, paid or entirely fake (bot accounts, screenshots, testimonials). When many people appear to agree, ask: could they all be repeating the same claim without checking it?",
+  "examples": [
+   "A group with '240 members' where everyone posts 'withdrawal successful' (fictional)."
+  ],
+  "related": [
+   "fomo",
+   "fraud_red_flags",
+   "verification"
+  ],
+  "misconceptions": [
+   "M002",
+   "M011"
+  ],
+  "quiz": [
+   {
+    "id": "q_sp_1",
+    "question": "Many people in a group say an offer worked for them. What does that prove?",
+    "options": [
+     {
+      "text": "That it is legitimate",
+      "misconception_id": "M002"
+     },
+     {
+      "text": "That people in that group say so; it needs independent checking",
+      "misconception_id": null
+     },
+     {
+      "text": "That it is regulated",
+      "misconception_id": "M007"
+     },
+     {
+      "text": "That it is risk-free",
+      "misconception_id": "M001"
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "Group claims are not independent evidence.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "whatsapp_expert",
+   "guaranteed_opportunity"
+  ],
+  "aliases": [
+   "social proof",
+   "herd",
+   "herd behaviour",
+   "bheed",
+   "भीड़"
+  ],
+  "simulation": null
+ },
+ {
+  "id": "fomo",
+  "name": {
+   "en": "FOMO",
+   "hinglish": "FOMO",
+   "hi": "FOMO"
+  },
+  "category": "behaviour",
+  "simple": {
+   "en": "FOMO is the fear of missing out. It makes us rush to act before we have checked facts.",
+   "hinglish": "FOMO ka matlab hai chhoot jaane ka darr. Ye hamein facts check karne se pehle hi kadam uthane par majboor karta hai.",
+   "hi": "FOMO यानी छूट जाने का डर। यह तथ्य जाँचने से पहले ही कदम उठाने पर मजबूर करता है।"
+  },
+  "detailed": "Sellers use countdowns, scarce 'slots' and stories of friends who already gained. A useful habit: name the pressure out loud, then wait before deciding. Missing an unverified offer costs nothing; acting on it can cost a lot.",
+  "examples": [
+   "A 10-minute 'pre-launch allotment' timer on a fictional app."
+  ],
+  "related": [
+   "social_proof",
+   "fraud_red_flags",
+   "volatility"
+  ],
+  "misconceptions": [
+   "M006",
+   "M010"
+  ],
+  "quiz": [
+   {
+    "id": "q_fomo_1",
+    "question": "An offer says 'closes in 10 minutes'. Which response best protects you?",
+    "options": [
+     {
+      "text": "Join quickly so you do not miss out",
+      "misconception_id": "M006"
+     },
+     {
+      "text": "Pause and verify; if it cannot be verified, let it go",
+      "misconception_id": null
+     },
+     {
+      "text": "Ask a friend who already joined",
+      "misconception_id": "M011"
+     },
+     {
+      "text": "Invest a tiny amount to test",
+      "misconception_id": "M009"
+     }
+    ],
+    "correct_index": 1,
+    "explanation": "Pressure is the signal to slow down.",
+    "difficulty": 1
+   }
+  ],
+  "scenarios": [
+   "urgent_decision",
+   "guaranteed_opportunity"
+  ],
+  "aliases": [
+   "fomo",
+   "fear of missing out",
+   "urgency",
+   "jaldi"
+  ],
+  "simulation": null
+ }
+]

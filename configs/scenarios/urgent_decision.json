@@ -1,0 +1,546 @@
+{
+ "id": "urgent_decision",
+ "version": 1,
+ "title": "The Urgent Decision",
+ "tagline": "A countdown, a shrinking slot counter, and a friend who is already in.",
+ "character": {
+  "name": "Dev",
+  "age": 22,
+  "role": "final-year student with simulated ₹5,000 savings"
+ },
+ "difficulty": 3,
+ "concept_tags": [
+  "fomo",
+  "social_proof",
+  "fraud_red_flags",
+  "verification"
+ ],
+ "pressure_tags": [
+  "countdown",
+  "scarcity",
+  "fomo",
+  "peer_pressure",
+  "fear",
+  "social_proof"
+ ],
+ "tests_misconceptions": [
+  "M006",
+  "M002",
+  "M011",
+  "M009"
+ ],
+ "initial_state": "u1_timer",
+ "states": {
+  "u1_timer": {
+   "id": "u1_timer",
+   "title": "Ten minutes",
+   "narrative": "Dev's phone buzzes. An app he has never used shows a 'pre-launch allotment' for the fictional company NovaGrain. His friend Kabir is already in. A timer is running. Each decision here has a short timer to feel the pressure — you may still take your time to think.",
+   "channel": {
+    "type": "app",
+    "sender": "NovaGrain Pre-Launch (fictional)",
+    "messages": [
+     "Pre-launch allotment closes in 10:00. 2,300 people have joined!",
+     "Kabir: Bro I'm in! Don't be the guy who missed it!"
+    ]
+   },
+   "pressure": [
+    {
+     "type": "countdown",
+     "text": "Allotment closes in 10 minutes.",
+     "intensity": 3,
+     "countdown_seconds": 30
+    },
+    {
+     "type": "social_proof",
+     "text": "“2,300 people have joined.”",
+     "intensity": 2
+    },
+    {
+     "type": "peer_pressure",
+     "text": "Kabir: “Don't be the guy who missed it!”",
+     "intensity": 2
+    },
+    {
+     "type": "fomo",
+     "text": "Fear of watching others gain.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "p_timer",
+     "label": "A countdown timer",
+     "text": "The page counts down to 'closing'.",
+     "kind": "red_flag",
+     "why": "Timers are easy to build and reset. A real decision about your savings does not run on a clock.",
+     "risk_factor": "urgency"
+    },
+    {
+     "id": "p_count",
+     "label": "“2,300 people have joined” counter",
+     "text": "A number that anyone can display.",
+     "kind": "red_flag",
+     "why": "A counter on a page is just text. It does not prove that real people joined.",
+     "risk_factor": "social_proof"
+    },
+    {
+     "id": "p_friend",
+     "label": "Kabir is excited and already in",
+     "text": "A friend's excitement.",
+     "kind": "red_flag",
+     "why": "A friend's excitement shows how he feels, not whether the offer is genuine.",
+     "risk_factor": "friend_claim"
+    },
+    {
+     "id": "p_entity",
+     "label": "No company name, registration or document",
+     "text": "The page shows only the countdown and a join button.",
+     "kind": "red_flag",
+     "why": "Nothing here can be checked — that is the opposite of a genuine offer.",
+     "risk_factor": "missing_disclosure"
+    },
+    {
+     "id": "p_price",
+     "label": "“Price rises 20% after the timer”",
+     "text": "The cost of waiting is announced, not shown.",
+     "kind": "red_flag",
+     "why": "A claimed penalty for waiting is a pressure device, not a fact.",
+     "risk_factor": "scarcity"
+    }
+   ],
+   "actions": [
+    {
+     "id": "join_now",
+     "label": "Join now with my simulated ₹5,000 — I can't miss this",
+     "quality": "unsafe",
+     "next": "u_trapped",
+     "consequence": "You tap Join and pay. The app shows a spinner…",
+     "simple_label": "Join now",
+     "verification": false,
+     "misconception_signals": [
+      "M006",
+      "M002"
+     ]
+    },
+    {
+     "id": "pause",
+     "label": "Put the phone down for a minute and breathe",
+     "quality": "safe",
+     "next": "u2_slots",
+     "consequence": "The timer keeps running. You wait anyway.",
+     "simple_label": "Pause"
+    },
+    {
+     "id": "ask_wait",
+     "label": "Message Kabir: 'Let's check this together before paying'",
+     "quality": "safe",
+     "next": "u2_slots",
+     "consequence": "Kabir replies: 'No time bro!' but you hold your ground.",
+     "simple_label": "Check with Kabir",
+     "verification": true,
+     "requests_evidence": true
+    },
+    {
+     "id": "share_quick",
+     "label": "Screenshot it and quickly ask other friends if they're in",
+     "quality": "mixed",
+     "next": "u2_slots",
+     "consequence": "Two friends say 'Yes!', but neither has checked anything.",
+     "misconception_signals": [
+      "M002"
+     ],
+     "requests_evidence": true
+    }
+   ],
+   "reasoning_prompt": "What happens in your body and mind when you see the timer?"
+  },
+  "u2_slots": {
+   "id": "u2_slots",
+   "title": "Only 3 slots left",
+   "narrative": "Time passes. The app updates: slots are shrinking and Kabir sends a screenshot.",
+   "channel": {
+    "type": "app",
+    "sender": "NovaGrain Pre-Launch (fictional)",
+    "messages": [
+     "ONLY 3 SLOTS LEFT! Closes in 3:00.",
+     "Kabir: [screenshot: '+₹2,100 profit'] See?? Last chance bro!"
+    ]
+   },
+   "pressure": [
+    {
+     "type": "scarcity",
+     "text": "Only 3 slots left.",
+     "intensity": 3
+    },
+    {
+     "type": "countdown",
+     "text": "Closes in 3 minutes.",
+     "intensity": 3,
+     "countdown_seconds": 25
+    },
+    {
+     "type": "fomo",
+     "text": "Kabir shows a profit screenshot.",
+     "intensity": 3
+    }
+   ],
+   "evidence": [
+    {
+     "id": "s_drop",
+     "label": "Slots dropped from 'hundreds' to 3 within minutes",
+     "text": "The number moves with your hesitation.",
+     "kind": "red_flag",
+     "why": "Scarcity that tightens when you hesitate is scripted.",
+     "risk_factor": "scarcity"
+    },
+    {
+     "id": "s_shot",
+     "label": "A profit screenshot with no date or source",
+     "text": "A screenshot of a number.",
+     "kind": "red_flag",
+     "why": "Screenshots from an app you cannot verify can show anything.",
+     "risk_factor": "fake_dashboard"
+    },
+    {
+     "id": "s_same",
+     "label": "Every message comes from the same two sources",
+     "text": "The app and Kabir repeat the same story.",
+     "kind": "red_flag",
+     "why": "Two voices repeating one story are not two pieces of evidence.",
+     "risk_factor": "echo"
+    }
+   ],
+   "actions": [
+    {
+     "id": "join_now",
+     "label": "Join now — it's the last chance",
+     "quality": "unsafe",
+     "next": "u_trapped",
+     "consequence": "You tap Join and pay.",
+     "simple_label": "Join now",
+     "verification": false,
+     "misconception_signals": [
+      "M006",
+      "M011"
+     ]
+    },
+    {
+     "id": "hold",
+     "label": "Keep holding off — I will not decide on a clock",
+     "quality": "safe",
+     "next": "u3_final",
+     "consequence": "You watch the timer fall without touching the button.",
+     "simple_label": "Keep waiting"
+    },
+    {
+     "id": "small_test",
+     "label": "Try with just ₹500 to see if it's real",
+     "quality": "unsafe",
+     "next": "u_trapped",
+     "consequence": "You pay ₹500. The app asks for the 'full allotment' to unlock withdrawals.",
+     "simple_label": "Test with a little",
+     "misconception_signals": [
+      "M009"
+     ]
+    },
+    {
+     "id": "search_company",
+     "label": "Search for the company and its regulator registration myself, even if the timer ends",
+     "quality": "safe",
+     "next": "u3_final",
+     "consequence": "You open a browser and type the official regulator site yourself.",
+     "simple_label": "Search it myself",
+     "verification": true,
+     "requests_evidence": true
+    }
+   ],
+   "reasoning_prompt": "What is the cost of missing this if it is not genuine?"
+  },
+  "u3_final": {
+   "id": "u3_final",
+   "title": "The last minute",
+   "narrative": "One minute left. The app and Kabir turn up the emotion.",
+   "channel": {
+    "type": "app",
+    "sender": "NovaGrain Pre-Launch (fictional)",
+    "messages": [
+     "60 SECONDS! Price rises 20% — you WILL regret this.",
+     "Kabir: Bro don't be stupid. Everyone's in. Last chance!"
+    ]
+   },
+   "pressure": [
+    {
+     "type": "fear",
+     "text": "“You WILL regret this.”",
+     "intensity": 3
+    },
+    {
+     "type": "countdown",
+     "text": "60 seconds.",
+     "intensity": 3,
+     "countdown_seconds": 20
+    },
+    {
+     "type": "peer_pressure",
+     "text": "“Don't be stupid. Everyone's in.”",
+     "intensity": 3
+    }
+   ],
+   "evidence": [
+    {
+     "id": "f_regret",
+     "label": "Language designed to cause regret",
+     "text": "“You WILL regret this.”",
+     "kind": "red_flag",
+     "why": "Genuine information describes facts and risks. Predicting your regret is manipulation.",
+     "risk_factor": "emotional_manipulation"
+    },
+    {
+     "id": "f_insult",
+     "label": "Calling you 'stupid' for waiting",
+     "text": "Pressure turns personal.",
+     "kind": "red_flag",
+     "why": "A good decision-maker does not need to be insulted into acting.",
+     "risk_factor": "peer_pressure"
+    },
+    {
+     "id": "f_cost",
+     "label": "Missing an unverified offer costs nothing",
+     "text": "If the offer vanishes, your ₹5,000 is still yours.",
+     "kind": "neutral",
+     "why": "The real asymmetry: acting could cost savings; waiting costs nothing you had."
+    }
+   ],
+   "actions": [
+    {
+     "id": "join_now",
+     "label": "Join now — I don't want to regret this",
+     "quality": "unsafe",
+     "next": "u_trapped",
+     "consequence": "You tap Join at the last second.",
+     "simple_label": "Join now",
+     "verification": false,
+     "misconception_signals": [
+      "M006",
+      "M002"
+     ]
+    },
+    {
+     "id": "let_go",
+     "label": "Let it expire. Missing an unverified offer costs me nothing",
+     "quality": "safe",
+     "next": "t_missed_it",
+     "consequence": "The timer hits zero. Nothing happens to your savings.",
+     "simple_label": "Let it expire"
+    },
+    {
+     "id": "let_go_check",
+     "label": "Let it expire, then research the company calmly and tell Kabir what I find",
+     "quality": "safe",
+     "next": "t_checked_later",
+     "consequence": "You make tea, search calmly and write down what you find.",
+     "simple_label": "Expire, then check",
+     "verification": true
+    }
+   ],
+   "reasoning_prompt": "What would you say to Kabir right now?"
+  },
+  "u_trapped": {
+   "id": "u_trapped",
+   "title": "The exit was missing",
+   "narrative": "In this fictional story the app locked the money for '12 months' and added a 'processing fee' to unlock it. Every pressure — timer, slots, friend, regret — was designed so you would act before checking. Nothing about the offer was ever verified.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "The exit was missing",
+    "summary": "In this fictional story the app locked the money for '12 months' and added a 'processing fee' to unlock it. Every pressure — timer, slots, friend, regret — was designed so you would act before checking. Nothing about the offer was ever verified.",
+    "kind": "unsafe",
+    "simulated_loss": 5000
+   }
+  },
+  "t_missed_it": {
+   "id": "t_missed_it",
+   "title": "You let the clock run out",
+   "narrative": "The pressure ended and nothing was lost. Legitimate investments do not require a decision in minutes. Notice what it felt like to hold still — that feeling is a skill you can practise.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You let the clock run out",
+    "summary": "The pressure ended and nothing was lost. Legitimate investments do not require a decision in minutes. Notice what it felt like to hold still — that feeling is a skill you can practise.",
+    "kind": "safe"
+   }
+  },
+  "t_checked_later": {
+   "id": "t_checked_later",
+   "title": "You turned pressure into a check",
+   "narrative": "You let the deadline pass and then did what the timer wanted you to skip: you checked. You also helped a friend by sharing how.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You turned pressure into a check",
+    "summary": "You let the deadline pass and then did what the timer wanted you to skip: you checked. You also helped a friend by sharing how.",
+    "kind": "safe"
+   }
+  }
+ },
+ "reflection": {
+  "key_points": [
+   "Countdowns, shrinking slots and 'last chance' are designed to stop you thinking.",
+   "A friend's excitement shows their feelings, not the offer's quality.",
+   "Missing an unverified offer costs nothing you had; acting on it can cost your savings.",
+   "Name the pressure out loud, then wait."
+  ],
+  "questions": [
+   "Which pressure was hardest for you to resist: timer, slots, friend or regret?"
+  ],
+  "micro_lesson": {
+   "concept_id": "fomo",
+   "title": "Name it, then wait ten minutes",
+   "body": "When you feel the rush, say what is pushing you: 'timer', 'friend', 'fear of missing out'. Then wait ten minutes. If the offer cannot survive ten minutes, it could not survive checking either."
+  }
+ },
+ "scoring": {
+  "dimensions": [
+   "fomo_resistance",
+   "emotional_discipline",
+   "herd_resistance",
+   "scam_awareness"
+  ]
+ },
+ "i18n": {
+  "hinglish": {
+   "title": "The Urgent Decision (Jaldi Faisla)",
+   "tagline": "Ek countdown, ghat'ta slot counter, aur ek dost jo pehle se andar hai.",
+   "states.u1_timer.title": "Das minute",
+   "states.u1_timer.narrative": "Dev ka phone bajta hai. Ek app jo usne kabhi use nahi kiya, kaalpanik company NovaGrain ka 'pre-launch allotment' dikhata hai. Uska dost Kabir pehle se andar hai. Timer chal raha hai. Har faisle par chhota timer dabaav mehsoos karne ke liye hai — soch-vichar ke liye aap apna samay le sakte ho.",
+   "states.u1_timer.channel.messages.0": "Pre-launch allotment 10:00 mein band. 2,300 log jud chuke hain!",
+   "states.u1_timer.channel.messages.1": "Kabir: Bhai main andar hoon! Wo mat banna jisne mauka chhoda!",
+   "states.u1_timer.pressure.0.text": "Allotment 10 minute mein band.",
+   "states.u1_timer.pressure.1.text": "“2,300 log jud chuke hain.”",
+   "states.u1_timer.pressure.2.text": "Kabir: “Wo mat banna jisne mauka chhoda!”",
+   "states.u1_timer.pressure.3.text": "Dusron ko faayda uthate dekhne ka darr.",
+   "states.u1_timer.evidence.p_timer.label": "Ek countdown timer",
+   "states.u1_timer.evidence.p_timer.text": "Page 'band hone' tak ginti karta hai.",
+   "states.u1_timer.evidence.p_timer.why": "Timer banana aur reset karna aasan hai. Bachat ke asli faisle ghadi se nahi chalte.",
+   "states.u1_timer.evidence.p_count.label": "“2,300 log jud chuke hain” counter",
+   "states.u1_timer.evidence.p_count.text": "Aisa number jo koi bhi dikha sakta hai.",
+   "states.u1_timer.evidence.p_count.why": "Page par counter bas text hai. Ye saabit nahi karta ki asli log jude.",
+   "states.u1_timer.evidence.p_friend.label": "Kabir utsahit hai aur pehle se andar hai",
+   "states.u1_timer.evidence.p_friend.text": "Dost ka utsaah.",
+   "states.u1_timer.evidence.p_friend.why": "Dost ka utsaah uski bhavna dikhata hai, offer asli hone ka saboot nahi.",
+   "states.u1_timer.evidence.p_entity.label": "Na company ka naam, na registration, na document",
+   "states.u1_timer.evidence.p_entity.text": "Page par sirf countdown aur join button hai.",
+   "states.u1_timer.evidence.p_entity.why": "Yahan kuch bhi check nahi ho sakta — asli offer ke bilkul ulta.",
+   "states.u1_timer.evidence.p_price.label": "“Timer ke baad daam 20% badhega”",
+   "states.u1_timer.evidence.p_price.text": "Intezaar ki keemat batayi gayi hai, dikhayi nahi.",
+   "states.u1_timer.evidence.p_price.why": "Intezaar ki daava ki hui saza dabaav ka tareeka hai, tathya nahi.",
+   "states.u1_timer.actions.join_now.label": "Abhi simulated ₹5,000 se jud jao — ye mauka nahi chhodna",
+   "states.u1_timer.actions.join_now.consequence": "Aap Join dabate ho aur pay karte ho. App spinner dikhata hai…",
+   "states.u1_timer.actions.join_now.simple_label": "Abhi judo",
+   "states.u1_timer.actions.pause.label": "Phone ek minute ke liye rakh do aur saans lo",
+   "states.u1_timer.actions.pause.consequence": "Timer chalta rehta hai. Aap phir bhi ruk jaate ho.",
+   "states.u1_timer.actions.pause.simple_label": "Ruko",
+   "states.u1_timer.actions.ask_wait.label": "Kabir ko likho: 'Paise dene se pehle saath mein check karte hain'",
+   "states.u1_timer.actions.ask_wait.consequence": "Kabir likhta hai: 'Time nahi bhai!' par aap apni baat par tike rehte ho.",
+   "states.u1_timer.actions.ask_wait.simple_label": "Kabir ke saath check karo",
+   "states.u1_timer.actions.share_quick.label": "Screenshot lo aur jaldi doosre dostoon se poochho wo andar hain ya nahi",
+   "states.u1_timer.actions.share_quick.consequence": "Do dost kehte hain 'Haan!', par kisi ne kuch check nahi kiya.",
+   "states.u1_timer.reasoning_prompt": "Timer dekhkar aapke sharir aur dimaag mein kya hota hai?",
+   "states.u2_slots.title": "Sirf 3 slots bache",
+   "states.u2_slots.narrative": "Samay beetta hai. App badalta hai: slots ghat rahe hain aur Kabir screenshot bhejta hai.",
+   "states.u2_slots.channel.messages.0": "SIRF 3 SLOTS BACHE! 3:00 mein band.",
+   "states.u2_slots.channel.messages.1": "Kabir: [screenshot: '+₹2,100 profit'] Dekha?? Aakhri mauka bhai!",
+   "states.u2_slots.pressure.0.text": "Sirf 3 slots bache.",
+   "states.u2_slots.pressure.1.text": "3 minute mein band.",
+   "states.u2_slots.pressure.2.text": "Kabir profit ka screenshot dikhata hai.",
+   "states.u2_slots.evidence.s_drop.label": "Slots 'sau' se 3 minuton mein ho gaye",
+   "states.u2_slots.evidence.s_drop.text": "Number aapke hichkichane ke saath badalta hai.",
+   "states.u2_slots.evidence.s_drop.why": "Jo kami aapke hichkichane par badhe wo scripted hai.",
+   "states.u2_slots.evidence.s_shot.label": "Bina date ya source ka profit screenshot",
+   "states.u2_slots.evidence.s_shot.text": "Ek number ka screenshot.",
+   "states.u2_slots.evidence.s_shot.why": "Jis app ko aap verify nahi kar sakte uske screenshots kuch bhi dikha sakte hain.",
+   "states.u2_slots.evidence.s_same.label": "Har message wahi do sources se aata hai",
+   "states.u2_slots.evidence.s_same.text": "App aur Kabir wahi kahani dohrate hain.",
+   "states.u2_slots.evidence.s_same.why": "Ek kahani dohrane wali do awaazein do saboot nahi hain.",
+   "states.u2_slots.actions.join_now.label": "Abhi judo — aakhri mauka hai",
+   "states.u2_slots.actions.join_now.consequence": "Aap Join dabakar pay karte ho.",
+   "states.u2_slots.actions.join_now.simple_label": "Abhi judo",
+   "states.u2_slots.actions.hold.label": "Ruke raho — main ghadi ke dabaav mein faisla nahi karunga",
+   "states.u2_slots.actions.hold.consequence": "Aap button chhue bina timer ko girte dekhte ho.",
+   "states.u2_slots.actions.hold.simple_label": "Ruke raho",
+   "states.u2_slots.actions.small_test.label": "Bas ₹500 se try karo dekhne ke liye ki asli hai ya nahi",
+   "states.u2_slots.actions.small_test.consequence": "Aap ₹500 dete ho. App withdrawals unlock karne ke liye 'poora allotment' maangta hai.",
+   "states.u2_slots.actions.small_test.simple_label": "Thoda test karo",
+   "states.u2_slots.actions.search_company.label": "Timer khatam ho jaye tab bhi company aur uska regulator registration khud search karo",
+   "states.u2_slots.actions.search_company.consequence": "Aap browser kholkar official regulator site khud type karte ho.",
+   "states.u2_slots.actions.search_company.simple_label": "Khud search karo",
+   "states.u2_slots.reasoning_prompt": "Agar ye asli nahi hai to ise chhodne ki keemat kya hai?",
+   "states.u3_final.title": "Aakhri minute",
+   "states.u3_final.narrative": "Ek minute bachi hai. App aur Kabir bhavna badha dete hain.",
+   "states.u3_final.channel.messages.0": "60 SECOND! Daam 20% badhega — aapko PACHTAWA hoga.",
+   "states.u3_final.channel.messages.1": "Kabir: Bhai bevakoofi mat kar. Sab andar hain. Aakhri mauka!",
+   "states.u3_final.pressure.0.text": "“Aapko PACHTAWA hoga.”",
+   "states.u3_final.pressure.1.text": "60 second.",
+   "states.u3_final.pressure.2.text": "“Bevakoofi mat kar. Sab andar hain.”",
+   "states.u3_final.evidence.f_regret.label": "Pachtawa paida karne wali bhasha",
+   "states.u3_final.evidence.f_regret.text": "“Aapko PACHTAWA hoga.”",
+   "states.u3_final.evidence.f_regret.why": "Asli jaankari tathya aur risk batati hai. Aapka pachtawa predict karna manipulation hai.",
+   "states.u3_final.evidence.f_insult.label": "Rukne par aapko 'stupid' kehna",
+   "states.u3_final.evidence.f_insult.text": "Dabaav vyaktigat ho jaata hai.",
+   "states.u3_final.evidence.f_insult.why": "Achhe faisle ke liye insaan ko beizzat karke majboor nahi karna padta.",
+   "states.u3_final.evidence.f_cost.label": "Unverified offer chhootne par kuch nahi jaata",
+   "states.u3_final.evidence.f_cost.text": "Offer gayab ho jaye to bhi aapke ₹5,000 aapke hi hain.",
+   "states.u3_final.evidence.f_cost.why": "Asli asantulan: kadam uthane se bachat ja sakti hai; rukne se wo kuch nahi jaata jo aapke paas tha.",
+   "states.u3_final.actions.join_now.label": "Abhi judo — pachtawa nahi karna",
+   "states.u3_final.actions.join_now.consequence": "Aap aakhri second mein Join dabate ho.",
+   "states.u3_final.actions.join_now.simple_label": "Abhi judo",
+   "states.u3_final.actions.let_go.label": "Ise expire hone do. Unverified offer chhootne se mujhe kuch nahi jaata",
+   "states.u3_final.actions.let_go.consequence": "Timer zero par pahunchta hai. Aapki bachat ko kuch nahi hota.",
+   "states.u3_final.actions.let_go.simple_label": "Expire hone do",
+   "states.u3_final.actions.let_go_check.label": "Expire hone do, phir shaant hokar company research karo aur Kabir ko batao kya mila",
+   "states.u3_final.actions.let_go_check.consequence": "Aap chai banate ho, shaanti se search karte ho aur jo milta hai likhte ho.",
+   "states.u3_final.actions.let_go_check.simple_label": "Expire, phir check karo",
+   "states.u3_final.reasoning_prompt": "Aap abhi Kabir ko kya kahoge?",
+   "states.u_trapped.title": "Nikalne ka raasta nahi tha",
+   "states.u_trapped.narrative": "Is kaalpanik kahani mein app ne paisa '12 mahine' ke liye lock kar diya aur unlock karne ke liye 'processing fee' jod di. Har dabaav — timer, slots, dost, pachtawa — isliye banaya gaya tha ki aap check karne se pehle kadam uthao. Offer ka kuch bhi verify nahi hua tha.",
+   "states.u_trapped.outcome.headline": "Nikalne ka raasta nahi tha",
+   "states.u_trapped.outcome.summary": "Is kaalpanik kahani mein app ne paisa '12 mahine' ke liye lock kar diya aur unlock karne ke liye 'processing fee' jod di. Har dabaav — timer, slots, dost, pachtawa — isliye banaya gaya tha ki aap check karne se pehle kadam uthao. Offer ka kuch bhi verify nahi hua tha.",
+   "states.t_missed_it.title": "Aapne ghadi ko khatam hone diya",
+   "states.t_missed_it.narrative": "Dabaav khatam hua aur kuch nahi gaya. Asli investments ke liye minutes mein faisla nahi karna padta. Dhyan do ki ruke rehna kaisa laga — ye ehsaas ek hunar hai jise abhyas se badhaya ja sakta hai.",
+   "states.t_missed_it.outcome.headline": "Aapne ghadi ko khatam hone diya",
+   "states.t_missed_it.outcome.summary": "Dabaav khatam hua aur kuch nahi gaya. Asli investments ke liye minutes mein faisla nahi karna padta. Dhyan do ki ruke rehna kaisa laga — ye ehsaas ek hunar hai jise abhyas se badhaya ja sakta hai.",
+   "states.t_checked_later.title": "Aapne dabaav ko jaanch mein badla",
+   "states.t_checked_later.narrative": "Aapne deadline guzarne di aur phir wo kiya jo timer aapse chhudwana chahta tha: jaanch. Aapne dost ko bhi batakar madad ki.",
+   "states.t_checked_later.outcome.headline": "Aapne dabaav ko jaanch mein badla",
+   "states.t_checked_later.outcome.summary": "Aapne deadline guzarne di aur phir wo kiya jo timer aapse chhudwana chahta tha: jaanch. Aapne dost ko bhi batakar madad ki.",
+   "reflection.key_points.0": "Countdown, ghat'te slots aur 'aakhri mauka' aapko sochne se rokne ke liye bane hain.",
+   "reflection.key_points.1": "Dost ka utsaah unki bhavna dikhata hai, offer ki gunvatta nahi.",
+   "reflection.key_points.2": "Unverified offer chhootne se jo aapke paas tha wo nahi jaata; kadam uthane se bachat ja sakti hai.",
+   "reflection.key_points.3": "Dabaav ka naam zor se lo, phir ruko.",
+   "reflection.questions.0": "Kaun sa dabaav rokna sabse mushkil tha: timer, slots, dost ya pachtawa?",
+   "reflection.micro_lesson.title": "Naam lo, phir das minute ruko",
+   "reflection.micro_lesson.body": "Jab jaldi ka ehsaas ho, bolo ki kya dhakel raha hai: 'timer', 'dost', 'chhoot jaane ka darr'. Phir das minute ruko. Jo offer das minute nahi tik sakta, wo jaanch bhi nahi tik sakta."
+  }
+ }
+}

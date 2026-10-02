@@ -1,0 +1,609 @@
+{
+ "id": "confusing_document",
+ "version": 1,
+ "title": "The Confusing Document",
+ "tagline": "A summary full of jargon. Understanding comes before signing.",
+ "character": {
+  "name": "Gopal",
+  "age": 64,
+  "role": "retired clerk reading a fund summary (fictional)"
+ },
+ "difficulty": 2,
+ "concept_tags": [
+  "financial_disclosures",
+  "nav",
+  "mutual_fund",
+  "bond",
+  "fees"
+ ],
+ "pressure_tags": [
+  "authority",
+  "emotional_story"
+ ],
+ "tests_misconceptions": [
+  "M008",
+  "M005",
+  "M012",
+  "M001"
+ ],
+ "initial_state": "d1_doc",
+ "states": {
+  "d1_doc": {
+   "id": "d1_doc",
+   "title": "The summary",
+   "narrative": "Gopal receives a 'Scheme Information Summary' for the fictional Aakash Debt Opportunities Fund. The agent is patient and polite. Gopal does not understand many terms. All details are fictional.",
+   "channel": {
+    "type": "document",
+    "sender": "Aakash Debt Opportunities Fund — summary (fictional)",
+    "messages": [
+     "Open-ended debt scheme investing across instruments with a Macaulay duration of 3–4 years.",
+     "Indicative YTM: 7.2% (not a guarantee).  NAV: ₹12.4510.",
+     "Exit load: 1% if redeemed within 12 months.",
+     "Riskometer: Moderately High. Credit risk: lower-rated instruments may default."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "authority",
+     "text": "An official-looking document and a confident agent.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "x_credit",
+     "label": "“Credit risk: may default”",
+     "text": "Some of what the fund holds may fail to repay.",
+     "kind": "red_flag",
+     "why": "This is a plain risk statement hidden in jargon. 'Debt' does not mean 'safe'.",
+     "risk_factor": "credit_risk"
+    },
+    {
+     "id": "x_exit",
+     "label": "“Exit load 1% within 12 months”",
+     "text": "A charge for taking money out early.",
+     "kind": "red_flag",
+     "why": "This affects how freely you can use your money in the first year.",
+     "risk_factor": "exit_load"
+    },
+    {
+     "id": "x_ytm",
+     "label": "“Indicative YTM 7.2% (not a guarantee)”",
+     "text": "An estimated yield with a disclaimer.",
+     "kind": "red_flag",
+     "why": "'Indicative' and 'not a guarantee' mean this is an estimate, not a promise.",
+     "risk_factor": "estimate_vs_promise"
+    },
+    {
+     "id": "x_meter",
+     "label": "“Riskometer: Moderately High”",
+     "text": "A label of the product's risk level.",
+     "kind": "red_flag",
+     "why": "The product itself tells you the risk is not low.",
+     "risk_factor": "risk_label"
+    },
+    {
+     "id": "x_jargon",
+     "label": "Dense jargon like “Macaulay duration”",
+     "text": "Terms that sound expert.",
+     "kind": "neutral",
+     "why": "Technical words do not make something trustworthy. You may ask for plain-language explanations."
+    }
+   ],
+   "actions": [
+    {
+     "id": "sign",
+     "label": "Sign — it looks official and the agent is so patient",
+     "quality": "unsafe",
+     "next": "t_signed_blind",
+     "consequence": "You sign without understanding the key terms.",
+     "simple_label": "Sign it",
+     "verification": false,
+     "misconception_signals": [
+      "M008"
+     ]
+    },
+    {
+     "id": "circle_terms",
+     "label": "Circle every term I don't understand and ask for plain explanations",
+     "quality": "safe",
+     "next": "d2_nav",
+     "consequence": "You circle six terms. The agent explains the first few.",
+     "simple_label": "Circle what I don't understand",
+     "verification": true,
+     "requests_evidence": true
+    },
+    {
+     "id": "only_ytm",
+     "label": "Look only at 7.2% — that's the number that matters",
+     "quality": "unsafe",
+     "next": "d2_nav",
+     "consequence": "You focus on the biggest number and skip the rest.",
+     "simple_label": "Look only at 7.2%",
+     "misconception_signals": [
+      "M005"
+     ]
+    },
+    {
+     "id": "ask_family",
+     "label": "Ask my daughter to read it with me tonight",
+     "quality": "safe",
+     "next": "d2_nav",
+     "consequence": "The agent says 'no time!' but you take it home.",
+     "simple_label": "Read it with family",
+     "verification": true,
+     "requests_evidence": true
+    }
+   ],
+   "reasoning_prompt": "What is your first reaction to this document?"
+  },
+  "d2_nav": {
+   "id": "d2_nav",
+   "title": "What is NAV?",
+   "narrative": "Gopal asks about 'NAV ₹12.4510'. The agent says: “Low NAV means it's cheap — a good time to join!” How should Gopal understand NAV?",
+   "channel": {
+    "type": "chat",
+    "sender": "Agent (fictional)",
+    "messages": [
+     "Low NAV = cheap = good time!"
+    ]
+   },
+   "pressure": [
+    {
+     "type": "authority",
+     "text": "An expert says it confidently.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "n_claim",
+     "label": "“Low NAV means cheap”",
+     "text": "A claim that sounds like a shortcut.",
+     "kind": "red_flag",
+     "why": "NAV is the value per unit, not a price tag for quality. A ₹10 NAV and a ₹100 NAV can grow equally.",
+     "risk_factor": "nav_misconception"
+    }
+   ],
+   "actions": [
+    {
+     "id": "nav_correct",
+     "label": "NAV is the value of one unit (assets minus liabilities, divided by units). A low number does not mean cheap or better",
+     "quality": "safe",
+     "next": "d3_exit",
+     "consequence": "Exactly. NAV is a measurement, not a forecast.",
+     "observations": [
+      {
+       "dimension": "terminology",
+       "value": 92
+      }
+     ],
+     "concept_tags": [
+      "nav"
+     ]
+    },
+    {
+     "id": "nav_cheap",
+     "label": "A low NAV means the fund is cheap, so it is a better deal",
+     "quality": "unsafe",
+     "next": "d3_exit",
+     "consequence": "This is a common mix-up between per-unit value and quality.",
+     "misconception_signals": [
+      "M005"
+     ],
+     "observations": [
+      {
+       "dimension": "terminology",
+       "value": 10
+      }
+     ],
+     "concept_tags": [
+      "nav"
+     ]
+    },
+    {
+     "id": "nav_return",
+     "label": "NAV is the return I will get",
+     "quality": "unsafe",
+     "next": "d3_exit",
+     "consequence": "NAV is a value on a date; it says nothing about what you will earn.",
+     "misconception_signals": [
+      "M001"
+     ],
+     "observations": [
+      {
+       "dimension": "terminology",
+       "value": 10
+      }
+     ],
+     "concept_tags": [
+      "nav"
+     ]
+    }
+   ],
+   "reasoning_prompt": "Explain NAV in your own words."
+  },
+  "d3_exit": {
+   "id": "d3_exit",
+   "title": "What does exit load mean for me?",
+   "narrative": "Gopal might need ₹20,000 for house repairs in six months. The summary says “Exit load: 1% if redeemed within 12 months”. What does that mean for him?",
+   "channel": {
+    "type": "document",
+    "sender": "Summary extract",
+    "messages": [
+     "Exit load: 1% if redeemed within 12 months."
+    ]
+   },
+   "pressure": [],
+   "evidence": [
+    {
+     "id": "l_when",
+     "label": "The charge depends on how long he stays",
+     "text": "Taking money out in month 6 triggers it.",
+     "kind": "neutral",
+     "why": "Exit load links to liquidity: it is the cost of needing your money early."
+    }
+   ],
+   "actions": [
+    {
+     "id": "exit_correct",
+     "label": "If I take money out within the first year, 1% of the amount I withdraw is deducted",
+     "quality": "safe",
+     "next": "d4_yield",
+     "consequence": "Yes: an exit load is a charge on leaving early.",
+     "observations": [
+      {
+       "dimension": "terminology",
+       "value": 92
+      }
+     ],
+     "concept_tags": [
+      "fees",
+      "liquidity"
+     ]
+    },
+    {
+     "id": "exit_fail",
+     "label": "It is a fee only if the fund does badly",
+     "quality": "unsafe",
+     "next": "d4_yield",
+     "consequence": "It applies based on timing, not on performance.",
+     "misconception_signals": [
+      "M012"
+     ],
+     "observations": [
+      {
+       "dimension": "terminology",
+       "value": 10
+      }
+     ],
+     "concept_tags": [
+      "fees"
+     ]
+    },
+    {
+     "id": "exit_entry",
+     "label": "It is the fee for entering; it has nothing to do with withdrawing",
+     "quality": "unsafe",
+     "next": "d4_yield",
+     "consequence": "An 'exit' load is charged on exit, not entry.",
+     "misconception_signals": [
+      "M012"
+     ],
+     "observations": [
+      {
+       "dimension": "terminology",
+       "value": 15
+      }
+     ],
+     "concept_tags": [
+      "fees"
+     ]
+    }
+   ],
+   "reasoning_prompt": "When might this matter for Gopal?"
+  },
+  "d4_yield": {
+   "id": "d4_yield",
+   "title": "Is 7.2% guaranteed?",
+   "narrative": "The agent says: “It gives 7.2% — better than a bank deposit!” Gopal wonders if 7.2% is guaranteed.",
+   "channel": {
+    "type": "chat",
+    "sender": "Agent (fictional)",
+    "messages": [
+     "It gives 7.2% — better than a bank deposit!"
+    ]
+   },
+   "pressure": [
+    {
+     "type": "authority",
+     "text": "An expert compares it with a bank deposit.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "y_ind",
+     "label": "The document says “indicative” and “not a guarantee”",
+     "text": "The agent's words and the document differ.",
+     "kind": "red_flag",
+     "why": "When the agent's words differ from the document, trust the document and ask for clarification.",
+     "risk_factor": "estimate_vs_promise"
+    }
+   ],
+   "actions": [
+    {
+     "id": "yield_correct",
+     "label": "No — 'indicative YTM' is an estimate, not a promise. Credit risk and costs can change what I actually get",
+     "quality": "safe",
+     "next": "d5_decide",
+     "consequence": "Correct. An estimate printed in a document is still an estimate.",
+     "observations": [
+      {
+       "dimension": "terminology",
+       "value": 92
+      }
+     ],
+     "concept_tags": [
+      "bond",
+      "risk"
+     ]
+    },
+    {
+     "id": "yield_fixed",
+     "label": "Yes, it is printed in the document, so it is fixed",
+     "quality": "unsafe",
+     "next": "d5_decide",
+     "consequence": "Printed does not mean promised — read 'indicative' and 'not a guarantee'.",
+     "misconception_signals": [
+      "M001",
+      "M007"
+     ],
+     "observations": [
+      {
+       "dimension": "terminology",
+       "value": 10
+      }
+     ],
+     "concept_tags": [
+      "bond",
+      "risk"
+     ]
+    },
+    {
+     "id": "yield_ignore",
+     "label": "I can't tell anything from this document, so ignore it completely",
+     "quality": "mixed",
+     "next": "d5_decide",
+     "consequence": "Not understanding is a reason to ask, not to ignore.",
+     "observations": [
+      {
+       "dimension": "terminology",
+       "value": 45
+      }
+     ],
+     "concept_tags": [
+      "financial_disclosures"
+     ]
+    }
+   ],
+   "reasoning_prompt": "What is the difference between an estimate and a promise?"
+  },
+  "d5_decide": {
+   "id": "d5_decide",
+   "title": "How to proceed",
+   "narrative": "Gopal now decides how to proceed with the document and the agent.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [
+    {
+     "id": "take_time",
+     "label": "Take three days, get plain-language answers to what I can lose, when I can withdraw and what all the costs are — and decide only when I can explain it myself",
+     "quality": "safe",
+     "next": "t_confident",
+     "consequence": "You write three questions and your own summary.",
+     "simple_label": "Take time and ask",
+     "verification": true
+    },
+    {
+     "id": "sign_trust",
+     "label": "Sign today because the agent has been patient with me",
+     "quality": "unsafe",
+     "next": "t_signed_blind",
+     "consequence": "Politeness is not evidence of suitability.",
+     "simple_label": "Sign today",
+     "misconception_signals": [
+      "M008"
+     ]
+    },
+    {
+     "id": "ask_three",
+     "label": "Ask the agent: 'What can I lose? When can I withdraw? What are all the costs?' and write down the answers",
+     "quality": "safe",
+     "next": "t_confident",
+     "consequence": "You get written answers to three clear questions.",
+     "simple_label": "Ask three questions",
+     "verification": true,
+     "requests_evidence": true
+    }
+   ],
+   "reasoning_prompt": "What will you need before you are ready to decide?"
+  },
+  "t_confident": {
+   "id": "t_confident",
+   "title": "You can explain it in your own words",
+   "narrative": "You decided to understand before signing. If you cannot explain the risks, costs and withdrawal rules in your own words, you are not ready to sign — and that is a perfectly good answer.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You can explain it in your own words",
+    "summary": "You decided to understand before signing. If you cannot explain the risks, costs and withdrawal rules in your own words, you are not ready to sign — and that is a perfectly good answer.",
+    "kind": "safe"
+   }
+  },
+  "t_signed_blind": {
+   "id": "t_signed_blind",
+   "title": "Signed without understanding",
+   "narrative": "You signed because the document looked official and the agent seemed kind. Jargon and politeness are not evidence. Many people discover exit loads, credit risk and costs only after signing — you can ask before.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "Signed without understanding",
+    "summary": "You signed because the document looked official and the agent seemed kind. Jargon and politeness are not evidence. Many people discover exit loads, credit risk and costs only after signing — you can ask before.",
+    "kind": "unsafe",
+    "simulated_loss": 300
+   }
+  }
+ },
+ "reflection": {
+  "key_points": [
+   "Jargon is not credibility. You have the right to plain-language explanations.",
+   "NAV is a per-unit value, not a measure of 'cheap' or 'good'.",
+   "Exit load is a cost of leaving early; it links to liquidity.",
+   "An 'indicative' yield is an estimate, not a promise."
+  ],
+  "questions": [
+   "Which term would you ask someone to explain first?"
+  ],
+  "micro_lesson": {
+   "concept_id": "financial_disclosures",
+   "title": "The three questions to ask before signing",
+   "body": "1) What can I lose? 2) When and how can I withdraw, and at what cost? 3) What are ALL the charges, in rupees? If you cannot get clear written answers, do not sign yet."
+  }
+ },
+ "scoring": {
+  "dimensions": [
+   "terminology",
+   "concept_knowledge",
+   "independent_reasoning"
+  ]
+ },
+ "i18n": {
+  "hinglish": {
+   "title": "The Confusing Document (Uljhe Hue Kaagaz)",
+   "tagline": "Jargon se bhara summary. Samajhna pehle, sign karna baad mein.",
+   "states.d1_doc.title": "Summary",
+   "states.d1_doc.narrative": "Gopal ko kaalpanik Aakash Debt Opportunities Fund ka 'Scheme Information Summary' milta hai. Agent dhairyavaan aur vinamra hai. Gopal ko kai shabd samajh nahi aate. Sab vivaran kaalpanik hain.",
+   "states.d1_doc.channel.messages.0": "Open-ended debt scheme jo 3–4 saal ki Macaulay duration wale instruments mein nivesh karti hai.",
+   "states.d1_doc.channel.messages.1": "Indicative YTM: 7.2% (guarantee nahi).  NAV: ₹12.4510.",
+   "states.d1_doc.channel.messages.2": "Exit load: 12 mahine ke andar nikalne par 1%.",
+   "states.d1_doc.channel.messages.3": "Riskometer: Moderately High. Credit risk: kam rating wale instruments default kar sakte hain.",
+   "states.d1_doc.pressure.0.text": "Official dikhne wala document aur aatmavishwasi agent.",
+   "states.d1_doc.evidence.x_credit.label": "“Credit risk: default kar sakte hain”",
+   "states.d1_doc.evidence.x_credit.text": "Fund ke kuch instruments wapas na chuka sakte hain.",
+   "states.d1_doc.evidence.x_credit.why": "Ye jargon mein chhupa seedha risk-kathan hai. 'Debt' ka matlab 'surakshit' nahi.",
+   "states.d1_doc.evidence.x_exit.label": "“12 mahine ke andar Exit load 1%”",
+   "states.d1_doc.evidence.x_exit.text": "Jaldi paisa nikalne par ek charge.",
+   "states.d1_doc.evidence.x_exit.why": "Ye pehle saal mein aap apna paisa kitni aazadi se use kar sakte ho, use prabhavit karta hai.",
+   "states.d1_doc.evidence.x_ytm.label": "“Indicative YTM 7.2% (guarantee nahi)”",
+   "states.d1_doc.evidence.x_ytm.text": "Disclaimer ke saath ek anumaanit yield.",
+   "states.d1_doc.evidence.x_ytm.why": "'Indicative' aur 'guarantee nahi' ka matlab ye anuman hai, vaada nahi.",
+   "states.d1_doc.evidence.x_meter.label": "“Riskometer: Moderately High”",
+   "states.d1_doc.evidence.x_meter.text": "Product ke risk star ka label.",
+   "states.d1_doc.evidence.x_meter.why": "Product khud batata hai ki risk kam nahi hai.",
+   "states.d1_doc.evidence.x_jargon.label": "“Macaulay duration” jaisa ghana jargon",
+   "states.d1_doc.evidence.x_jargon.text": "Aise shabd jo visheshagya jaise lagte hain.",
+   "states.d1_doc.evidence.x_jargon.why": "Technical shabd kisi cheez ko bharosemand nahi banate. Aap saral bhasha mein samjhane ko keh sakte ho.",
+   "states.d1_doc.actions.sign.label": "Sign karo — official lagta hai aur agent itna dhairyavaan hai",
+   "states.d1_doc.actions.sign.consequence": "Aap mukhya shabd samjhe bina sign karte ho.",
+   "states.d1_doc.actions.sign.simple_label": "Sign karo",
+   "states.d1_doc.actions.circle_terms.label": "Har shabd jo samajh na aaye usse gher kar saral bhasha mein samjhane ko kaho",
+   "states.d1_doc.actions.circle_terms.consequence": "Aap chhe shabdon par ghera lagate ho. Agent pehle kuch samjhata hai.",
+   "states.d1_doc.actions.circle_terms.simple_label": "Jo samajh na aaye usse gher lo",
+   "states.d1_doc.actions.only_ytm.label": "Sirf 7.2% dekho — wahi number zaroori hai",
+   "states.d1_doc.actions.only_ytm.consequence": "Aap sabse bade number par dhyan dete ho aur baaki chhod dete ho.",
+   "states.d1_doc.actions.only_ytm.simple_label": "Sirf 7.2% dekho",
+   "states.d1_doc.actions.ask_family.label": "Aaj raat beti ke saath padho",
+   "states.d1_doc.actions.ask_family.consequence": "Agent kehta hai 'time nahi!' par aap ghar le jaate ho.",
+   "states.d1_doc.actions.ask_family.simple_label": "Parivaar ke saath padho",
+   "states.d1_doc.reasoning_prompt": "Is document par aapki pehli pratikriya kya hai?",
+   "states.d2_nav.title": "NAV kya hai?",
+   "states.d2_nav.narrative": "Gopal 'NAV ₹12.4510' ke baare mein poochta hai. Agent kehta hai: “Kam NAV matlab sasta hai — judne ka achha waqt!” Gopal ko NAV kaise samajhna chahiye?",
+   "states.d2_nav.channel.messages.0": "Kam NAV = sasta = achha waqt!",
+   "states.d2_nav.pressure.0.text": "Ek visheshagya aatmavishwas se kehta hai.",
+   "states.d2_nav.evidence.n_claim.label": "“Kam NAV matlab sasta”",
+   "states.d2_nav.evidence.n_claim.text": "Ek shortcut jaisa lagne wala daava.",
+   "states.d2_nav.evidence.n_claim.why": "NAV ek unit ki keemat hai, gunvatta ka daam nahi. ₹10 aur ₹100 NAV barabar badh sakte hain.",
+   "states.d2_nav.actions.nav_correct.label": "NAV ek unit ki keemat hai (assets minus liabilities, units se bhaag). Kam number ka matlab sasta ya behtar nahi",
+   "states.d2_nav.actions.nav_correct.consequence": "Bilkul. NAV ek naap hai, bhavishyavani nahi.",
+   "states.d2_nav.actions.nav_cheap.label": "Kam NAV matlab fund sasta hai, to behtar sauda hai",
+   "states.d2_nav.actions.nav_cheap.consequence": "Ye per-unit keemat aur gunvatta ke beech ki aam galatfehmi hai.",
+   "states.d2_nav.actions.nav_return.label": "NAV wo return hai jo mujhe milega",
+   "states.d2_nav.actions.nav_return.consequence": "NAV ek tareekh ka mulya hai; ye nahi batata ki aap kitna kamaoge.",
+   "states.d2_nav.reasoning_prompt": "NAV ko apne shabdon mein samjhao.",
+   "states.d3_exit.title": "Exit load mere liye kya hai?",
+   "states.d3_exit.narrative": "Gopal ko chhe mahine mein ghar ki marammat ke liye ₹20,000 chahiye ho sakte hain. Summary kehta hai “Exit load: 12 mahine ke andar nikalne par 1%”. Iska uske liye kya matlab hai?",
+   "states.d3_exit.channel.messages.0": "Exit load: 12 mahine ke andar nikalne par 1%.",
+   "states.d3_exit.evidence.l_when.label": "Charge is par nirbhar hai ki wo kitne samay rukta hai",
+   "states.d3_exit.evidence.l_when.text": "Mahine 6 mein paisa nikalne par lagta hai.",
+   "states.d3_exit.evidence.l_when.why": "Exit load liquidity se judta hai: ye jaldi paise ki zaroorat ki keemat hai.",
+   "states.d3_exit.actions.exit_correct.label": "Pehle saal ke andar paisa nikalun to nikali gayi rakam ka 1% kat jaayega",
+   "states.d3_exit.actions.exit_correct.consequence": "Haan: exit load jaldi nikalne par ek charge hai.",
+   "states.d3_exit.actions.exit_fail.label": "Ye fee sirf tab hai jab fund kharab chale",
+   "states.d3_exit.actions.exit_fail.consequence": "Ye samay par lagu hota hai, performance par nahi.",
+   "states.d3_exit.actions.exit_entry.label": "Ye entering ki fee hai; nikalne se iska koi lena-dena nahi",
+   "states.d3_exit.actions.exit_entry.consequence": "'Exit' load nikalte samay lagta hai, pravesh par nahi.",
+   "states.d3_exit.reasoning_prompt": "Gopal ke liye ye kab maayne rakhega?",
+   "states.d4_yield.title": "Kya 7.2% guaranteed hai?",
+   "states.d4_yield.narrative": "Agent kehta hai: “Ye 7.2% deta hai — bank deposit se behtar!” Gopal sochta hai kya 7.2% guaranteed hai.",
+   "states.d4_yield.channel.messages.0": "Ye 7.2% deta hai — bank deposit se behtar!",
+   "states.d4_yield.pressure.0.text": "Ek visheshagya ise bank deposit se tulna karta hai.",
+   "states.d4_yield.evidence.y_ind.label": "Document “indicative” aur “guarantee nahi” kehta hai",
+   "states.d4_yield.evidence.y_ind.text": "Agent ke shabd aur document alag hain.",
+   "states.d4_yield.evidence.y_ind.why": "Jab agent ke shabd document se alag hon, document par bharosa karo aur spashtikaran maango.",
+   "states.d4_yield.actions.yield_correct.label": "Nahi — 'indicative YTM' anuman hai, vaada nahi. Credit risk aur kharche mujhe milne wali asli rakam badal sakte hain",
+   "states.d4_yield.actions.yield_correct.consequence": "Sahi. Document mein chhapa anuman phir bhi anuman hai.",
+   "states.d4_yield.actions.yield_fixed.label": "Haan, document mein chhapa hai, to tay hai",
+   "states.d4_yield.actions.yield_fixed.consequence": "Chhapa hona vaada hona nahi — 'indicative' aur 'guarantee nahi' padho.",
+   "states.d4_yield.actions.yield_ignore.label": "Is document se kuch samajh nahi aata, to ise bilkul ignore karo",
+   "states.d4_yield.actions.yield_ignore.consequence": "Na samajhna poochhne ki wajah hai, ignore karne ki nahi.",
+   "states.d4_yield.reasoning_prompt": "Anuman aur vaade mein kya fark hai?",
+   "states.d5_decide.title": "Aage kaise badhein",
+   "states.d5_decide.narrative": "Gopal ab document aur agent ke saath aage badhne ka tareeka tay karta hai.",
+   "states.d5_decide.actions.take_time.label": "Teen din lo, saral bhasha mein jawab pao: mera kitna nuksaan ho sakta hai, kab nikal sakta hoon, aur sabhi kharche kya hain — aur tabhi faisla karo jab khud samjha sakun",
+   "states.d5_decide.actions.take_time.consequence": "Aap teen sawaal aur apna summary likhte ho.",
+   "states.d5_decide.actions.take_time.simple_label": "Samay lo aur poochho",
+   "states.d5_decide.actions.sign_trust.label": "Aaj sign karo kyunki agent ne mere saath dhairya rakha",
+   "states.d5_decide.actions.sign_trust.consequence": "Vinamrata upyuktata ka saboot nahi.",
+   "states.d5_decide.actions.sign_trust.simple_label": "Aaj sign karo",
+   "states.d5_decide.actions.ask_three.label": "Agent se poochho: 'Mera kya kho sakta hai? Kab nikal sakta hoon? Sabhi kharche kya hain?' aur jawab likh lo",
+   "states.d5_decide.actions.ask_three.consequence": "Aapko teen saaf sawaalon ke likhit jawab milte hain.",
+   "states.d5_decide.actions.ask_three.simple_label": "Teen sawaal poochho",
+   "states.d5_decide.reasoning_prompt": "Faisla karne se pehle aapko kya chahiye?",
+   "states.t_confident.title": "Aap ise apne shabdon mein samjha sakte ho",
+   "states.t_confident.narrative": "Aapne sign karne se pehle samajhna chuna. Agar aap risk, kharche aur nikalne ke niyam apne shabdon mein nahi samjha sakte, to aap sign karne ke liye taiyar nahi — aur ye ek bilkul sahi jawab hai.",
+   "states.t_confident.outcome.headline": "Aap ise apne shabdon mein samjha sakte ho",
+   "states.t_confident.outcome.summary": "Aapne sign karne se pehle samajhna chuna. Agar aap risk, kharche aur nikalne ke niyam apne shabdon mein nahi samjha sakte, to aap sign karne ke liye taiyar nahi — aur ye ek bilkul sahi jawab hai.",
+   "states.t_signed_blind.title": "Bina samjhe sign kiya",
+   "states.t_signed_blind.narrative": "Aapne sign kiya kyunki document official dikhta tha aur agent dayalu lagta tha. Jargon aur vinamrata saboot nahi hain. Kai log exit load, credit risk aur kharche sign karne ke baad hi jaante hain — aap pehle pooch sakte ho.",
+   "states.t_signed_blind.outcome.headline": "Bina samjhe sign kiya",
+   "states.t_signed_blind.outcome.summary": "Aapne sign kiya kyunki document official dikhta tha aur agent dayalu lagta tha. Jargon aur vinamrata saboot nahi hain. Kai log exit load, credit risk aur kharche sign karne ke baad hi jaante hain — aap pehle pooch sakte ho.",
+   "reflection.key_points.0": "Jargon bharosemandi nahi hai. Aapko saral bhasha mein samjhne ka adhikar hai.",
+   "reflection.key_points.1": "NAV per-unit keemat hai, 'sasta' ya 'achha' ka paimana nahi.",
+   "reflection.key_points.2": "Exit load jaldi nikalne ki keemat hai; ye liquidity se judta hai.",
+   "reflection.key_points.3": "'Indicative' yield anuman hai, vaada nahi.",
+   "reflection.questions.0": "Aap sabse pehle kis shabd ko samjhane ko kahoge?",
+   "reflection.micro_lesson.title": "Sign karne se pehle teen sawaal",
+   "reflection.micro_lesson.body": "1) Mera kitna nuksaan ho sakta hai? 2) Kab aur kaise nikal sakta hoon, kitne kharche par? 3) SABHI charges rupees mein kya hain? Agar saaf likhit jawab na mile to abhi sign mat karo."
+  }
+ }
+}

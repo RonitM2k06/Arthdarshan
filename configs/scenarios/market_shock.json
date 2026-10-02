@@ -1,0 +1,432 @@
+{
+ "id": "market_shock",
+ "version": 1,
+ "title": "The Market Shock",
+ "tagline": "A fictional market falls 9% in a day. Everyone has an opinion.",
+ "character": {
+  "name": "Sunita",
+  "age": 38,
+  "role": "teacher saving for her child's education in 8 years (fictional)"
+ },
+ "difficulty": 2,
+ "concept_tags": [
+  "volatility",
+  "risk",
+  "fomo",
+  "social_proof"
+ ],
+ "pressure_tags": [
+  "fear",
+  "peer_pressure",
+  "countdown",
+  "loss_recovery"
+ ],
+ "tests_misconceptions": [
+  "M010",
+  "M011",
+  "M003"
+ ],
+ "initial_state": "m1_shock",
+ "states": {
+  "m1_shock": {
+   "id": "m1_shock",
+   "title": "A very bad day",
+   "narrative": "In this fictional world the BharatFictio 100 index falls 9% in one day. Sunita's simulated ₹1,00,000 in the fictional 'Sample Growth Basket' now shows ₹91,000. Her goal — her child's education — is 8 years away. This describes a fictional situation; nobody here is told what to buy or sell.",
+   "channel": {
+    "type": "news",
+    "sender": "Fictional business news",
+    "messages": [
+     "MARKET CRASH: Index down 9% in a single session.",
+     "Friend Anil: Sell everything NOW before it goes to zero!!",
+     "Colleague Bhavna: Great discount! Put in more right now!"
+    ]
+   },
+   "pressure": [
+    {
+     "type": "fear",
+     "text": "“Before it goes to zero.”",
+     "intensity": 3
+    },
+    {
+     "type": "peer_pressure",
+     "text": "Two people give opposite urgent orders.",
+     "intensity": 2
+    },
+    {
+     "type": "countdown",
+     "text": "The trading window closes in a few minutes today.",
+     "intensity": 2,
+     "countdown_seconds": 30
+    }
+   ],
+   "evidence": [
+    {
+     "id": "ms_move",
+     "label": "Down 9% in one day",
+     "text": "A large one-day drop in this fictional market.",
+     "kind": "neutral",
+     "why": "A big fall is uncomfortable and real, but one day does not tell you what comes next."
+    },
+    {
+     "id": "ms_goal",
+     "label": "Her goal is 8 years away",
+     "text": "Sunita does not need this money tomorrow.",
+     "kind": "neutral",
+     "why": "Time horizon and needs matter more to a decision than one day's headline."
+    },
+    {
+     "id": "ms_panic",
+     "label": "“Sell NOW before it goes to zero!!”",
+     "text": "A fear-driven order with no reasoning.",
+     "kind": "red_flag",
+     "why": "Nobody can know whether prices will keep falling or recover. Certainty in either direction is a signal to slow down.",
+     "risk_factor": "panic"
+    },
+    {
+     "id": "ms_dip",
+     "label": "“Great discount! Put in more now!”",
+     "text": "A greed-driven order with no reasoning.",
+     "kind": "red_flag",
+     "why": "Both messages create urgency. Neither knows the future. Urgency in both directions is the same pressure.",
+     "risk_factor": "greed"
+    },
+    {
+     "id": "ms_unknown",
+     "label": "Nobody can say what happens next",
+     "text": "No credible source can promise recovery or further falls.",
+     "kind": "neutral",
+     "why": "Accepting uncertainty is part of making sound decisions in markets."
+    }
+   ],
+   "actions": [
+    {
+     "id": "sell_all",
+     "label": "Sell everything right now — I can't stand watching this",
+     "quality": "unsafe",
+     "next": "m2_after",
+     "consequence": "You act under pressure. The relief is immediate; the loss is now fixed at ₹9,000 (simulated).",
+     "simple_label": "Sell everything now",
+     "misconception_signals": [
+      "M010"
+     ]
+    },
+    {
+     "id": "add_more",
+     "label": "Put in more money right now to win the loss back fast",
+     "quality": "unsafe",
+     "next": "m2_after",
+     "consequence": "You act on a hope of quick recovery. Your simulated exposure doubles at an uncertain moment.",
+     "simple_label": "Add more now",
+     "misconception_signals": [
+      "M010"
+     ]
+    },
+    {
+     "id": "pause_plan",
+     "label": "Pause: write down my goal, time horizon and how much loss I can handle, then decide",
+     "quality": "safe",
+     "next": "m2_after",
+     "consequence": "You switch off the news and write three lines. The decision feels quieter.",
+     "simple_label": "Pause and write a plan",
+     "verification": true
+    },
+    {
+     "id": "watch_hourly",
+     "label": "Check prices every hour and decide tonight",
+     "quality": "mixed",
+     "next": "m2_after",
+     "consequence": "Each refresh brings a new feeling. By evening you are exhausted and less clear.",
+     "simple_label": "Watch all day"
+    },
+    {
+     "id": "ask_trusted",
+     "label": "Talk to someone I trust or a registered professional before acting",
+     "quality": "safe",
+     "next": "m2_after",
+     "consequence": "You ask for help thinking, not for a prediction.",
+     "simple_label": "Talk to someone I trust"
+    }
+   ],
+   "reasoning_prompt": "What is driving your choice right now?",
+   "simulation_hint": "volatility"
+  },
+  "m2_after": {
+   "id": "m2_after",
+   "title": "Two fictional weeks later",
+   "narrative": "In this fictional fortnight the index rises 4% on Monday and falls 5% on Wednesday. Anil texts: “Told you so!” No path is a prediction; it is a story to practise on.",
+   "channel": {
+    "type": "chat",
+    "sender": "Anil (friend, fictional)",
+    "messages": [
+     "Told you so! Do what I say next time.",
+     "Now it's time to sell/buy again — switch quickly!"
+    ]
+   },
+   "pressure": [
+    {
+     "type": "peer_pressure",
+     "text": "Anil insists he knew.",
+     "intensity": 2
+    },
+    {
+     "type": "fomo",
+     "text": "“Switch quickly!”",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "m2_hind",
+     "label": "“Told you so” is hindsight",
+     "text": "It was not knowable then; it feels obvious now.",
+     "kind": "red_flag",
+     "why": "Hindsight makes outcomes seem predictable. A person who was right once may simply have been lucky.",
+     "risk_factor": "hindsight"
+    },
+    {
+     "id": "m2_swing",
+     "label": "Daily swings of ±5% this fortnight",
+     "text": "The path has been bumpy both ways.",
+     "kind": "neutral",
+     "why": "This is volatility: large swings in both directions are part of how such assets behave."
+    },
+    {
+     "id": "m2_switch",
+     "label": "“Switch quickly!” — each switch has costs and needs a correct guess",
+     "text": "Moving in and out repeatedly adds costs and requires timing the unknowable.",
+     "kind": "red_flag",
+     "why": "Reacting to every headline is a pattern that tends to turn temporary swings into real, repeated costs.",
+     "risk_factor": "churning"
+    }
+   ],
+   "actions": [
+    {
+     "id": "stick_plan",
+     "label": "Re-read my plan; act only if my goal, time or needs have changed",
+     "quality": "safe",
+     "next": "t_calm",
+     "consequence": "The plan holds — your goal and needs have not changed — and you stay calm.",
+     "verification": true
+    },
+    {
+     "id": "follow_anil",
+     "label": "Do what Anil says — he called it right",
+     "quality": "unsafe",
+     "next": "t_hindsight",
+     "consequence": "You hand your decision to someone whose track record you cannot verify.",
+     "misconception_signals": [
+      "M011"
+     ]
+    },
+    {
+     "id": "react_news",
+     "label": "Buy or sell each time the news changes",
+     "quality": "unsafe",
+     "next": "t_churn",
+     "consequence": "Every headline becomes a trigger. The simulated costs and stress pile up."
+    },
+    {
+     "id": "ask_review",
+     "label": "Ask a trusted person or registered professional to review my plan with me",
+     "quality": "safe",
+     "next": "t_support",
+     "consequence": "You ask for a second pair of eyes on your plan, not a prediction.",
+     "verification": true
+    }
+   ],
+   "reasoning_prompt": "How do you decide whom or what to listen to?",
+   "simulation_hint": "volatility"
+  },
+  "t_calm": {
+   "id": "t_calm",
+   "title": "You decided by your plan",
+   "narrative": "You separated the noise from your actual goals. A plan written when calm is a tool for when you are not. Nobody can predict the market; you can prepare your own response.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You decided by your plan",
+    "summary": "You separated the noise from your actual goals. A plan written when calm is a tool for when you are not. Nobody can predict the market; you can prepare your own response.",
+    "kind": "safe"
+   }
+  },
+  "t_support": {
+   "id": "t_support",
+   "title": "You used support wisely",
+   "narrative": "Asking for a second view on your plan — not a prediction — is a mature use of help. Check anyone's registration on the official site yourself before relying on them.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You used support wisely",
+    "summary": "Asking for a second view on your plan — not a prediction — is a mature use of help. Check anyone's registration on the official site yourself before relying on them.",
+    "kind": "safe"
+   }
+  },
+  "t_hindsight": {
+   "id": "t_hindsight",
+   "title": "Following the loudest voice",
+   "narrative": "A person who was right once may have been lucky; hindsight makes luck look like skill. Handing your decisions to a voice you cannot verify is the same risk as any unverified tip.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "Following the loudest voice",
+    "summary": "A person who was right once may have been lucky; hindsight makes luck look like skill. Handing your decisions to a voice you cannot verify is the same risk as any unverified tip.",
+    "kind": "unsafe"
+   }
+  },
+  "t_churn": {
+   "id": "t_churn",
+   "title": "Reacting to every headline",
+   "narrative": "Switching with every headline adds costs and needs repeated correct guesses about the unknowable. Calm, written rules protect you from your own reactions.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "Reacting to every headline",
+    "summary": "Switching with every headline adds costs and needs repeated correct guesses about the unknowable. Calm, written rules protect you from your own reactions.",
+    "kind": "unsafe"
+   }
+  }
+ },
+ "reflection": {
+  "key_points": [
+   "Volatility means big moves in both directions. A big drop is uncomfortable, but one day does not tell you what comes next.",
+   "Fear and greed give the same kind of urgent orders. Both are pressure, not information.",
+   "Nobody can predict the market. You can prepare your own response in advance.",
+   "A friend who was right once is not proof of skill."
+  ],
+  "questions": [
+   "What would be in your own written plan?"
+  ],
+  "micro_lesson": {
+   "concept_id": "volatility",
+   "title": "Prepare your response before the storm",
+   "body": "Write down three things when you are calm: your goal, your time horizon, and what size of fall you can handle without panic. Use them to check headlines, not the other way round."
+  }
+ },
+ "scoring": {
+  "dimensions": [
+   "emotional_discipline",
+   "uncertainty_awareness",
+   "herd_resistance"
+  ]
+ },
+ "i18n": {
+  "hinglish": {
+   "title": "The Market Shock (Bazaar mein Bhookamp)",
+   "tagline": "Ek kaalpanik bazaar ek din mein 9% girta hai. Sab ke paas raay hai.",
+   "states.m1_shock.title": "Ek bahut kharab din",
+   "states.m1_shock.narrative": "Is kaalpanik duniya mein BharatFictio 100 index ek din mein 9% gir jaata hai. Sunita ke simulated ₹1,00,000 jo kaalpanik 'Sample Growth Basket' mein hain ab ₹91,000 dikhate hain. Uska goal — bachche ki padhai — 8 saal door hai. Ye ek kaalpanik sthiti hai; yahan kisi ko kuch kharidne ya bechne ko nahi kaha jaata.",
+   "states.m1_shock.channel.messages.0": "MARKET CRASH: Ek hi session mein index 9% neeche.",
+   "states.m1_shock.channel.messages.1": "Dost Anil: Abhi SAB bech do, warna zero ho jayega!!",
+   "states.m1_shock.channel.messages.2": "Colleague Bhavna: Zabardast discount! Abhi aur paisa daalo!",
+   "states.m1_shock.pressure.0.text": "“Zero ho jaane se pehle.”",
+   "states.m1_shock.pressure.1.text": "Do log ulte, jaldi ke hukm dete hain.",
+   "states.m1_shock.pressure.2.text": "Aaj trading window kuch minutes mein band hoti hai.",
+   "states.m1_shock.evidence.ms_move.label": "Ek din mein 9% neeche",
+   "states.m1_shock.evidence.ms_move.text": "Is kaalpanik market mein ek din ki badi giravat.",
+   "states.m1_shock.evidence.ms_move.why": "Badi giravat takleefdeh aur asli hai, par ek din se agla kuch nahi pata chalta.",
+   "states.m1_shock.evidence.ms_goal.label": "Uska goal 8 saal door hai",
+   "states.m1_shock.evidence.ms_goal.text": "Sunita ko ye paisa kal nahi chahiye.",
+   "states.m1_shock.evidence.ms_goal.why": "Faisle ke liye time horizon aur zaroorat ek din ki headline se zyada maayne rakhti hain.",
+   "states.m1_shock.evidence.ms_panic.label": "“Abhi bech do, zero ho jayega!!”",
+   "states.m1_shock.evidence.ms_panic.text": "Bina tark ke darr se bhara hukm.",
+   "states.m1_shock.evidence.ms_panic.why": "Koi nahi jaanta ki daam girte rahenge ya sudhrenge. Kisi bhi disha mein pakka vishwas dhimaa hone ka sanket hai.",
+   "states.m1_shock.evidence.ms_dip.label": "“Zabardast discount! Abhi aur daalo!”",
+   "states.m1_shock.evidence.ms_dip.text": "Bina tark ke laalach se bhara hukm.",
+   "states.m1_shock.evidence.ms_dip.why": "Dono messages jaldi banate hain. Koi bhavishya nahi jaanta. Dono taraf ki jaldi ek hi dabaav hai.",
+   "states.m1_shock.evidence.ms_unknown.label": "Aage kya hoga koi nahi bata sakta",
+   "states.m1_shock.evidence.ms_unknown.text": "Koi vishwasniya source na sudhaar ka vaada kar sakta hai na aur girne ka.",
+   "states.m1_shock.evidence.ms_unknown.why": "Anishchitta ko maanna bazaar mein sahi faisle ka hissa hai.",
+   "states.m1_shock.actions.sell_all.label": "Abhi sab bech do — ye dekha nahi jaata",
+   "states.m1_shock.actions.sell_all.consequence": "Aap dabaav mein kaam karte ho. Rahat turant milti hai; nuksaan ab ₹9,000 (simulated) par tay ho gaya.",
+   "states.m1_shock.actions.sell_all.simple_label": "Abhi sab becho",
+   "states.m1_shock.actions.add_more.label": "Nuksaan jaldi wapas paane ke liye abhi aur paisa daalo",
+   "states.m1_shock.actions.add_more.consequence": "Aap jaldi sudhaar ki ummeed par kaam karte ho. Anishchit samay par aapka simulated exposure doguna ho jaata hai.",
+   "states.m1_shock.actions.add_more.simple_label": "Abhi aur daalo",
+   "states.m1_shock.actions.pause_plan.label": "Ruko: apna goal, samay-seema aur kitna nuksaan jhel sakti hoon likho, phir faisla karo",
+   "states.m1_shock.actions.pause_plan.consequence": "Aap news band karke teen line likhti ho. Faisla shaant lagta hai.",
+   "states.m1_shock.actions.pause_plan.simple_label": "Ruko aur plan likho",
+   "states.m1_shock.actions.watch_hourly.label": "Har ghante daam dekho aur raat ko faisla karo",
+   "states.m1_shock.actions.watch_hourly.consequence": "Har refresh par naya ehsaas. Shaam tak aap thak jaati ho aur kam saaf soch paati ho.",
+   "states.m1_shock.actions.watch_hourly.simple_label": "Din bhar dekho",
+   "states.m1_shock.actions.ask_trusted.label": "Kuch karne se pehle kisi bharosemand ya registered professional se baat karo",
+   "states.m1_shock.actions.ask_trusted.consequence": "Aap sochne mein madad maangti ho, bhavishyavani nahi.",
+   "states.m1_shock.actions.ask_trusted.simple_label": "Bharosemand se baat karo",
+   "states.m1_shock.reasoning_prompt": "Abhi aapke faisle ko kya chala raha hai?",
+   "states.m2_after.title": "Do kaalpanik hafte baad",
+   "states.m2_after.narrative": "Is kaalpanik pakhwade mein index Monday ko 4% badhta hai aur Wednesday ko 5% girta hai. Anil likhta hai: “Maine kaha tha!” Koi raasta bhavishyavani nahi; ye abhyas ki kahani hai.",
+   "states.m2_after.channel.messages.0": "Maine kaha tha! Agli baar meri baat maanna.",
+   "states.m2_after.channel.messages.1": "Ab phir bechne/kharidne ka time hai — jaldi badlo!",
+   "states.m2_after.pressure.0.text": "Anil kehta hai use pata tha.",
+   "states.m2_after.pressure.1.text": "“Jaldi badlo!”",
+   "states.m2_after.evidence.m2_hind.label": "“Maine kaha tha” pichhli nazar hai",
+   "states.m2_after.evidence.m2_hind.text": "Tab pata nahi tha; ab saaf lagta hai.",
+   "states.m2_after.evidence.m2_hind.why": "Pichhli nazar se nateeje purvanumey lagte hain. Ek baar sahi hone wala bas kismatwala bhi ho sakta hai.",
+   "states.m2_after.evidence.m2_swing.label": "Is pakhwade mein roz ±5% ka utaar-chadhav",
+   "states.m2_after.evidence.m2_swing.text": "Raasta dono taraf ubad-khabad raha.",
+   "states.m2_after.evidence.m2_swing.why": "Ye volatility hai: dono taraf badi halchal aise assets ka swabhav hai.",
+   "states.m2_after.evidence.m2_switch.label": "“Jaldi badlo!” — har badlaav mein kharcha aur sahi anuman chahiye",
+   "states.m2_after.evidence.m2_switch.text": "Baar-baar andar-bahar karne se kharcha badhta hai aur anishchit ka sahi samay pakadna padta hai.",
+   "states.m2_after.evidence.m2_switch.why": "Har headline par pratikriya dena aksar asthayi utaar-chadhav ko asli, baar-baar ke kharche mein badal deta hai.",
+   "states.m2_after.actions.stick_plan.label": "Apna plan dobara padho; tabhi kuch karo jab goal, samay ya zaroorat badli ho",
+   "states.m2_after.actions.stick_plan.consequence": "Plan tika hai — goal aur zaroorat nahi badli — aur aap shaant rehti ho.",
+   "states.m2_after.actions.follow_anil.label": "Anil jo kahe wahi karo — usne sahi pakda",
+   "states.m2_after.actions.follow_anil.consequence": "Aap apna faisla aise insaan ko de dete ho jiska track record aap check nahi kar sakte.",
+   "states.m2_after.actions.react_news.label": "Jab bhi khabar badle tab kharido ya becho",
+   "states.m2_after.actions.react_news.consequence": "Har headline trigger ban jaati hai. Simulated kharche aur tanav badhte jaate hain.",
+   "states.m2_after.actions.ask_review.label": "Kisi bharosemand ya registered professional se mera plan review karwao",
+   "states.m2_after.actions.ask_review.consequence": "Aap apne plan par doosri nazar maangti ho, bhavishyavani nahi.",
+   "states.m2_after.reasoning_prompt": "Aap kaise tay karti ho ki kisko ya kya sunna hai?",
+   "states.t_calm.title": "Aapne apne plan se faisla kiya",
+   "states.t_calm.narrative": "Aapne shor ko apne asli goals se alag kiya. Shaanti mein likha plan tab kaam aata hai jab aap shaant nahi hote. Market koi predict nahi kar sakta; aap apni pratikriya taiyar kar sakte ho.",
+   "states.t_calm.outcome.headline": "Aapne apne plan se faisla kiya",
+   "states.t_calm.outcome.summary": "Aapne shor ko apne asli goals se alag kiya. Shaanti mein likha plan tab kaam aata hai jab aap shaant nahi hote. Market koi predict nahi kar sakta; aap apni pratikriya taiyar kar sakte ho.",
+   "states.t_support.title": "Aapne madad samajhdari se li",
+   "states.t_support.narrative": "Plan par doosri raay maangna — bhavishyavani nahi — madad ka samajhdaar tareeka hai. Kisi par bharosa karne se pehle uska registration official site par khud check karo.",
+   "states.t_support.outcome.headline": "Aapne madad samajhdari se li",
+   "states.t_support.outcome.summary": "Plan par doosri raay maangna — bhavishyavani nahi — madad ka samajhdaar tareeka hai. Kisi par bharosa karne se pehle uska registration official site par khud check karo.",
+   "states.t_hindsight.title": "Sabse tez awaaz ke peeche",
+   "states.t_hindsight.narrative": "Ek baar sahi hone wala kismatwala ho sakta hai; pichhli nazar kismat ko hunar dikhati hai. Apne faisle aise awaaz ko dena jise verify na kar sako, kisi bhi unverified tip jaisa hi risk hai.",
+   "states.t_hindsight.outcome.headline": "Sabse tez awaaz ke peeche",
+   "states.t_hindsight.outcome.summary": "Ek baar sahi hone wala kismatwala ho sakta hai; pichhli nazar kismat ko hunar dikhati hai. Apne faisle aise awaaz ko dena jise verify na kar sako, kisi bhi unverified tip jaisa hi risk hai.",
+   "states.t_churn.title": "Har headline par pratikriya",
+   "states.t_churn.narrative": "Har headline par badalne se kharcha badhta hai aur anishchit ke baare mein baar-baar sahi anuman lagana padta hai. Shaant, likhe hue niyam aapko apni hi pratikriya se bachate hain.",
+   "states.t_churn.outcome.headline": "Har headline par pratikriya",
+   "states.t_churn.outcome.summary": "Har headline par badalne se kharcha badhta hai aur anishchit ke baare mein baar-baar sahi anuman lagana padta hai. Shaant, likhe hue niyam aapko apni hi pratikriya se bachate hain.",
+   "reflection.key_points.0": "Volatility ka matlab dono taraf badi halchal. Badi giravat takleefdeh hai par ek din aage ka nahi batata.",
+   "reflection.key_points.1": "Darr aur laalach ek jaise jaldi ke hukm dete hain. Dono dabaav hain, jaankari nahi.",
+   "reflection.key_points.2": "Market koi predict nahi kar sakta. Aap apni pratikriya pehle se taiyar kar sakte ho.",
+   "reflection.key_points.3": "Ek baar sahi hone wala dost hunar ka saboot nahi.",
+   "reflection.questions.0": "Aapke likhe plan mein kya hota?",
+   "reflection.micro_lesson.title": "Toofan se pehle apni pratikriya taiyar karo",
+   "reflection.micro_lesson.body": "Shaanti mein teen cheezein likho: aapka goal, samay-seema, aur kitni giravat bina ghabraye jhel sakte ho. Headlines ko inse check karo, ulta nahi."
+  }
+ }
+}

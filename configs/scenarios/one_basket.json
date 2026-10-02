@@ -1,0 +1,713 @@
+{
+ "id": "one_basket",
+ "version": 1,
+ "title": "Don't Put Everything in One Basket",
+ "tagline": "A colleague raves about one company. How do you spread — or not?",
+ "character": {
+  "name": "Imran",
+  "age": 29,
+  "role": "software tester with simulated ₹50,000 to practise with"
+ },
+ "difficulty": 2,
+ "concept_tags": [
+  "diversification",
+  "concentration_risk",
+  "risk"
+ ],
+ "pressure_tags": [
+  "social_proof",
+  "greed",
+  "fear"
+ ],
+ "tests_misconceptions": [
+  "M004",
+  "M005",
+  "M010",
+  "M009"
+ ],
+ "initial_state": "b1_choose",
+ "states": {
+  "b1_choose": {
+   "id": "b1_choose",
+   "title": "A colleague's favourite",
+   "narrative": "Imran has a simulated ₹50,000 to practise with. A colleague says Kaveri Solar Ltd (fictional) “can't fail”. Four fictional options are available: Kaveri Solar, Gomti Foods, Narmada Steel and Sutlej Bank, plus Brahmaputra Solar (another solar company). Nothing here is a recommendation about any real asset.",
+   "channel": {
+    "type": "chat",
+    "sender": "Colleague Vikas (fictional)",
+    "messages": [
+     "Kaveri Solar is up 60% this year. It can't fail! Put it all in."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "social_proof",
+     "text": "“Everyone in the office is in.”",
+     "intensity": 2
+    },
+    {
+     "type": "greed",
+     "text": "“Up 60% this year.”",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "b1_cant",
+     "label": "“It can't fail”",
+     "text": "Total certainty from a colleague.",
+     "kind": "red_flag",
+     "why": "No company or sector is immune to bad events. Certainty is a signal to examine, not to relax.",
+     "risk_factor": "overconfidence"
+    },
+    {
+     "id": "b1_past",
+     "label": "“Up 60% this year”",
+     "text": "A past gain used as the reason.",
+     "kind": "red_flag",
+     "why": "Past gains do not tell you about the future and can make a risk look safer than it is.",
+     "risk_factor": "past_performance"
+    },
+    {
+     "id": "b1_one",
+     "label": "Everything would depend on one company",
+     "text": "₹50,000 in a single place.",
+     "kind": "red_flag",
+     "why": "This is concentration risk: one bad event can hit all of your money at once.",
+     "risk_factor": "concentration"
+    },
+    {
+     "id": "b1_sector",
+     "label": "Solar depends partly on government policy",
+     "text": "Policy changes can move a whole sector.",
+     "kind": "neutral",
+     "why": "Companies in the same sector can fall together — owning two similar companies is not the same as spreading across different areas."
+    }
+   ],
+   "actions": [
+    {
+     "id": "all_in",
+     "label": "All ₹50,000 in Kaveri Solar — Vikas is confident",
+     "quality": "unsafe",
+     "next": "b2_all",
+     "consequence": "You put everything into one company.",
+     "simple_label": "All in one",
+     "misconception_signals": [
+      "M005"
+     ]
+    },
+    {
+     "id": "two_solar",
+     "label": "Split between Kaveri Solar and Brahmaputra Solar — that's diversified",
+     "quality": "mixed",
+     "next": "b2_sim",
+     "consequence": "You hold two companies from the same sector.",
+     "simple_label": "Two solar companies",
+     "misconception_signals": [
+      "M004"
+     ]
+    },
+    {
+     "id": "split_four",
+     "label": "Split equally across four different fictional assets",
+     "quality": "safe",
+     "next": "b2_split",
+     "consequence": "You spread the money across four unrelated areas.",
+     "simple_label": "Split across four"
+    },
+    {
+     "id": "buffer_split",
+     "label": "Keep ₹10,000 aside as an emergency cushion and split the rest across the four",
+     "quality": "safe",
+     "next": "b2_buf",
+     "consequence": "You keep a cushion and spread the rest.",
+     "simple_label": "Keep a cushion, split the rest"
+    }
+   ],
+   "reasoning_prompt": "Why did you choose this split?",
+   "simulation_hint": "concentration"
+  },
+  "b2_all": {
+   "id": "b2_all",
+   "title": "The policy shock",
+   "narrative": "A fictional government delays a solar subsidy. Kaveri Solar falls 35% and Brahmaputra Solar falls 32%; Gomti Foods +2%, Narmada Steel −3%, Sutlej Bank +1%. Everything was in one company. Your simulated ₹50,000 is now about ₹32,500 (−₹17,500).",
+   "channel": {
+    "type": "news",
+    "sender": "Fictional business news",
+    "messages": [
+     "SOLAR SHOCK: subsidy delayed. Sector falls sharply."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "fear",
+     "text": "Headlines say 'solar is finished'.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "b2_conc",
+     "label": "How much of your money depended on solar?",
+     "text": "Compare how much each choice lost to the same event.",
+     "kind": "neutral",
+     "why": "The same event hurts very differently depending on how concentrated the money was."
+    },
+    {
+     "id": "b2_hold",
+     "label": "“It will bounce back” — said with full certainty",
+     "text": "Someone is sure about the future.",
+     "kind": "red_flag",
+     "why": "Nobody knows. Certainty about recovery is as unreliable as certainty about collapse.",
+     "risk_factor": "overconfidence"
+    }
+   ],
+   "actions": [
+    {
+     "id": "review",
+     "label": "Review: how much of my money depended on one company or sector?",
+     "quality": "safe",
+     "next": "b3_broad",
+     "consequence": "You list each holding and how it behaved. The picture is clearer.",
+     "verification": true
+    },
+    {
+     "id": "double_down",
+     "label": "Put the rest into the same company to win it back faster",
+     "quality": "unsafe",
+     "next": "t_doubled_down",
+     "consequence": "You increase the concentration right after seeing its effect.",
+     "misconception_signals": [
+      "M010"
+     ]
+    },
+    {
+     "id": "wait_sure",
+     "label": "Do nothing; it's temporary, I'm sure",
+     "quality": "mixed",
+     "next": "b3_broad",
+     "consequence": "You rely on a feeling of certainty rather than a plan.",
+     "misconception_signals": [
+      "M010"
+     ]
+    }
+   ],
+   "reasoning_prompt": "What does this result tell you about how you chose?",
+   "simulation_hint": "concentration"
+  },
+  "b2_sim": {
+   "id": "b2_sim",
+   "title": "The policy shock",
+   "narrative": "A fictional government delays a solar subsidy. Kaveri Solar falls 35% and Brahmaputra Solar falls 32%; Gomti Foods +2%, Narmada Steel −3%, Sutlej Bank +1%. Both holdings were solar companies. Your simulated ₹50,000 is now about ₹33,250 (−₹16,750).",
+   "channel": {
+    "type": "news",
+    "sender": "Fictional business news",
+    "messages": [
+     "SOLAR SHOCK: subsidy delayed. Sector falls sharply."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "fear",
+     "text": "Headlines say 'solar is finished'.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "b2_conc",
+     "label": "How much of your money depended on solar?",
+     "text": "Compare how much each choice lost to the same event.",
+     "kind": "neutral",
+     "why": "The same event hurts very differently depending on how concentrated the money was."
+    },
+    {
+     "id": "b2_hold",
+     "label": "“It will bounce back” — said with full certainty",
+     "text": "Someone is sure about the future.",
+     "kind": "red_flag",
+     "why": "Nobody knows. Certainty about recovery is as unreliable as certainty about collapse.",
+     "risk_factor": "overconfidence"
+    }
+   ],
+   "actions": [
+    {
+     "id": "review",
+     "label": "Review: how much of my money depended on one company or sector?",
+     "quality": "safe",
+     "next": "b3_broad",
+     "consequence": "You list each holding and how it behaved. The picture is clearer.",
+     "verification": true
+    },
+    {
+     "id": "double_down",
+     "label": "Put the rest into the same company to win it back faster",
+     "quality": "unsafe",
+     "next": "t_doubled_down",
+     "consequence": "You increase the concentration right after seeing its effect.",
+     "misconception_signals": [
+      "M010"
+     ]
+    },
+    {
+     "id": "wait_sure",
+     "label": "Do nothing; it's temporary, I'm sure",
+     "quality": "mixed",
+     "next": "b3_broad",
+     "consequence": "You rely on a feeling of certainty rather than a plan.",
+     "misconception_signals": [
+      "M010"
+     ]
+    }
+   ],
+   "reasoning_prompt": "What does this result tell you about how you chose?",
+   "simulation_hint": "concentration"
+  },
+  "b2_split": {
+   "id": "b2_split",
+   "title": "The policy shock",
+   "narrative": "A fictional government delays a solar subsidy. Kaveri Solar falls 35% and Brahmaputra Solar falls 32%; Gomti Foods +2%, Narmada Steel −3%, Sutlej Bank +1%. The money was spread across four areas. Your simulated ₹50,000 is now about ₹45,625 (−₹4,375).",
+   "channel": {
+    "type": "news",
+    "sender": "Fictional business news",
+    "messages": [
+     "SOLAR SHOCK: subsidy delayed. Sector falls sharply."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "fear",
+     "text": "Headlines say 'solar is finished'.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "b2_conc",
+     "label": "How much of your money depended on solar?",
+     "text": "Compare how much each choice lost to the same event.",
+     "kind": "neutral",
+     "why": "The same event hurts very differently depending on how concentrated the money was."
+    },
+    {
+     "id": "b2_hold",
+     "label": "“It will bounce back” — said with full certainty",
+     "text": "Someone is sure about the future.",
+     "kind": "red_flag",
+     "why": "Nobody knows. Certainty about recovery is as unreliable as certainty about collapse.",
+     "risk_factor": "overconfidence"
+    }
+   ],
+   "actions": [
+    {
+     "id": "review",
+     "label": "Review: how much of my money depended on one company or sector?",
+     "quality": "safe",
+     "next": "b3_broad",
+     "consequence": "You list each holding and how it behaved. The picture is clearer.",
+     "verification": true
+    },
+    {
+     "id": "double_down",
+     "label": "Put the rest into the same company to win it back faster",
+     "quality": "unsafe",
+     "next": "t_doubled_down",
+     "consequence": "You increase the concentration right after seeing its effect.",
+     "misconception_signals": [
+      "M010"
+     ]
+    },
+    {
+     "id": "wait_sure",
+     "label": "Do nothing; it's temporary, I'm sure",
+     "quality": "mixed",
+     "next": "b3_broad",
+     "consequence": "You rely on a feeling of certainty rather than a plan.",
+     "misconception_signals": [
+      "M010"
+     ]
+    }
+   ],
+   "reasoning_prompt": "What does this result tell you about how you chose?",
+   "simulation_hint": "concentration"
+  },
+  "b2_buf": {
+   "id": "b2_buf",
+   "title": "The policy shock",
+   "narrative": "A fictional government delays a solar subsidy. Kaveri Solar falls 35% and Brahmaputra Solar falls 32%; Gomti Foods +2%, Narmada Steel −3%, Sutlej Bank +1%. A cushion was kept in cash and the rest spread across four areas. Your simulated ₹50,000 is now about ₹46,500 (−₹3,500).",
+   "channel": {
+    "type": "news",
+    "sender": "Fictional business news",
+    "messages": [
+     "SOLAR SHOCK: subsidy delayed. Sector falls sharply."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "fear",
+     "text": "Headlines say 'solar is finished'.",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "b2_conc",
+     "label": "How much of your money depended on solar?",
+     "text": "Compare how much each choice lost to the same event.",
+     "kind": "neutral",
+     "why": "The same event hurts very differently depending on how concentrated the money was."
+    },
+    {
+     "id": "b2_hold",
+     "label": "“It will bounce back” — said with full certainty",
+     "text": "Someone is sure about the future.",
+     "kind": "red_flag",
+     "why": "Nobody knows. Certainty about recovery is as unreliable as certainty about collapse.",
+     "risk_factor": "overconfidence"
+    }
+   ],
+   "actions": [
+    {
+     "id": "review",
+     "label": "Review: how much of my money depended on one company or sector?",
+     "quality": "safe",
+     "next": "b3_broad",
+     "consequence": "You list each holding and how it behaved. The picture is clearer.",
+     "verification": true
+    },
+    {
+     "id": "double_down",
+     "label": "Put the rest into the same company to win it back faster",
+     "quality": "unsafe",
+     "next": "t_doubled_down",
+     "consequence": "You increase the concentration right after seeing its effect.",
+     "misconception_signals": [
+      "M010"
+     ]
+    },
+    {
+     "id": "wait_sure",
+     "label": "Do nothing; it's temporary, I'm sure",
+     "quality": "mixed",
+     "next": "b3_broad",
+     "consequence": "You rely on a feeling of certainty rather than a plan.",
+     "misconception_signals": [
+      "M010"
+     ]
+    }
+   ],
+   "reasoning_prompt": "What does this result tell you about how you chose?",
+   "simulation_hint": "concentration"
+  },
+  "b3_broad": {
+   "id": "b3_broad",
+   "title": "A different kind of fall",
+   "narrative": "A few weeks later a broad downturn hits the whole fictional market: all four companies fall about 12% together, whatever sector they are in. Cash (if any) stays flat.",
+   "channel": {
+    "type": "news",
+    "sender": "Fictional business news",
+    "messages": [
+     "BROAD SELL-OFF: all sectors lower."
+    ]
+   },
+   "pressure": [
+    {
+     "type": "fear",
+     "text": "“Diversification doesn't work.”",
+     "intensity": 2
+    }
+   ],
+   "evidence": [
+    {
+     "id": "b3_all",
+     "label": "Different assets fell together",
+     "text": "This time sector did not matter.",
+     "kind": "neutral",
+     "why": "Diversification reduces concentration risk, but market-wide risk remains. It is a seatbelt, not an invincibility suit."
+    },
+    {
+     "id": "b3_claim",
+     "label": "“Diversification doesn't work”",
+     "text": "An overreaction to one event.",
+     "kind": "red_flag",
+     "why": "One event where assets fell together does not cancel the earlier lesson; both lessons are true.",
+     "risk_factor": "overreaction"
+    }
+   ],
+   "actions": [
+    {
+     "id": "understand",
+     "label": "Both are true: spreading helps with one-company risk; it can't remove market-wide risk, so my plan, time horizon and cushion still matter",
+     "quality": "safe",
+     "next": "t_aware",
+     "consequence": "You hold two ideas at once, which is what a resilient plan needs.",
+     "verification": true
+    },
+    {
+     "id": "fail_conclusion",
+     "label": "So spreading is pointless — go back to one company",
+     "quality": "mixed",
+     "next": "t_overreacted",
+     "consequence": "You discard a useful tool because it was not magic.",
+     "misconception_signals": [
+      "M004"
+     ]
+    },
+    {
+     "id": "eliminated",
+     "label": "I diversified, so I should not have lost anything",
+     "quality": "unsafe",
+     "next": "t_overconfident",
+     "consequence": "You expected diversification to remove all risk.",
+     "misconception_signals": [
+      "M004"
+     ]
+    }
+   ],
+   "reasoning_prompt": "What does diversification do, and what can it not do?",
+   "simulation_hint": "diversification"
+  },
+  "t_aware": {
+   "id": "t_aware",
+   "title": "You see both sides",
+   "narrative": "Spreading reduces the damage from one thing going wrong, but cannot remove risk that hits everything. Knowing what a tool does — and does not do — is the point.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "You see both sides",
+    "summary": "Spreading reduces the damage from one thing going wrong, but cannot remove risk that hits everything. Knowing what a tool does — and does not do — is the point.",
+    "kind": "safe"
+   }
+  },
+  "t_overreacted": {
+   "id": "t_overreacted",
+   "title": "A tool, not magic",
+   "narrative": "Diversification did its job in the first shock. One broad fall does not make it useless; it makes it incomplete on its own.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "A tool, not magic",
+    "summary": "Diversification did its job in the first shock. One broad fall does not make it useless; it makes it incomplete on its own.",
+    "kind": "mixed"
+   }
+  },
+  "t_overconfident": {
+   "id": "t_overconfident",
+   "title": "Expecting no risk",
+   "narrative": "Diversification is not risk removal. Believing it is can lead people to take on more risk than they can handle.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "Expecting no risk",
+    "summary": "Diversification is not risk removal. Believing it is can lead people to take on more risk than they can handle.",
+    "kind": "unsafe"
+   }
+  },
+  "t_doubled_down": {
+   "id": "t_doubled_down",
+   "title": "Concentration, again",
+   "narrative": "Putting more into the same place right after seeing the effect of concentration is the loss-recovery trap. A bigger bet is not a faster way back.",
+   "channel": {
+    "type": "none",
+    "sender": null,
+    "messages": []
+   },
+   "pressure": [],
+   "evidence": [],
+   "actions": [],
+   "terminal": true,
+   "outcome": {
+    "headline": "Concentration, again",
+    "summary": "Putting more into the same place right after seeing the effect of concentration is the loss-recovery trap. A bigger bet is not a faster way back.",
+    "kind": "unsafe"
+   }
+  }
+ },
+ "reflection": {
+  "key_points": [
+   "One company or sector can fall a lot at once. Concentration risk is the share of your money exposed to a single event.",
+   "Two similar assets (same sector) are not true diversification.",
+   "Diversification reduces — it does not eliminate — risk.",
+   "A cushion of easily accessible money is part of a resilient plan."
+  ],
+  "questions": [
+   "What share of your money depends on one thing?"
+  ],
+  "micro_lesson": {
+   "concept_id": "concentration_risk",
+   "title": "The 'what if this one thing fails?' question",
+   "body": "For any plan ask: if the biggest piece fell 40%, how much of my total would I lose? If the answer is more than you could handle, the plan is too concentrated."
+  }
+ },
+ "scoring": {
+  "dimensions": [
+   "risk_recognition",
+   "concept_knowledge",
+   "independent_reasoning"
+  ]
+ },
+ "i18n": {
+  "hinglish": {
+   "title": "Sab Ande Ek Tokri Mein Mat Rakho",
+   "tagline": "Colleague ek company ki tareef karta hai. Aap paisa kaise baantoge — ya nahi?",
+   "states.b1_choose.title": "Colleague ki pasandeeda company",
+   "states.b1_choose.narrative": "Imran ke paas practice ke liye simulated ₹50,000 hain. Ek colleague kehta hai Kaveri Solar Ltd (kaalpanik) “fail ho hi nahi sakti”. Chaar kaalpanik options hain: Kaveri Solar, Gomti Foods, Narmada Steel aur Sutlej Bank, aur Brahmaputra Solar (ek aur solar company). Yahan kisi asli asset ke baare mein koi sifarish nahi.",
+   "states.b1_choose.channel.messages.0": "Kaveri Solar is saal 60% badhi hai. Ye fail nahi ho sakti! Sab isi mein daalo.",
+   "states.b1_choose.pressure.0.text": "“Office mein sab ismein hain.”",
+   "states.b1_choose.pressure.1.text": "“Is saal 60% badhi.”",
+   "states.b1_choose.evidence.b1_cant.label": "“Ye fail nahi ho sakti”",
+   "states.b1_choose.evidence.b1_cant.text": "Colleague ka poora vishwas.",
+   "states.b1_choose.evidence.b1_cant.why": "Koi company ya sector buri ghatnaon se mukt nahi. Pakka vishwas jaanchne ka sanket hai, nishchint hone ka nahi.",
+   "states.b1_choose.evidence.b1_past.label": "“Is saal 60% badhi”",
+   "states.b1_choose.evidence.b1_past.text": "Pichhla faayda wajah ke taur par.",
+   "states.b1_choose.evidence.b1_past.why": "Pichhle faayde bhavishya ke baare mein nahi batate aur risk ko surakshit dikha sakte hain.",
+   "states.b1_choose.evidence.b1_one.label": "Sab kuch ek company par nirbhar hoga",
+   "states.b1_choose.evidence.b1_one.text": "₹50,000 ek hi jagah.",
+   "states.b1_choose.evidence.b1_one.why": "Ye concentration risk hai: ek buri ghatna aapke poore paise par ek saath asar daal sakti hai.",
+   "states.b1_choose.evidence.b1_sector.label": "Solar kuch had tak sarkari policy par nirbhar hai",
+   "states.b1_choose.evidence.b1_sector.text": "Policy badalne se poora sector hil sakta hai.",
+   "states.b1_choose.evidence.b1_sector.why": "Ek hi sector ki companies ek saath gir sakti hain — do milti-julti companies rakhna alag-alag kshetron mein baantna nahi.",
+   "states.b1_choose.actions.all_in.label": "Poora ₹50,000 Kaveri Solar mein — Vikas ko vishwas hai",
+   "states.b1_choose.actions.all_in.consequence": "Aap sab kuch ek company mein daalte ho.",
+   "states.b1_choose.actions.all_in.simple_label": "Sab ek mein",
+   "states.b1_choose.actions.two_solar.label": "Kaveri Solar aur Brahmaputra Solar mein baant do — ye diversified hai",
+   "states.b1_choose.actions.two_solar.consequence": "Aap ek hi sector ki do companies rakhte ho.",
+   "states.b1_choose.actions.two_solar.simple_label": "Do solar companies",
+   "states.b1_choose.actions.split_four.label": "Chaar alag kaalpanik assets mein barabar baant do",
+   "states.b1_choose.actions.split_four.consequence": "Aap paisa chaar alag kshetron mein baantte ho.",
+   "states.b1_choose.actions.split_four.simple_label": "Chaar mein baanto",
+   "states.b1_choose.actions.buffer_split.label": "₹10,000 emergency cushion ke liye rakho aur baaki chaar mein baanto",
+   "states.b1_choose.actions.buffer_split.consequence": "Aap cushion rakhte ho aur baaki baantte ho.",
+   "states.b1_choose.actions.buffer_split.simple_label": "Cushion rakho, baaki baanto",
+   "states.b1_choose.reasoning_prompt": "Aapne ye baantne ka tareeka kyun chuna?",
+   "states.b2_all.title": "Policy ka jhatka",
+   "states.b2_all.narrative": "Ek kaalpanik sarkar solar subsidy rok deti hai. Kaveri Solar 35% aur Brahmaputra Solar 32% girte hain; Gomti Foods +2%, Narmada Steel −3%, Sutlej Bank +1%. Sab kuch ek hi company mein tha. Aapke simulated ₹50,000 ab lagbhag ₹32,500 hain (−₹17,500).",
+   "states.b2_all.channel.messages.0": "SOLAR SHOCK: subsidy ruki. Sector tezi se gira.",
+   "states.b2_all.pressure.0.text": "Headlines kehti hain 'solar khatam'.",
+   "states.b2_all.evidence.b2_conc.label": "Aapka kitna paisa solar par tika tha?",
+   "states.b2_all.evidence.b2_conc.text": "Dekho ek hi ghatna se har choice ne kitna khoya.",
+   "states.b2_all.evidence.b2_conc.why": "Ek hi ghatna se nuksaan is baat par nirbhar karta hai ki paisa kitna ek jagah tha.",
+   "states.b2_all.evidence.b2_hold.label": "“Ye wapas aayega” — poore vishwas se kaha gaya",
+   "states.b2_all.evidence.b2_hold.text": "Koi bhavishya ke baare mein pakka hai.",
+   "states.b2_all.evidence.b2_hold.why": "Koi nahi jaanta. Sudhaar ka pakka vishwas utna hi bharosemand nahi jitna girne ka.",
+   "states.b2_all.actions.review.label": "Review: mera kitna paisa ek company ya sector par tika tha?",
+   "states.b2_all.actions.review.consequence": "Aap har holding aur uske vyavhaar ki list banate ho. Tasveer saaf hoti hai.",
+   "states.b2_all.actions.double_down.label": "Baaki paisa usi company mein daalo taaki jaldi wapas aaye",
+   "states.b2_all.actions.double_down.consequence": "Aap asar dekhne ke turant baad concentration badha dete ho.",
+   "states.b2_all.actions.wait_sure.label": "Kuch mat karo; ye asthayi hai, mujhe pakka pata hai",
+   "states.b2_all.actions.wait_sure.consequence": "Aap plan ki jagah pakke vishwas ke ehsaas par bharosa karte ho.",
+   "states.b2_all.reasoning_prompt": "Ye nateeja aapke chunav ke baare mein kya batata hai?",
+   "states.b2_sim.title": "Policy ka jhatka",
+   "states.b2_sim.narrative": "Ek kaalpanik sarkar solar subsidy rok deti hai. Kaveri Solar 35% aur Brahmaputra Solar 32% girte hain; Gomti Foods +2%, Narmada Steel −3%, Sutlej Bank +1%. Dono holdings solar companies thi. Aapke simulated ₹50,000 ab lagbhag ₹33,250 hain (−₹16,750).",
+   "states.b2_sim.channel.messages.0": "SOLAR SHOCK: subsidy ruki. Sector tezi se gira.",
+   "states.b2_sim.pressure.0.text": "Headlines kehti hain 'solar khatam'.",
+   "states.b2_sim.evidence.b2_conc.label": "Aapka kitna paisa solar par tika tha?",
+   "states.b2_sim.evidence.b2_conc.text": "Dekho ek hi ghatna se har choice ne kitna khoya.",
+   "states.b2_sim.evidence.b2_conc.why": "Ek hi ghatna se nuksaan is baat par nirbhar karta hai ki paisa kitna ek jagah tha.",
+   "states.b2_sim.evidence.b2_hold.label": "“Ye wapas aayega” — poore vishwas se kaha gaya",
+   "states.b2_sim.evidence.b2_hold.text": "Koi bhavishya ke baare mein pakka hai.",
+   "states.b2_sim.evidence.b2_hold.why": "Koi nahi jaanta. Sudhaar ka pakka vishwas utna hi bharosemand nahi jitna girne ka.",
+   "states.b2_sim.actions.review.label": "Review: mera kitna paisa ek company ya sector par tika tha?",
+   "states.b2_sim.actions.review.consequence": "Aap har holding aur uske vyavhaar ki list banate ho. Tasveer saaf hoti hai.",
+   "states.b2_sim.actions.double_down.label": "Baaki paisa usi company mein daalo taaki jaldi wapas aaye",
+   "states.b2_sim.actions.double_down.consequence": "Aap asar dekhne ke turant baad concentration badha dete ho.",
+   "states.b2_sim.actions.wait_sure.label": "Kuch mat karo; ye asthayi hai, mujhe pakka pata hai",
+   "states.b2_sim.actions.wait_sure.consequence": "Aap plan ki jagah pakke vishwas ke ehsaas par bharosa karte ho.",
+   "states.b2_sim.reasoning_prompt": "Ye nateeja aapke chunav ke baare mein kya batata hai?",
+   "states.b2_split.title": "Policy ka jhatka",
+   "states.b2_split.narrative": "Ek kaalpanik sarkar solar subsidy rok deti hai. Kaveri Solar 35% aur Brahmaputra Solar 32% girte hain; Gomti Foods +2%, Narmada Steel −3%, Sutlej Bank +1%. Paisa chaar kshetron mein baanta tha. Aapke simulated ₹50,000 ab lagbhag ₹45,625 hain (−₹4,375).",
+   "states.b2_split.channel.messages.0": "SOLAR SHOCK: subsidy ruki. Sector tezi se gira.",
+   "states.b2_split.pressure.0.text": "Headlines kehti hain 'solar khatam'.",
+   "states.b2_split.evidence.b2_conc.label": "Aapka kitna paisa solar par tika tha?",
+   "states.b2_split.evidence.b2_conc.text": "Dekho ek hi ghatna se har choice ne kitna khoya.",
+   "states.b2_split.evidence.b2_conc.why": "Ek hi ghatna se nuksaan is baat par nirbhar karta hai ki paisa kitna ek jagah tha.",
+   "states.b2_split.evidence.b2_hold.label": "“Ye wapas aayega” — poore vishwas se kaha gaya",
+   "states.b2_split.evidence.b2_hold.text": "Koi bhavishya ke baare mein pakka hai.",
+   "states.b2_split.evidence.b2_hold.why": "Koi nahi jaanta. Sudhaar ka pakka vishwas utna hi bharosemand nahi jitna girne ka.",
+   "states.b2_split.actions.review.label": "Review: mera kitna paisa ek company ya sector par tika tha?",
+   "states.b2_split.actions.review.consequence": "Aap har holding aur uske vyavhaar ki list banate ho. Tasveer saaf hoti hai.",
+   "states.b2_split.actions.double_down.label": "Baaki paisa usi company mein daalo taaki jaldi wapas aaye",
+   "states.b2_split.actions.double_down.consequence": "Aap asar dekhne ke turant baad concentration badha dete ho.",
+   "states.b2_split.actions.wait_sure.label": "Kuch mat karo; ye asthayi hai, mujhe pakka pata hai",
+   "states.b2_split.actions.wait_sure.consequence": "Aap plan ki jagah pakke vishwas ke ehsaas par bharosa karte ho.",
+   "states.b2_split.reasoning_prompt": "Ye nateeja aapke chunav ke baare mein kya batata hai?",
+   "states.b2_buf.title": "Policy ka jhatka",
+   "states.b2_buf.narrative": "Ek kaalpanik sarkar solar subsidy rok deti hai. Kaveri Solar 35% aur Brahmaputra Solar 32% girte hain; Gomti Foods +2%, Narmada Steel −3%, Sutlej Bank +1%. Cushion cash mein tha aur baaki chaar kshetron mein. Aapke simulated ₹50,000 ab lagbhag ₹46,500 hain (−₹3,500).",
+   "states.b2_buf.channel.messages.0": "SOLAR SHOCK: subsidy ruki. Sector tezi se gira.",
+   "states.b2_buf.pressure.0.text": "Headlines kehti hain 'solar khatam'.",
+   "states.b2_buf.evidence.b2_conc.label": "Aapka kitna paisa solar par tika tha?",
+   "states.b2_buf.evidence.b2_conc.text": "Dekho ek hi ghatna se har choice ne kitna khoya.",
+   "states.b2_buf.evidence.b2_conc.why": "Ek hi ghatna se nuksaan is baat par nirbhar karta hai ki paisa kitna ek jagah tha.",
+   "states.b2_buf.evidence.b2_hold.label": "“Ye wapas aayega” — poore vishwas se kaha gaya",
+   "states.b2_buf.evidence.b2_hold.text": "Koi bhavishya ke baare mein pakka hai.",
+   "states.b2_buf.evidence.b2_hold.why": "Koi nahi jaanta. Sudhaar ka pakka vishwas utna hi bharosemand nahi jitna girne ka.",
+   "states.b2_buf.actions.review.label": "Review: mera kitna paisa ek company ya sector par tika tha?",
+   "states.b2_buf.actions.review.consequence": "Aap har holding aur uske vyavhaar ki list banate ho. Tasveer saaf hoti hai.",
+   "states.b2_buf.actions.double_down.label": "Baaki paisa usi company mein daalo taaki jaldi wapas aaye",
+   "states.b2_buf.actions.double_down.consequence": "Aap asar dekhne ke turant baad concentration badha dete ho.",
+   "states.b2_buf.actions.wait_sure.label": "Kuch mat karo; ye asthayi hai, mujhe pakka pata hai",
+   "states.b2_buf.actions.wait_sure.consequence": "Aap plan ki jagah pakke vishwas ke ehsaas par bharosa karte ho.",
+   "states.b2_buf.reasoning_prompt": "Ye nateeja aapke chunav ke baare mein kya batata hai?",
+   "states.b3_broad.title": "Ek alag tarah ki giravat",
+   "states.b3_broad.narrative": "Kuch hafte baad poore kaalpanik market mein vyapak giravat aati hai: chaaron companies sector chahe jo ho, ek saath lagbhag 12% girti hain. Cash (agar hai) wahi rehta hai.",
+   "states.b3_broad.channel.messages.0": "VYAPAK BIKWALI: sab sector neeche.",
+   "states.b3_broad.pressure.0.text": "“Diversification kaam nahi karta.”",
+   "states.b3_broad.evidence.b3_all.label": "Alag assets ek saath gire",
+   "states.b3_broad.evidence.b3_all.text": "Is baar sector ne fark nahi daala.",
+   "states.b3_broad.evidence.b3_all.why": "Diversification concentration risk ghatata hai, par poore market ka risk rehta hai. Ye seatbelt hai, avijay kavach nahi.",
+   "states.b3_broad.evidence.b3_claim.label": "“Diversification kaam nahi karta”",
+   "states.b3_broad.evidence.b3_claim.text": "Ek ghatna par ati-pratikriya.",
+   "states.b3_broad.evidence.b3_claim.why": "Ek ghatna jisme assets saath gire pichhli seekh ko radd nahi karti; dono baatein sach hain.",
+   "states.b3_broad.actions.understand.label": "Dono sach: baantna ek-company risk mein madad karta hai; poore market ka risk nahi hatata, isliye plan, samay-seema aur cushion zaroori",
+   "states.b3_broad.actions.understand.consequence": "Aap do vichar ek saath rakhte ho, jo majboot plan ko chahiye.",
+   "states.b3_broad.actions.fail_conclusion.label": "To baantna bekaar hai — wapas ek company par jao",
+   "states.b3_broad.actions.fail_conclusion.consequence": "Aap ek kaam ka aujaar chhod dete ho kyunki wo jaadu nahi tha.",
+   "states.b3_broad.actions.eliminated.label": "Maine diversify kiya, to mujhe kuch nahi khona chahiye tha",
+   "states.b3_broad.actions.eliminated.consequence": "Aapne socha diversification sab risk hata dega.",
+   "states.b3_broad.reasoning_prompt": "Diversification kya karta hai, aur kya nahi kar sakta?",
+   "states.t_aware.title": "Aap dono pehlu dekhte ho",
+   "states.t_aware.narrative": "Baantna kisi ek cheez ke bigadne ka nuksaan ghatata hai, par sab par asar karne wala risk nahi hata sakta. Aujaar kya karta hai — aur kya nahi — ye jaanna hi mudda hai.",
+   "states.t_aware.outcome.headline": "Aap dono pehlu dekhte ho",
+   "states.t_aware.outcome.summary": "Baantna kisi ek cheez ke bigadne ka nuksaan ghatata hai, par sab par asar karne wala risk nahi hata sakta. Aujaar kya karta hai — aur kya nahi — ye jaanna hi mudda hai.",
+   "states.t_overreacted.title": "Aujaar, jaadu nahi",
+   "states.t_overreacted.narrative": "Diversification ne pehle jhatke mein apna kaam kiya. Ek vyapak giravat use bekaar nahi banati; use akele adhoora banati hai.",
+   "states.t_overreacted.outcome.headline": "Aujaar, jaadu nahi",
+   "states.t_overreacted.outcome.summary": "Diversification ne pehle jhatke mein apna kaam kiya. Ek vyapak giravat use bekaar nahi banati; use akele adhoora banati hai.",
+   "states.t_overconfident.title": "Koi risk nahi, aisi ummeed",
+   "states.t_overconfident.narrative": "Diversification risk hatana nahi hai. Aisa maanne se log jhelne se zyada risk le sakte hain.",
+   "states.t_overconfident.outcome.headline": "Koi risk nahi, aisi ummeed",
+   "states.t_overconfident.outcome.summary": "Diversification risk hatana nahi hai. Aisa maanne se log jhelne se zyada risk le sakte hain.",
+   "states.t_doubled_down.title": "Phir wahi concentration",
+   "states.t_doubled_down.narrative": "Concentration ka asar dekhne ke turant baad usi jagah aur daalna loss-recovery ka jaal hai. Bada daanv wapas aane ka tez raasta nahi.",
+   "states.t_doubled_down.outcome.headline": "Phir wahi concentration",
+   "states.t_doubled_down.outcome.summary": "Concentration ka asar dekhne ke turant baad usi jagah aur daalna loss-recovery ka jaal hai. Bada daanv wapas aane ka tez raasta nahi.",
+   "reflection.key_points.0": "Ek company ya sector ek saath bahut gir sakta hai. Concentration risk wo hissa hai jo ek ghatna se prabhavit hota hai.",
+   "reflection.key_points.1": "Do milti-julti assets (ek hi sector) asli diversification nahi.",
+   "reflection.key_points.2": "Diversification risk ghatata hai, khatam nahi karta.",
+   "reflection.key_points.3": "Aasani se milne wale paise ka cushion majboot plan ka hissa hai.",
+   "reflection.questions.0": "Aapke paise ka kitna hissa ek cheez par tika hai?",
+   "reflection.micro_lesson.title": "'Agar ye ek cheez fail ho gayi to?' sawaal",
+   "reflection.micro_lesson.body": "Kisi bhi plan par poochho: agar sabse bada hissa 40% gir jaye to mera kitna kul nuksaan hoga? Agar jawab jhel pane se zyada hai to plan bahut concentrated hai."
+  }
+ }
+}
