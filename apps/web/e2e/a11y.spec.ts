@@ -9,6 +9,7 @@ async function audit(page: Page, label: string) {
 }
 
 const PAGES = ["/", "/simulate", "/learn?tab=concepts&concept=risk", "/learn?tab=lab", "/learn?tab=sims&sim=fee_erosion", "/learn?tab=ask", "/learn?tab=quiz", "/learn?tab=safety",
+  "/learn?tab=sims&sim=concentration", "/learn?tab=sims&sim=liquidity", "/learn?tab=sims&sim=scam_loss", "/learn?tab=sims&sim=volatility", "/learn?tab=sims&sim=diversification",
   "/resilience", "/progress", "/settings", "/profile", "/privacy"];
 
 test.describe("accessibility (axe, WCAG 2.x A/AA: serious+critical must be zero)", () => {

@@ -14,7 +14,7 @@ const C = { cur: "#3A5FA0", prev: "#C0841A", grid: "#DCD0B1", ink: "#4C566E" };
 export function Radar({ dims, showPrev = true, size = 440 }: { dims: Dim[]; showPrev?: boolean; size?: number }) {
   const { t } = useApp();
   const [hover, setHover] = useState<number | null>(null);
-  const cx = size / 2, cy = size / 2, R = size / 2 - 64, n = dims.length;
+  const cx = size / 2, cy = size / 2, R = size / 2 - 96, n = dims.length;
   const ang = (i: number) => -Math.PI / 2 + (i * 2 * Math.PI) / n;
   const pt = (i: number, v: number) => [cx + Math.cos(ang(i)) * R * (v / 100), cy + Math.sin(ang(i)) * R * (v / 100)];
   const poly = (vals: (number | null)[]) => vals.map((v, i) => pt(i, v ?? 0).map((x) => x.toFixed(1)).join(",")).join(" ");
@@ -83,8 +83,8 @@ export function DimRows({ dims }: { dims: Dim[] }) {
                 {d.score != null && <span className="block h-full rounded-full" style={{ width: `${d.score}%`, background: C.cur }} />}
               </span>
             </span>
-            <span className="w-16 text-right">
-              {d.score != null ? <span className="font-serif text-xl font-bold text-midnight">{Math.round(d.score)}</span> : <span className="text-xs text-ink-faint">{t("not_measured")}</span>}
+            <span className="w-24 shrink-0 text-right">
+              {d.score != null ? <span className="font-serif text-xl font-bold text-midnight">{Math.round(d.score)}</span> : <span className="whitespace-nowrap text-xs text-ink-faint">{t("not_measured")}</span>}
             </span>
             <span className="w-14 text-right text-xs font-semibold" aria-label={d.change != null ? `${t("change")} ${d.change}` : undefined}>
               {d.change != null && d.change !== 0 ? (

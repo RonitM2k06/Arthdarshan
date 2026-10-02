@@ -31,6 +31,8 @@ _REC_PATTERNS = [
     rf"\b(kaun\s*(sa|si)|konsa|kaunsa|kon\s*sa)\s+{_PRODUCT}\b[^?.!]{{0,40}}(lun|loon|kharidun|khareedun|kharidu|best|achha|accha|sahi|behtar|lena|le\s*lun|invest)",
     rf"\b{_PRODUCT}\s+(konsa|kaunsa|kaun\s*sa|kaun\s*si)\s+(best|achha|accha|sahi|behtar)",
     r"\b(kya|kab)\s+(kharidun|khareedun|bechun|kharidna|bechna|lena|becho|kharido|invest\s+karun|invest\s+karu)\b",
+    r"(कौन\s*सा|कौनसा|कौन\s*सी)\s*(स्टॉक|शेयर|म्यूचुअल\s*फंड|फंड|योजना|एसआईपी|क्रिप्टो)",
+    r"(खरीदूँ|खरीदूं|बेचूँ|बेचूं|खरीदना\s*चाहिए|बेचना\s*चाहिए|खरीदें\s*या\s*बेचें)",
 ]
 _BSH_PATTERNS = [
     r"\b(should|shall|can|must)\s+(i|we)\s+(buy|sell|hold|invest|exit|enter|switch|book\s+profit|average|accumulate|put)\b",
@@ -47,6 +49,8 @@ _PRED_PATTERNS = [
     r"\b(kitna|kitne)\s+(badhega|girega|upar\s+jayega|neeche\s+jayega|chadhega|badhenge|girenge)\b",
     r"\b(market|nifty|sensex|share|stock)\s+(badhega|girega|crash\s+hoga|upar\s+jayega)\b",
     r"\bwhere\s+will\s+(the\s+)?(nifty|sensex|market|gold|bitcoin|price)\b",
+    r"(भविष्यवाणी|निफ्टी|सेंसेक्स)[^?।]{0,40}(कल|अगले|बढ़ेगा|गिरेगा)",
+    r"(कितना|कितने)\s*(बढ़ेगा|गिरेगा|बढ़ेंगे|गिरेंगे)",
     r"\bexpected\s+(returns?|gains?|profits?)\b",
     r"\bhow\s+much\s+(will|can)\s+(i|my\s+money|it)\s+(make|earn|grow|become|get)\b",
     r"\b(will|would)\s+i\s+(make|earn|get)\s+(a\s+)?(profit|money|returns?)\b",
@@ -61,6 +65,8 @@ _PERSONAL_PATTERNS = [
     r"\b(mere|meri)\s+paas\b[^?.!]{0,40}(hain|hai)\b[^?.!]{0,50}(kahan|kaha|kaise|kidhar)\s+(lagau|lagaun|lagana|invest|daalu|daalun)",
     r"\b(kahan|kaha|kidhar)\s+(invest|paisa\s+lagau|paisa\s+lagaun|paisa\s+lagana|lagau|lagaun|daalu|daalun)\b",
     r"\bpaisa\s+kahan\s+(lagana|lagau|lagaun|daalna)\b",
+    r"(पैसा|रुपये|₹)[^?।]{0,30}(कहाँ|कहां)\s*(लगाऊँ|लगाऊं|लगाएँ|लगाएं|निवेश)",
+    r"(कहाँ|कहां)\s*(निवेश|पैसा\s*लगाऊँ|पैसा\s*लगाऊं)",
 ]
 _BROKER_NAMES = (r"zerodha|kite|groww|upstox|angel\s*one|angel\s*broking|5\s*paisa|icici\s*direct|hdfc\s*securities|kotak\s*securities|paytm\s*money|"
                  r"sharekhan|motilal\s*oswal|dhan|fyers|robinhood|coinbase|binance|wazirx|coindcx|etoro|interactive\s*brokers|et\s*money|kuvera|"

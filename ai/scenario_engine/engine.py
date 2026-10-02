@@ -192,13 +192,15 @@ def _resolve_and_set(node: Any, parts: list[str], value: str) -> bool:
 
 
 def localize(sc: Scenario, lang: str) -> Scenario:
-    """Return a copy of the scenario with text replaced by the overlay for `lang` (falls back to English)."""
-    overlay = sc.i18n.get(lang)
-    if not overlay:
+    """Return a copy with text replaced by the overlay for `lang`. Hindi is layered on top of Hinglish, so scenarios that have
+    no Hindi translation yet show Roman-script Hinglish (readable by Hindi speakers) rather than English. Unknown -> English."""
+    layers = [sc.i18n[k] for k in (("hinglish", "hi") if lang == "hi" else (lang,)) if sc.i18n.get(k)]
+    if not layers:
         return sc
     data = sc.model_dump()
-    for path, text in overlay.items():
-        _resolve_and_set(data, path.split("."), text)
+    for overlay in layers:
+        for path, text in overlay.items():
+            _resolve_and_set(data, path.split("."), text)
     return Scenario.model_validate(data)
 
 

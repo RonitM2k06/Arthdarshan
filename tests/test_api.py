@@ -417,3 +417,15 @@ def test_database_failure_is_a_safe_503(client):
 def test_unknown_route_and_method(client):
     assert client.get("/api/nope").status_code == 404
     assert client.put("/api/health").status_code == 405
+
+
+def test_scripted_demo_persona_runs_through_the_real_engine(client):
+    r = client.post("/api/auth/demo-persona", json={"language": "en"})
+    assert r.status_code == 200 and "scripted" in r.json()["user"]["display_name"]
+    h = {"Authorization": f"Bearer {r.json()['token']}"}
+    rep = client.get("/api/resilience/report", headers=h).json()
+    assert rep["totals"]["scenarios_completed"] == 5 and rep["totals"]["decisions"] >= 12
+    assert len(rep["improvement"]["points"]) == 5 and rep["improvement"]["first_to_latest"]
+    assert any(m["status"] in ("improving", "resolved") for m in rep["misconceptions"])
+    dims = {d["id"]: d for d in rep["fingerprint"]["dimensions"]}
+    assert dims["scam_awareness"]["score"] is not None and dims["scam_awareness"]["change"] is not None

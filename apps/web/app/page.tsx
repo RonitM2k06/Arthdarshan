@@ -20,9 +20,9 @@ export default function Landing() {
   useEffect(() => { api<{ scenarios: any[] }>("/scenarios").then((r) => setCards(r.scenarios)).catch(() => setCards([])); }, [lang]);
   const steps = ["how_1", "how_2", "how_3", "how_4", "how_5", "how_6"] as const;
   return (
-    <div className="-mx-4 -mt-8">
+    <div className="-mt-8">
       {/* HERO */}
-      <section className="jali relative overflow-hidden bg-midnight px-4 pb-16 pt-14 text-ivory sm:pt-20">
+      <section className="bleed jali relative overflow-hidden bg-midnight px-4 pb-16 pt-14 text-ivory sm:pt-20">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full border border-saffron-300/20" />
         <div aria-hidden="true" className="pointer-events-none absolute -right-10 top-10 h-64 w-64 rounded-full border border-saffron-300/20" />
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.1fr_.9fr]">
@@ -36,6 +36,7 @@ export default function Landing() {
               <Link href="/learn?tab=ask" className="btn border-saffron-300/60 text-saffron-300 hover:bg-midnight-700"><Icon name="mic" /> {t("cta_voice")}</Link>
               <Link href="/resilience" className="btn border-ivory/30 text-ivory hover:bg-midnight-700">{t("cta_view")}</Link>
             </div>
+            <p className="mt-4 text-sm text-ivory/75"><Link href="/demo?persona=1" className="underline">{t("sample_learner")}</Link></p>
           </div>
           {/* a taste of the experience in the first second */}
           <div className="anim animate-rise rounded-3xl border border-saffron-300/30 bg-midnight-800/80 p-5 shadow-2xl" aria-label="Preview of the simulator">

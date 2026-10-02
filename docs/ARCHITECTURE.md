@@ -1,109 +1,74 @@
 # ARCHITECTURE.md — ARTHDARSHAN
 
-*Train before you face it.* An educational financial-decision-resilience simulator. It gives no investment advice. All scenarios are fictional and use no real money.
+*Train before you face it.* An educational financial-decision-resilience simulator. No investment advice, no real money, everything local.
 
-## Core principle: three layers with strict separation
+## Separation of concerns
 
 | Layer | Owns | Never does |
 |---|---|---|
-| **Deterministic engine** | Scenario truth, state transitions, consequences, pressure, scoring rules | Call an LLM to decide what happens |
-| **Classical ML** | Misconception/behaviour classification, mastery estimation, adaptive scenario selection | Run without an evaluated, versioned model or a rule fallback |
-| **LLM / RAG (optional)** | Plain-language explanation, reasoning feedback, Q&A with citations, voice | Control scenario state, or emit unfiltered text |
+| **Deterministic engine** (`ai/scenario_engine`) | scenario truth, transitions, consequences, pressure, validity | call an LLM |
+| **Scoring** (`apps/api/services/scoring.py`) | fingerprint from explicit, documented rules over recorded data | invent a score for an unmeasured dimension |
+| **Classical ML** (`ai/misconception`, `ml/`) | misconception & behaviour classification, success prediction | run without a rule fallback |
+| **Adaptive policy** (`ai/adaptive_learning`) | weakness → training selection with a reasons list; BKT mastery | act as a black box |
+| **Local LLM** (`ai/llm`, optional) | one English coach note; rephrasing of retrieved Q&A | state scenario facts, control state |
+| **RAG** (`ai/rag`) | retrieval + citations; refuses without evidence | fabricate sources or rules |
+| **Safety gateway** (`ai/safety`) | input/output validation, redaction, blocking | depend on any model |
 
-If the ML or LLM layers are unavailable, the product still runs end to end on the deterministic layer plus rule-based fallbacks.
-
-## System diagram
-
-```
-Browser (Next.js + TS + Tailwind)  ── offline-capable core, Web Speech fallback
-        │  HTTPS-free localhost REST
-        ▼
-FastAPI (apps/api)  ── Pydantic validation, logging, error handling
-        │
-        ├── Safety Gateway (ai/safety)      ← wraps EVERY user input and EVERY AI output
-        ├── Scenario Engine (ai/scenario_engine)   deterministic state machine
-        ├── Misconception Engine (ai/misconception) rules + trained classifier
-        ├── Adaptive Learning (ai/adaptive_learning) transparent weakness→training policy
-        ├── Resilience scoring (fingerprint, 10 dimensions)
-        ├── Simulations (simulations/)      fee, compounding, concentration, volatility…
-        ├── RAG (ai/rag)                    embeddings → fallback BM25/keyword
-        ├── LLM (ai/llm)                    Ollama → fallback templates
-        └── Voice                           faster-whisper / Piper → browser → text
-        │
-        ▼
-SQLite (database/) via SQLAlchemy + Alembic migrations
-```
-
-## Request flow for a decision
+## System
 
 ```
-POST /api/decisions
-  → Safety: check free-text reasoning (PII/credential patterns, advice requests)
-  → Scenario engine: validate action is legal in current state; apply transition; produce consequence + new evidence + pressure
-  → Persist decision + reasoning + latency + confidence + evidence requested/ignored
-  → Misconception engine: classify reasoning + choice → detected misconception ids (with confidence and source)
-  → Scoring: update fingerprint dimensions from explicit scoring rules
-  → Adaptive: update mastery, choose next scenario with a logged, human-readable rationale
-  → Explanation: LLM if available, else template; Safety output check
-  → Response
+Browser — Next.js 14 + TypeScript + Tailwind (served locally; proxies /api → FastAPI; no external assets)
+   │  Web Speech API fallback for voice
+   ▼
+FastAPI (apps/api) — Pydantic (extra=forbid), uniform safe errors, logging without learner text
+   ├─ routers: auth · users · scenarios · decisions · reflection · simulations · learning · concepts · progress · resilience · rag · voice · safety · models · health
+   ├─ Safety gateway ──────────── wraps every input and output
+   ├─ Scenario engine ─────────── pure functions over validated JSON (configs/scenarios)
+   ├─ Misconception + behaviour ─ rules → trained classifiers (gated) → choice signals
+   ├─ Scoring / fingerprint ───── observations → recency-weighted scores → snapshots
+   ├─ Adaptive learning ───────── BKT + transparent selection policy (+ success model)
+   ├─ Simulations (simulations/) ─ 9 deterministic zero-money models
+   ├─ RAG ─────────────────────── MiniLM embeddings + BM25, keyword fallback
+   ├─ LLM client ──────────────── Ollama (Qwen2.5-3B Q4), lazy, time-limited, validated
+   └─ Voice client ── RPC ──▶ isolated worker process: Piper TTS + faster-whisper STT
+   ▼
+SQLite (SQLAlchemy 2 + Alembic) — 19 required tables + sessions/observations/selections
 ```
 
-## Scenario engine
+## Decision pipeline (`POST /api/decisions`)
 
-A scenario is data (JSON/YAML in `configs/scenarios/`), validated against a schema: metadata, concept tags, difficulty, initial state, actions, pressure config, evidence, transitions, consequences, reflection, scoring rules. The engine is a pure function `(scenario, state, action) → (state', consequence, evidence, pressure)` with no randomness unless seeded. Transition coverage is unit tested for every scenario (all states reachable, all actions defined, terminal states reach reflection). Details in `docs/SCENARIO_ENGINE.md` (written in Phase 3).
+```
+validate request → ownership/state checks (404/409)
+→ SAFETY on free text (mask PAN/Aadhaar/OTP/…; flag advice-seeking)
+→ ENGINE.step (truth: quality, next state, consequence, evidence recall, pressure)
+→ ANALYSIS: misconception rules + ML (gated) + choice signals; behaviour rules + ML + context; emotions; uncertainty
+→ PERSIST decision + reasoning (+ per-dimension observations; concept mastery via BKT; misconception counters)
+→ EXPLAIN: deterministic template; optional English coach note (validated, safety-checked)
+→ response (consequence, analysis, next state) — or, on a terminal state:
+   FINALIZE: summary, fingerprint snapshot (previous/change), misconception exposures (active→improving→resolved),
+             adaptive selection (stored with weakness, difficulty, mastery estimate, rationale), micro-lesson, reflection
+```
 
-## Resilience fingerprint
+## Data model (`database/models.py`)
+`users · concepts · user_concepts · scenarios · scenario_states · scenario_sessions · scenario_decisions · decision_reasoning · misconceptions · user_misconceptions · lessons · quiz_questions · quiz_attempts · simulations · simulation_events · dimension_observations · resilience_scores · adaptive_selections · model_versions · training_runs · knowledge_documents · knowledge_chunks` with foreign keys (enforced in SQLite), cascade deletes for learner data, check constraints (language, confidence range, mastery range, observation range) and indexes on the hot lookups. Migrations live in `database/migrations` (tested up and down).
 
-Ten dimensions scored 0–100 from explicit, documented rules over recorded decision data (e.g., FOMO Resistance falls when the user acts under scarcity/countdown pressure without requesting evidence). Scores are smoothed over attempts. Language is non-judgmental by construction (template review plus safety output check).
+## Offline / degradation matrix
 
-## Misconception engine (M001–M012)
-
-1. Rule signals from choices and evidence ignored (high precision).
-2. Text classifier over reasoning (embeddings or TF-IDF + logistic regression) trained on **clearly labelled synthetic data**; evaluated with precision/recall/F1/confusion matrix on a held-out split. Metrics are written to `artifacts/` by the evaluation script, never hand-entered.
-3. Detections stored in `user_misconceptions` with status over time (detected → improving → resolved).
-
-## Adaptive learning
-
-A transparent policy: weakest dimensions and unresolved misconceptions map to scenario/pressure/simulation tags; next scenario = highest tag overlap at difficulty adjusted by mastery estimate. Every selection stores weakness, chosen training, difficulty, outcome and mastery in the DB, and the rationale string is shown to the user. A learned mastery model may be layered on later, always with the rule policy as fallback.
-
-## Safety Gateway (`ai/safety`)
-
-Input check → processing → output check. Detects advice/buy-sell-hold, price prediction, personalized advice, broker/product promotion, sensitive data (OTP, PIN, card, Aadhaar, PAN, passwords), unsupported regulatory claims, and ungrounded facts. On violation: block or rewrite to a safe educational response. Scenario content is also linted at load time. Adversarial test suite required in CI. See `docs/SAFETY.md` (Phase 13).
-
-## RAG
-
-Documents → chunks → embeddings, stored with source, title, date, chunk, metadata in `knowledge_documents` / `knowledge_chunks`. Answers carry internal citations. If retrieval support is insufficient the system answers: *"I don't have enough verified information to establish that."* Only user-supplied or clearly sourced public educational material is ingested; nothing regulatory is written from memory.
-
-## Data and privacy
-
-SQLite on the local machine; pseudonymous learner profile (display name optional, no PII fields). No financial identifiers are accepted. Delete/reset learner data endpoint and UI. Details in `docs/PRIVACY.md`.
-
-## Offline and degradation matrix
-
-| Component down | Behaviour |
+| Component unavailable | Behaviour |
 |---|---|
-| LLM | Deterministic explanation templates |
-| Embeddings | BM25/keyword retrieval |
-| STT / TTS | Browser speech APIs, then text |
-| Classifier model missing | Rule-based misconception signals |
-| Network | Entire core works (all assets served locally) |
+| internet | no change — all assets, models and data are local |
+| LLM | templates; no coach note; extractive Q&A |
+| embeddings | BM25 keyword retrieval |
+| Piper / Whisper | browser speech → plain text |
+| trained classifiers | rules + choice signals; heuristic difficulty fit |
+| database error | safe 503 JSON, no internals leaked |
+| `ARTH_LOW_RESOURCE=1` | LLM, embeddings and STT off; still plays every scenario |
 
-## Repository layout
-
-```
-apps/web  apps/api   ai/{llm,rag,safety,misconception,adaptive_learning,scenario_engine}
-ml/{datasets,training,evaluation,models}   data/{raw,synthetic,processed,knowledge_base}
-simulations  database  scripts  tests  docs  artifacts  configs
-```
-
-## Decisions made autonomously (and why)
-
-- **Own git repo inside `arthdarshan/`:** the surrounding git root is the user's home directory.
-- **SQLite + Alembic**, no Postgres: single-user local demo.
-- **Small local LLM (3B Q4) as optional layer**, templates as the guaranteed path: 6 GB VRAM machine (see `HARDWARE.md`).
-- **Scenarios as validated data, engine as pure function:** testable and keeps LLM out of scenario truth.
-- **No microservices:** one FastAPI process importing the `ai/*` packages.
-
-## Build phases
-
-Phases 0–18 as defined in the project brief. Status: Phase 0 complete, Phase 1 in progress.
+## Key engineering decisions (and why)
+* **Own git repo in `arthdarshan/`** — the surrounding git root is the user's home directory.
+* **Scenarios are data, the engine is pure** — testable exhaustively (every edge executed in CI) and keeps the LLM out of truth.
+* **LLM demoted to an optional note** after a live test showed a fluent but factually inverted sentence; factual explanation is template-based.
+* **Voice in a separate process** — importing `onnxruntime` after scikit-learn segfaults on the dev machine; process isolation removes an uncatchable crash from the API.
+* **Production detector = rules + gated ML** — measured to beat either alone on the held-out set.
+* **SQLite + Alembic, one process, no microservices** — single-user local product.
+* **Hand-written held-out sets** and metrics produced by scripts — so no performance claim is typed by hand.

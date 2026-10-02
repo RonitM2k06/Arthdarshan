@@ -179,3 +179,11 @@ def test_all_pressure_types_used_somewhere(scenarios):
     for t in ["urgency", "countdown", "scarcity", "social_proof", "authority", "fomo", "fear", "greed",
               "loss_recovery", "peer_pressure"]:
         assert t in used, t
+
+
+def test_hindi_falls_back_to_hinglish_not_english(scenarios):
+    sc = scenarios["market_shock"]                       # has Hinglish overlay only
+    hi = eng.localize(sc, "hi")
+    assert hi.states["m1_shock"].title == eng.localize(sc, "hinglish").states["m1_shock"].title != sc.states["m1_shock"].title
+    hero = eng.localize(scenarios["guaranteed_opportunity"], "hi")     # full Devanagari where translated
+    assert any("ऀ" <= c <= "ॿ" for c in hero.states["s1_message"].title)

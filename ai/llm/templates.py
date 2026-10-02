@@ -56,6 +56,10 @@ T = {
 }
 
 
+def _q(label: str) -> str:
+    return label.strip().strip("“”\"")
+
+
 def build_explanation(facts: dict, lang: str = "en") -> str:
     lang = lang if lang in T else "en"
     t = T[lang]
@@ -63,11 +67,11 @@ def build_explanation(facts: dict, lang: str = "en") -> str:
     nt = facts.get("noticed") or []
     total = facts.get("red_flag_total") or 0
     if total:
-        parts.append(t["noticed"].format(n=len(nt), total=total, label=nt[0]["label"]) if nt else t["noticed_none"])
+        parts.append(t["noticed"].format(n=len(nt), total=total, label=_q(nt[0]["label"])) if nt else t["noticed_none"])
     missed = facts.get("missed") or []
     if missed:
         mi = missed[0]
-        parts.append(t["missed"].format(label=mi["label"]))
+        parts.append(t["missed"].format(label=_q(mi["label"])))
     types = facts.get("pressure_types") or []
     if types:
         names = ", ".join(PRESSURE_NAMES[lang].get(x, x) for x in dict.fromkeys(types))

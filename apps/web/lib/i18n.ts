@@ -169,6 +169,7 @@ export const STRINGS = {
   quit: S("Leave scenario", "Scenario chhodo", "परिदृश्य छोड़ें"),
   profile_title: S("Your profile", "Aapka profile", "आपका प्रोफ़ाइल"), profile_note: S("No email, phone or real name is ever needed. Your profile lives only on this device.", "Email, phone ya asli naam ki kabhi zaroorat nahi. Aapka profile sirf is device par rehta hai.", "ईमेल, फ़ोन या असली नाम की कभी ज़रूरत नहीं। आपका प्रोफ़ाइल सिर्फ़ इस डिवाइस पर रहता है।"),
   coach_note: S("Local AI note on your reasoning", "Aapke tark par local AI ka note", "आपके तर्क पर स्थानीय AI का नोट"),
+  sample_learner: S("See a sample learner’s fingerprint (scripted choices, real engine)", "Ek namune learner ka fingerprint dekho (tay kiye choices, asli engine)", "एक नमूना शिक्षार्थी का फ़िंगरप्रिंट देखें (तय विकल्प, असली इंजन)"),
   // common
   loading: S("Loading…", "Load ho raha hai…", "लोड हो रहा है…"), retry: S("Try again", "Phir koshish karo", "फिर कोशिश करें"),
   err_generic: S("Something went wrong. Your data is safe — please try again.", "Kuch gadbad hui. Aapka data surakshit hai — kripya phir koshish karein.", "कुछ गड़बड़ हुई। आपका डेटा सुरक्षित है — कृपया फिर कोशिश करें।"),

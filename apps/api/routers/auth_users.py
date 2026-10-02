@@ -37,6 +37,13 @@ def demo(body: AuthStart | None = None, db: Session = Depends(get_db)):
     return _create(db, body, demo=True)
 
 
+@auth_router.post("/demo-persona", response_model=AuthOut, summary="A SCRIPTED sample learner whose decisions ran through the real engine")
+def demo_persona(body: AuthStart | None = None, db: Session = Depends(get_db)):
+    from apps.api.services import demo_persona as dp
+    token, user = dp.build(db, (body.language if body else "en"))
+    return AuthOut(token=token, user=UserOut.model_validate(user))
+
+
 @users_router.get("/me", response_model=UserOut)
 def me(user: m.User = Depends(current_user)):
     return user

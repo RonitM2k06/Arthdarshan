@@ -205,3 +205,13 @@ test("privacy: export and delete my learning data", async ({ page }) => {
   await page.goto("/privacy");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("How your data is handled");
 });
+
+test("sample learner (scripted persona) shows a populated, honest fingerprint and improvement", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: /sample learner/i }).click();
+  await expect(page).toHaveURL(/\/resilience/);
+  await expect(page.getByRole("heading", { name: "Your Financial Resilience Fingerprint", level: 2 })).toBeVisible();
+  await expect(page.getByText("Improvement over time")).toBeVisible();
+  await expect(page.getByTestId("insights")).toBeVisible();
+  await expect(page.getByText("▲").first()).toBeVisible();
+});
