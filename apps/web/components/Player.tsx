@@ -72,7 +72,7 @@ function Evidence({ view, picked, toggle, locked, analysis }: { view: StateView;
   const mis = new Map((analysis?.evidence.missed ?? []).map((e) => [e.id, e]));
   const fa = new Map((analysis?.evidence.false_alarms ?? []).map((e) => [e.id, e]));
   return (
-    <fieldset className="mt-5" disabled={locked && !analysis}>
+    <fieldset className="mt-5 min-w-0" disabled={locked && !analysis}>
       <legend className="mb-2 text-sm font-semibold text-ivory/90">{t("evidence_prompt")}</legend>
       <ul className="grid gap-2 sm:grid-cols-2">
         {view.evidence.map((e) => {
@@ -217,7 +217,7 @@ export function Player({ scenarioId, selectionId }: { scenarioId: string; select
 
   const locked = !!result;
   return (
-    <div className="grid gap-5 lg:grid-cols-[1.15fr_.85fr]" data-testid="player" data-state={view.id}>
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[1.15fr_.85fr]" data-testid="player" data-state={view.id}>
       <section aria-labelledby="scene-h" className="jali rounded-3xl bg-midnight p-5 text-ivory sm:p-7">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-saffron-300">{card.title} · {t("step")} {step}</p>

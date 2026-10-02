@@ -182,6 +182,8 @@ test("mobile: bottom navigation, no horizontal scroll", async ({ browser }) => {
   }
   await page.goto("/simulate/play?scenario=guaranteed_opportunity&n=m");
   await expect(page.getByTestId("player")).toBeVisible();
+  const playOverflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(playOverflow, "horizontal overflow in the simulator on mobile").toBeLessThanOrEqual(1);
   await expect(page.getByTestId("decide")).toBeVisible();
   await ctx.close();
 });
