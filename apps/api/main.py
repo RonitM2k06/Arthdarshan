@@ -45,6 +45,9 @@ async def lifespan(app: FastAPI):
         rag.ingest(db, with_embeddings=False)
     if s.enable_embeddings and not s.low_resource:
         threading.Thread(target=_background_embeddings, name="embed-ingest", daemon=True).start()
+    if s.llm_active:
+        from ai.llm import client as llm_client
+        threading.Thread(target=llm_client.warmup, name="llm-warmup", daemon=True).start()
     log.info("ARTHDARSHAN ready (llm=%s, low_resource=%s)", s.llm_active, s.low_resource)
     yield
 

@@ -56,7 +56,7 @@ def generate(prompt: str, system: str, *, json_mode: bool = True, max_tokens: in
     s = get_settings()
     if not status()["available"]:
         return None
-    body = {"model": s.llm_model, "prompt": prompt, "system": system, "stream": False, "keep_alive": "3m",
+    body = {"model": s.llm_model, "prompt": prompt, "system": system, "stream": False, "keep_alive": "10m",
             "options": {"temperature": temperature, "num_predict": max_tokens, "num_ctx": 2048}}
     if json_mode:
         body["format"] = "json"
@@ -69,6 +69,16 @@ def generate(prompt: str, system: str, *, json_mode: bool = True, max_tokens: in
         with _lock:
             _cache["t"] = 0.0   # re-probe next time
         return None
+
+
+def warmup() -> None:
+    """Load the model into memory in the background so the first learner request is not a cold start."""
+    try:
+        if status(force=True)["available"]:
+            generate("Reply with the single word ok.", "You are a test.", json_mode=False, max_tokens=4, timeout=120)
+            log.info("LLM warmed up")
+    except Exception as exc:  # noqa: BLE001
+        log.info("LLM warmup skipped: %s", type(exc).__name__)
 
 
 def parse_json(text: str | None) -> dict | None:

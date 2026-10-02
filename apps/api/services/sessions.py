@@ -16,7 +16,7 @@ from sqlalchemy.orm import Session
 
 from ai.adaptive_learning.dimensions import DIMS, lang_of
 from ai.adaptive_learning.policy import rank_scenarios, recommend_other
-from ai.llm.explainer import explain_decision
+from ai.llm.explainer import coach_note, explain_decision
 from ai.llm.templates import PRESSURE_NAMES
 from ai.misconception import behaviour as bh
 from ai.misconception import detector, ml_models
@@ -166,10 +166,13 @@ def decide(db: Session, user: m.User, body: DecisionIn, lang: str) -> dict:
         "behaviours": [bh.explain(h.label, lang) for h in behs[:3]],
         "misconceptions": [detector.correction(d.id, lang) for d in dets[:2]], "confidence": body.confidence,
     }
-    explanation, source = explain_decision(facts, lang)
+    explanation, source = explain_decision(facts, lang)          # deterministic, factual
     guard = check_output(explanation, lang)
     if not guard.allowed:
-        explanation, source = guard.text, "template"
+        explanation = guard.text
+    coach = coach_note(reasoning, [b["name"] for b in facts["behaviours"]], lang)   # optional local-LLM reflection on the learner's own words
+    if coach:
+        source = "llm"
     db.add(m.DecisionReasoning(decision_id=decision.id, text=reasoning, safety_flags=flags, behaviours=[h.label for h in behs],
                                misconceptions=[d.to_dict() for d in dets], emotional_indicators=emotions, uncertainty_recognized=uncertainty,
                                explanation=explanation, explanation_source=source))
@@ -191,7 +194,7 @@ def decide(db: Session, user: m.User, body: DecisionIn, lang: str) -> dict:
 
     loc_action = next(a for a in loc_state.actions if a.id == step.action_id)
     analysis = {
-        "quality": step.quality, "explanation": explanation, "explanation_source": source,
+        "quality": step.quality, "explanation": explanation, "explanation_source": source, "coach_note": coach,
         "evidence": {"recall": step.evidence.recall,
                      "recognized": [{"id": i, "label": loc_ev[i].label, "why": loc_ev[i].why} for i in step.evidence.noticed_red_flags],
                      "missed": [{"id": i, "label": loc_ev[i].label, "why": loc_ev[i].why} for i in step.evidence.missed_red_flags],

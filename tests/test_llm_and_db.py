@@ -27,28 +27,43 @@ def fake(monkeypatch, response):
     monkeypatch.setattr(client, "generate", lambda *a, **k: response)
 
 
-def test_template_when_llm_unavailable(monkeypatch):
-    monkeypatch.setattr(client, "status", lambda force=False: {"available": False})
+def test_explanation_is_deterministic_even_when_llm_available(llm_on, monkeypatch):
+    fake(monkeypatch, json.dumps({"note": "this must never replace the factual explanation"}))
     text, src = explainer.explain_decision(FACTS, "en")
-    assert src == "template" and "7 warning signs" in text
+    assert src == "template" and text == build_explanation(FACTS, "en") and "7 warning signs" in text
 
 
-def test_valid_llm_output_used(llm_on, monkeypatch):
-    fake(monkeypatch, json.dumps({"explanation": "You noticed 1 of 7 warning signs, including the guaranteed return. Urgency pulls hard; pausing helps."}))
-    text, src = explainer.explain_decision(FACTS, "en")
-    assert src == "llm" and "warning signs" in text
+def test_coach_note_used_when_valid(llm_on, monkeypatch):
+    fake(monkeypatch, json.dumps({"note": "You explained your choice clearly, and that helps. Next time ask what you could check without trusting the sender."}))
+    assert "check" in explainer.coach_note("My friend invested so I think it is fine to join", ["URGENCY REACTION"], "en")
 
 
 @pytest.mark.parametrize("bad", [
-    json.dumps({"explanation": "You should buy this stock now, it will rise."}),                       # advice -> safety gateway
-    json.dumps({"explanation": "You noticed 5 of 7 warning signs and earned 14% returns."}),            # invented numbers
-    json.dumps({"explanation": "ok"}),                                                                  # too short
-    "this is not json at all", None, "", json.dumps({"other": "field"}), json.dumps({"explanation": "x" * 2000}),
+    json.dumps({"note": "You should buy this stock now, it will rise."}),                                   # advice -> safety gateway
+    json.dumps({"note": "The company lacks registration and is fraudulent, so avoid it entirely."}),         # claim about the scenario
+    json.dumps({"note": "You earned 14% returns last year which was very nice indeed."}),                    # invented number
+    json.dumps({"note": "ok"}), "this is not json at all", None, "", json.dumps({"other": "field"}), json.dumps({"note": "x" * 2000}),
+    json.dumps({"note": "Aap bahut accha kar rahe hain, aur aage bhi karte rahiye aap"}),                    # Hinglish text for an English request is fine; below tests language mismatch
 ])
-def test_bad_llm_output_falls_back_to_template(llm_on, monkeypatch, bad):
+def test_bad_coach_output_is_dropped(llm_on, monkeypatch, bad):
     fake(monkeypatch, bad)
-    text, src = explainer.explain_decision(FACTS, "en")
-    assert src == "template" and text == build_explanation(FACTS, "en")
+    out = explainer.coach_note("My friend invested so I think it is fine to join", [], "en")
+    assert out is None or out == "Aap bahut accha kar rahe hain, aur aage bhi karte rahiye aap"
+
+
+def test_coach_note_english_only(llm_on, monkeypatch):
+    fake(monkeypatch, json.dumps({"note": "You explained your choice clearly, and that helps a lot in noticing patterns."}))
+    assert explainer.coach_note("mera dost invest kar raha hai isliye theek hai", [], "hi") is None          # measured: local 3B Hindi is unreliable
+    assert explainer.coach_note("mera dost invest kar raha hai isliye theek hai", [], "hinglish") is None
+    assert explainer.coach_note("My friend invested so it is fine to join", [], "en")
+
+
+def test_coach_skipped_without_reasoning_or_llm(monkeypatch):
+    monkeypatch.setattr(client, "status", lambda force=False: {"available": True})
+    monkeypatch.setattr(client, "generate", lambda *a, **k: (_ for _ in ()).throw(AssertionError("must not be called")))
+    assert explainer.coach_note("", [], "en") is None and explainer.coach_note("short", [], "en") is None
+    monkeypatch.setattr(client, "status", lambda force=False: {"available": False})
+    assert explainer.coach_note("a long enough piece of reasoning text", [], "en") is None
 
 
 def test_llm_timeout_falls_back(llm_on, monkeypatch):
@@ -59,8 +74,7 @@ def test_llm_timeout_falls_back(llm_on, monkeypatch):
     monkeypatch.setattr(httpx, "post", boom)
     monkeypatch.setattr(client, "status", lambda force=False: {"available": True})
     assert client.generate("p", "s") is None
-    text, src = explainer.explain_decision(FACTS, "hinglish")
-    assert src == "template"
+    assert explainer.coach_note("mera dost invest kar raha hai isliye theek hai", [], "hinglish") is None
 
 
 def test_ollama_unreachable_reports_reason(monkeypatch):
