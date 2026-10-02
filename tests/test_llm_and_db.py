@@ -139,3 +139,10 @@ def test_models_have_no_pii_columns():
     cols = {c.name for t in Base.metadata.tables.values() for c in t.columns}
     for forbidden in ["email", "phone", "aadhaar", "pan", "password", "otp", "card_number", "account_number", "address"]:
         assert forbidden not in cols
+
+
+def test_answer_question_is_english_only(llm_on, monkeypatch):
+    fake(monkeypatch, json.dumps({"note": "Volatility is how much a price moves up and down."}))
+    assert explainer.answer_question("What is volatility?", "Volatility is how much a price moves.", "en")
+    for lang in ("hinglish", "hi"):
+        assert explainer.answer_question("Volatility kya hai?", "Volatility ka matlab utaar-chadhav.", lang) is None

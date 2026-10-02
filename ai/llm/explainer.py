@@ -87,7 +87,7 @@ def coach_note(reasoning: str, behaviour_names: list[str], lang: str = "en") -> 
 
 def answer_question(question: str, context: str, lang: str = "en") -> str | None:
     """Short grounded answer from supplied context (used by Q&A). None when the LLM is unavailable/invalid."""
-    if not client.status()["available"]:
+    if lang != "en" or not client.status()["available"]:   # Hindi/Hinglish answers come from curated concept text
         return None
     prompt = (f"Write ONLY in {LANG_NAME.get(lang, 'English')}.\nContext (verified educational material):\n{context}\n\nQuestion: {question}\n"
               "Answer in at most 4 short sentences using ONLY the context. If the context does not answer it, reply exactly: "

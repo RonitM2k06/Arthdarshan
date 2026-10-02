@@ -10,3 +10,13 @@ data/processed/
 .pytest_cache/
 data/voices/*.onnx
 data/models/
+
+data/voices/
+data/models/
+artifacts/tmp/
+artifacts/screens/
+apps/web/test-results/
+apps/web/playwright-report/
+apps/web/.next/
+apps/web/node_modules/
+artifacts/logs/
